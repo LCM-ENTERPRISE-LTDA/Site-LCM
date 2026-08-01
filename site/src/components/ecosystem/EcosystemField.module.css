@@ -1,0 +1,281 @@
+.field {
+  position: relative;
+  width: 100%;
+  min-height: clamp(18rem, 38vh, 26rem);
+  isolation: isolate;
+}
+
+.haze {
+  position: absolute;
+  inset: 5% 2%;
+  background: radial-gradient(
+    ellipse at var(--elx, 50%) var(--ely, 48%),
+    rgba(47, 107, 255, 0.14),
+    transparent 65%
+  );
+  filter: blur(36px);
+  opacity: 0.75;
+  pointer-events: none;
+  transform: translate3d(calc(var(--ex, 0) * 0.35px), calc(var(--ey, 0) * 0.35px), 0);
+}
+
+.foundationGlow {
+  position: absolute;
+  inset: 18% 12%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(47, 107, 255, 0.1), transparent 70%);
+  filter: blur(28px);
+  pointer-events: none;
+  transform: translate3d(calc(var(--ex, 0) * 0.55px), calc(var(--ey, 0) * 0.55px), 0);
+}
+
+.svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  transform: translate3d(calc(var(--ex, 0) * 0.25px), calc(var(--ey, 0) * 0.25px), 0);
+}
+
+.foundation {
+  opacity: 0.95;
+}
+
+.plane {
+  opacity: 0.9;
+}
+
+.region {
+  opacity: 0.72;
+  transition: opacity 0.45s ease;
+}
+
+.focused {
+  opacity: 1;
+}
+
+.field[data-focus="autohist"] .region:not(.autohist),
+.field[data-focus="dyson"] .region:not(.dyson),
+.field[data-focus="studio"] .region:not(.studio),
+.field[data-focus="businesszap"] .region:not(.businesszap) {
+  opacity: 0.38;
+}
+
+.field[data-focus="autohist"] .autohist,
+.field[data-focus="dyson"] .dyson,
+.field[data-focus="studio"] .studio,
+.field[data-focus="businesszap"] .businesszap {
+  opacity: 1;
+}
+
+.pulse {
+  stroke-dasharray: 8 18;
+}
+
+.pulseSlow {
+  stroke-dasharray: 6 22;
+}
+
+.signal {
+  stroke-dasharray: 5 12;
+}
+
+.alive .pulse {
+  animation: dash 16s linear infinite;
+}
+
+.alive .pulseSlow {
+  animation: dash 22s linear infinite reverse;
+}
+
+.alive .signal {
+  animation: dash 10s linear infinite;
+}
+
+.alive .plane {
+  animation: breathe 9s ease-in-out infinite;
+}
+
+.alive .haze {
+  animation: breathe 11s ease-in-out infinite;
+}
+
+.hits {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hit {
+  position: absolute;
+  width: 22%;
+  height: 36%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hit_autohist {
+  left: 2%;
+  top: 8%;
+}
+
+.hit_dyson {
+  right: 4%;
+  top: 2%;
+}
+
+.hit_studio {
+  left: 34%;
+  bottom: 4%;
+}
+
+.hit_businesszap {
+  right: 2%;
+  bottom: 10%;
+}
+
+.labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.label {
+  position: absolute;
+  display: grid;
+  gap: 0.15rem;
+  max-width: 11rem;
+  transition: opacity 0.4s ease;
+}
+
+.labelName {
+  font-family: var(--font-instrument), var(--font-display), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+  color: color-mix(in srgb, var(--accent) 75%, var(--color-text));
+}
+
+.labelNote {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  letter-spacing: -0.01em;
+}
+
+.label_autohist {
+  left: 4%;
+  top: 12%;
+}
+
+.label_dyson {
+  right: 6%;
+  top: 6%;
+  text-align: right;
+}
+
+.label_studio {
+  left: 38%;
+  bottom: 6%;
+}
+
+.label_businesszap {
+  right: 4%;
+  bottom: 14%;
+  text-align: right;
+}
+
+.labelFocus .labelName {
+  color: var(--accent);
+}
+
+.field[data-focus]:not([data-focus=""]) .label:not(.labelFocus) {
+  opacity: 0.4;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 959px) {
+  .field {
+    min-height: clamp(16rem, 48vw, 22rem);
+  }
+
+  .label {
+    max-width: 9.5rem;
+  }
+
+  .labelName {
+    font-size: 0.78rem;
+  }
+
+  .labelNote {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .field {
+    min-height: clamp(15rem, 78vw, 22rem);
+  }
+
+  .label_autohist {
+    left: 2%;
+    top: 4%;
+  }
+
+  .label_dyson {
+    right: 2%;
+    top: 2%;
+  }
+
+  .label_studio {
+    left: 28%;
+    bottom: 2%;
+  }
+
+  .label_businesszap {
+    right: 2%;
+    bottom: 8%;
+  }
+
+  .haze,
+  .foundationGlow,
+  .svg {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive .pulse,
+  .alive .pulseSlow,
+  .alive .signal,
+  .alive .plane,
+  .alive .haze {
+    animation: none !important;
+  }
+
+  .haze,
+  .foundationGlow,
+  .svg {
+    transform: none;
+  }
+}
