@@ -1,0 +1,31 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.primary :global(svg) {
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.primary:hover :global(svg) {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary:hover :global(svg) {
+    transform: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions a {
+    width: 100%;
+  }
+}

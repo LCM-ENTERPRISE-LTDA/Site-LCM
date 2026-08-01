@@ -1,0 +1,283 @@
+.stage {
+  --px: 0;
+  --py: 0;
+  --plight-x: 55%;
+  --plight-y: 38%;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 420 / 380;
+  max-width: 34rem;
+  margin-inline: auto;
+  isolation: isolate;
+  transform: perspective(900px) rotateX(calc(var(--py) * -0.35deg)) rotateY(calc(var(--px) * 0.35deg));
+  transform-style: preserve-3d;
+}
+
+.bloom {
+  position: absolute;
+  inset: 8% 12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at var(--plight-x) var(--plight-y),
+    rgba(47, 107, 255, 0.28),
+    rgba(25, 184, 242, 0.08) 42%,
+    transparent 68%
+  );
+  filter: blur(8px);
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-soft);
+}
+
+.gridFade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  background:
+    linear-gradient(180deg, transparent 0%, var(--background-base) 96%),
+    repeating-linear-gradient(
+      var(--triad-angle),
+      transparent 0,
+      transparent 28px,
+      rgba(130, 170, 220, 0.05) 28px,
+      rgba(130, 170, 220, 0.05) 29px
+    );
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, black 20%, transparent 75%);
+}
+
+.canvas {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.planeFar {
+  transform: translate(calc(var(--px) * 0.25px), calc(var(--py) * 0.25px));
+  transition: opacity var(--duration-assemble) var(--ease-assemble);
+  opacity: 0;
+}
+
+.connections {
+  opacity: 0;
+  transition: opacity var(--duration-assemble) var(--ease-assemble);
+}
+
+.channel {
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  transition: stroke-dashoffset var(--duration-assemble) var(--ease-assemble);
+}
+
+.node {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transition:
+    opacity var(--duration-assemble) var(--ease-assemble),
+    transform var(--duration-assemble) var(--ease-assemble);
+}
+
+.nodeTop {
+  transform: translate(calc(var(--px) * 0.55px), calc(-28px + var(--py) * 0.4px));
+}
+
+.nodeLeft {
+  transform: translate(calc(-34px + var(--px) * 0.7px), calc(18px + var(--py) * 0.55px));
+}
+
+.nodeRight {
+  transform: translate(calc(34px + var(--px) * 0.7px), calc(18px + var(--py) * 0.55px));
+}
+
+.core {
+  opacity: 0;
+  transform: translate(calc(var(--px) * 0.35px), calc(var(--py) * 0.35px));
+  transition: opacity var(--duration-assemble) var(--ease-assemble);
+}
+
+.pulse,
+.pulseDelayed {
+  opacity: 0;
+}
+
+/* Phases */
+.enter .node {
+  opacity: 0.85;
+}
+
+.enter .nodeTop {
+  transform: translate(calc(var(--px) * 0.55px), calc(-48px + var(--py) * 0.4px));
+}
+
+.enter .nodeLeft {
+  transform: translate(calc(-56px + var(--px) * 0.7px), calc(36px + var(--py) * 0.55px));
+}
+
+.enter .nodeRight {
+  transform: translate(calc(56px + var(--px) * 0.7px), calc(36px + var(--py) * 0.55px));
+}
+
+.join .planeFar,
+.join .connections,
+.join .node,
+.join .core {
+  opacity: 1;
+}
+
+.join .channel {
+  stroke-dashoffset: 0;
+}
+
+.join .nodeTop {
+  transform: translate(calc(var(--px) * 0.55px), calc(-8px + var(--py) * 0.4px));
+}
+
+.join .nodeLeft {
+  transform: translate(calc(-10px + var(--px) * 0.7px), calc(4px + var(--py) * 0.55px));
+}
+
+.join .nodeRight {
+  transform: translate(calc(10px + var(--px) * 0.7px), calc(4px + var(--py) * 0.55px));
+}
+
+.settle .planeFar,
+.settle .connections,
+.settle .node,
+.settle .core {
+  opacity: 1;
+}
+
+.settle .channel {
+  stroke-dashoffset: 0;
+}
+
+.settle .nodeTop {
+  transform: translate(calc(var(--px) * 0.55px), calc(var(--py) * 0.4px));
+}
+
+.settle .nodeLeft {
+  transform: translate(calc(var(--px) * 0.7px), calc(var(--py) * 0.55px));
+}
+
+.settle .nodeRight {
+  transform: translate(calc(var(--px) * 0.7px), calc(var(--py) * 0.55px));
+}
+
+/* Ambient motion — only while in view and after settle */
+.alive.settle .nodeTop {
+  animation: floatA 7.5s var(--ease-soft) infinite;
+}
+
+.alive.settle .nodeLeft {
+  animation: floatB 8.4s var(--ease-soft) infinite;
+}
+
+.alive.settle .nodeRight {
+  animation: floatC 9.1s var(--ease-soft) infinite;
+}
+
+.alive.settle .pulse {
+  opacity: 0.9;
+  animation: travel 4.8s linear infinite;
+}
+
+.alive.settle .pulseDelayed {
+  opacity: 0.9;
+  animation: travel 4.8s linear 1.6s infinite;
+}
+
+.alive.settle .bloom {
+  animation: breathe 6.5s var(--ease-soft) infinite;
+}
+
+@keyframes floatA {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -3px;
+  }
+}
+
+@keyframes floatB {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: -2px 2px;
+  }
+}
+
+@keyframes floatC {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 2px 2px;
+  }
+}
+
+@keyframes travel {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.reduced .node,
+.reduced .connections,
+.reduced .planeFar,
+.reduced .core {
+  opacity: 1;
+  transform: none !important;
+  animation: none !important;
+}
+
+.reduced .channel {
+  stroke-dashoffset: 0;
+}
+
+.reduced .bloom,
+.reduced .pulse,
+.reduced .pulseDelayed {
+  animation: none !important;
+}
+
+.reduced .pulse,
+.reduced .pulseDelayed {
+  opacity: 0.55;
+}
+
+@media (max-width: 767px) {
+  .stage {
+    max-width: 22rem;
+    transform: none;
+  }
+}
