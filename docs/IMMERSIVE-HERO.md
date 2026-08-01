@@ -51,3 +51,9 @@ Hero força Instrument Sans (`--font-instrument`) no título — alinhado ao Des
 - Assimetria da geometria ainda pode ganhar escala maior em 1920+
 - Transição PrinciplesBand é sutil; pode aprofundar
 - `docs/CREATIVE_EXPLORATION.md` permanece untracked (exploração, fora do escopo desta entrega)
+
+## Validação técnica (M4)
+
+- `npm run typecheck` — pass
+- `npm run lint` — pass
+- `npm run build` — pass (16 rotas estáticas)
