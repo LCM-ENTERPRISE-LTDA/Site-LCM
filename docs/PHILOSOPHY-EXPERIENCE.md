@@ -1,32 +1,35 @@
-# Philosophy Experience — Institutional narrative
+# Philosophy Experience — Living Manifesto
 
 ## Concept
 
-After the product chapters, the visitor knows **what** LCM builds.
-This section answers **why** — through silence, typography, and paced reading.
-
-No products. No cards. No icons. An exhibition of principles.
+After Product Showcase, the Manifesto reveals **why**. Not empty screens of type —
+a continuous living field: haze, dust, breath, and a single luminous current that
+carries the ecosystem energy (blue → violet → amber → green) without labeling products.
 
 ## Architecture
 
 ```
 PhilosophyExperience
-├── atmosphere (quiet gradient + soft noise)
+├── ManifestAtmosphere (far haze, volumes, current, dust, mist, breath, noise)
 ├── intro eyebrow
-├── gallery
-│   └── PhilosophyStatementBlock × 5
+├── gallery → PhilosophyStatementBlock × N
 └── bridge → Tecnologia
 ```
 
-## Narrative
+## Luminous current
 
-Five institutional statements — tools over software, results over spectacle, problems over trends, clarity over complexity, people over replacement.
+One SVG ribbon behind the text. Organic gradient continuum.
+Scroll shifts it a few pixels; ambient sway over ~48s. Never neon. Never UI.
 
 ## Motion
 
-Editorial only: opacity, slight translate, light blur clear, soft radial light.
-Intersection Observer once per panel. No pointer. Reduced motion → static.
+Contemplative only: slow breathe/drift (20–48s), editorial text reveal once,
+`--manifest-p` via one scroll rAF while in view. No pointer chase.
 
-## Transition
+## Spacing
 
-Bottom bridge gradient lands on `background-elevated`, matching the Tecnologia section entry.
+Panel min-height reduced ~40% vs empty-screen version — continuity without packing.
+
+## Constraints
+
+Only philosophy feature files + this doc. Hero / Showcase / Header / Footer untouched.

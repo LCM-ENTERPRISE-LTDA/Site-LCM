@@ -1,0 +1,261 @@
+.layers {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.farHaze {
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(ellipse 80% 45% at 50% -5%, rgba(47, 107, 255, 0.12), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 20% 40%, rgba(77, 155, 232, 0.05), transparent 50%),
+    radial-gradient(ellipse 55% 35% at 80% 70%, rgba(47, 191, 134, 0.045), transparent 52%);
+  transform: translate3d(0, calc(var(--manifest-p, 0) * -18px), 0);
+  opacity: 0.9;
+}
+
+.volumeA {
+  position: absolute;
+  width: 70%;
+  height: 55%;
+  left: 15%;
+  top: 8%;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(107, 142, 240, 0.1),
+    rgba(139, 124, 240, 0.04) 40%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  transform: translate3d(
+    calc(var(--manifest-p, 0) * 12px),
+    calc(var(--manifest-p, 0) * 40px),
+    0
+  );
+  opacity: 0.75;
+}
+
+.volumeB {
+  position: absolute;
+  width: 65%;
+  height: 50%;
+  left: 20%;
+  bottom: 5%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(240, 160, 64, 0.07),
+    rgba(47, 191, 134, 0.05) 45%,
+    transparent 72%
+  );
+  filter: blur(48px);
+  transform: translate3d(
+    calc(var(--manifest-p, 0) * -10px),
+    calc(var(--manifest-p, 0) * -28px),
+    0
+  );
+  opacity: 0.7;
+}
+
+.current {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+  transform: translate3d(
+    calc(var(--manifest-p, 0) * 10px - 4px),
+    calc(var(--manifest-p, 0) * -24px),
+    0
+  );
+}
+
+.currentGlow {
+  opacity: 0.85;
+}
+
+.currentCore {
+  opacity: 0.9;
+}
+
+.dust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+  transform: translate3d(0, calc(var(--manifest-p, 0) * -30px), 0);
+}
+
+.speck {
+  opacity: 0.25;
+}
+
+.midMist {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(8, 12, 20, 0.15) 40%,
+      rgba(8, 12, 20, 0.08) 70%,
+      transparent 100%
+    ),
+    radial-gradient(ellipse 90% 30% at 50% 100%, rgba(6, 10, 18, 0.5), transparent 60%);
+  opacity: 0.8;
+}
+
+.breath {
+  position: absolute;
+  inset: 10% 20%;
+  background: radial-gradient(
+    ellipse 50% 40% at 50% calc(30% + var(--manifest-p, 0) * 40%),
+    rgba(243, 246, 250, 0.045),
+    transparent 68%
+  );
+  filter: blur(24px);
+  opacity: 0.65;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: soft-light;
+}
+
+.foreground {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 10, 18, 0.35) 0%,
+    transparent 22%,
+    transparent 78%,
+    rgba(6, 10, 18, 0.3) 100%
+  );
+  opacity: 0.55;
+}
+
+/* Contemplative ambient — very slow */
+.alive .breath {
+  animation: breathe 26s ease-in-out infinite;
+}
+
+.alive .volumeA {
+  animation: driftA 34s ease-in-out infinite;
+}
+
+.alive .volumeB {
+  animation: driftB 40s ease-in-out infinite;
+}
+
+.alive .current {
+  animation: currentSway 48s ease-in-out infinite;
+}
+
+.alive .speck {
+  animation: twinkle 22s ease-in-out infinite;
+  animation-delay: calc(var(--si, 0) * 0.7s);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes driftA {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 14px 10px;
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: -12px -8px;
+  }
+}
+
+@keyframes currentSway {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 6px 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive .breath,
+  .alive .volumeA,
+  .alive .volumeB,
+  .alive .current,
+  .alive .speck {
+    animation: none !important;
+  }
+
+  .farHaze,
+  .volumeA,
+  .volumeB,
+  .current,
+  .dust,
+  .breath {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 959px) {
+  .current {
+    opacity: 0.4;
+    left: -8%;
+    width: 116%;
+  }
+
+  .volumeA,
+  .volumeB {
+    filter: blur(32px);
+  }
+
+  .dust {
+    opacity: 0.22;
+  }
+}
+
+@media (max-width: 479px) {
+  .current {
+    opacity: 0.32;
+  }
+
+  .foreground {
+    opacity: 0.35;
+  }
+}

@@ -100,7 +100,9 @@ Detalhes: `docs/PRODUCT-SHOWCASE.md`.
 
 | Componente | Papel |
 |------------|-------|
-| `PhilosophyExperience` | Galeria editorial de princípios |
-| `PhilosophyStatementBlock` | Painel tipográfico por frase |
+| `PhilosophyExperience` | Manifesto vivo + scroll progress |
+| `ManifestAtmosphere` | Camadas: haze, corrente, poeira, respiração |
+| `PhilosophyStatementBlock` | Tipografia editorial por princípio |
+| `useManifestScroll` | `--manifest-p` (1 rAF) |
 
 Detalhes: `docs/PHILOSOPHY-EXPERIENCE.md`.
