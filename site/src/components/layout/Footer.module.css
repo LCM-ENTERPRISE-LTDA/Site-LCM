@@ -1,7 +1,9 @@
 .footer {
-  border-top: 1px solid var(--color-border);
+  border-top: var(--border-width) solid var(--color-border);
   background: var(--color-surface);
   padding-block: var(--space-8) var(--space-6);
+  position: relative;
+  z-index: 1;
 }
 
 .grid {
@@ -11,7 +13,7 @@
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: 1.4fr repeat(3, 1fr);
+    grid-template-columns: 1.45fr repeat(3, 1fr);
   }
 }
 
@@ -25,6 +27,7 @@
   font-family: var(--font-display);
   font-weight: 600;
   font-size: var(--text-lg);
+  letter-spacing: var(--tracking-tight);
 }
 
 .blurb,
@@ -37,6 +40,8 @@
 .heading {
   font-weight: 600;
   margin-bottom: var(--space-3);
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
 }
 
 .list {
@@ -48,16 +53,18 @@
 .list a {
   text-decoration: none;
   color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  transition: color var(--duration-fast) var(--ease-standard);
 }
 
 .list a:hover {
-  color: var(--color-text);
+  color: var(--color-brand);
 }
 
 .bottom {
   margin-top: var(--space-7);
   padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
+  border-top: var(--border-width) solid var(--color-border);
+  color: var(--color-text-subtle);
   font-size: var(--text-sm);
 }

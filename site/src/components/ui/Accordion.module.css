@@ -4,10 +4,16 @@
 }
 
 .item {
-  border: 1px solid var(--color-border);
+  border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.item:hover {
+  border-color: var(--color-border-strong);
 }
 
 .heading {
@@ -28,25 +34,27 @@
   cursor: pointer;
   text-align: left;
   font-weight: 600;
+  transition: background-color var(--duration-fast) var(--ease-standard);
 }
 
 .trigger:hover {
-  background: color-mix(in srgb, var(--color-surface-elevated) 70%, transparent);
+  background: var(--color-surface-muted);
 }
 
 .icon {
   color: var(--color-brand);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   line-height: 1;
+  width: 1.5rem;
+  text-align: center;
 }
 
 .panel {
   padding: 0 var(--space-5) var(--space-5);
   color: var(--color-text-muted);
-  border-top: 1px solid transparent;
 }
 
 .panel:not([hidden]) {
-  border-top-color: var(--color-border);
+  border-top: var(--border-width) solid var(--color-border);
   padding-top: var(--space-4);
 }

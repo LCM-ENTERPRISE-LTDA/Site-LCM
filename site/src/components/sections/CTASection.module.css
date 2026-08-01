@@ -1,11 +1,12 @@
 .wrap {
   display: grid;
   gap: var(--space-4);
-  max-width: 40rem;
+  max-width: 38rem;
 }
 
 .title {
   font-size: var(--text-2xl);
+  letter-spacing: var(--tracking-display);
 }
 
 .subtitle {

@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { Icon } from "@/components/ui/Icon";
 import styles from "./PageHero.module.css";
 
 type PageHeroProps = {
@@ -31,7 +32,10 @@ export function PageHero({
             {(primaryCta || secondaryCta) && (
               <div className={styles.actions}>
                 {primaryCta ? (
-                  <LinkButton href={primaryCta.href}>{primaryCta.label}</LinkButton>
+                  <LinkButton href={primaryCta.href}>
+                    {primaryCta.label}
+                    <Icon name="arrow-right" size={16} />
+                  </LinkButton>
                 ) : null}
                 {secondaryCta ? (
                   <LinkButton href={secondaryCta.href} variant="secondary">

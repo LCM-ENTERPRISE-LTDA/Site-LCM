@@ -1,10 +1,11 @@
 .form {
   display: grid;
   gap: var(--space-4);
-  border: 1px solid var(--color-border);
+  border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
 }
 
 .notice {
@@ -12,7 +13,8 @@
   color: var(--color-text-muted);
   padding: var(--space-3);
   border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-brand) 10%, transparent);
+  background: var(--color-brand-soft);
+  border: var(--border-width) solid color-mix(in srgb, var(--color-brand) 12%, var(--color-border));
 }
 
 .grid {
@@ -40,15 +42,25 @@
 .field textarea {
   width: 100%;
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg);
+  border: var(--border-width) solid var(--color-border-strong);
+  background: var(--color-bg-accent);
   color: var(--color-text);
   padding: 0.75rem 0.9rem;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: var(--neutral-300);
 }
 
 .field input:focus-visible,
 .field textarea:focus-visible {
-  border-color: var(--color-focus);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 4px var(--color-brand-soft);
+  outline: none;
 }
 
 .consent {
