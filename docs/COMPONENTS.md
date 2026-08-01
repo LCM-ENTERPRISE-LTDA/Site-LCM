@@ -58,6 +58,17 @@ Detalhes: `docs/sprints/04-philosophy/CINEMATIC-MANIFESTO.md`
 
 Detalhes: `docs/sprints/05-technology/README.md`
 
+## Ecosystem Experience
+
+| Componente | Papel |
+|------------|-------|
+| `EcosystemExperience` | Seção Ecossistema (Home), pós-Technology |
+| `EcosystemField` | Malha compartilhada + quatro regiões de acento |
+| `useEcosystemMotion` | Pointer ≤5px + focus regional (CSS vars) |
+
+Conteúdo: `site/src/content/ecosystem.ts`  
+Detalhes: `docs/sprints/06-ecosystem/README.md`
+
 ## Navigation / UI / Product / Motion
 
 `DesktopNavigation`, `MobileNavigation`, `ProductMenu` · `Button`, `Badge`, `Section`, `Tabs`… · `ProductCard`, `ProductHero` · `Reveal`
