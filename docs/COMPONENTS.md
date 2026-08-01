@@ -80,3 +80,16 @@ Reutilizar quando houver variação ou comportamento. A cena do hero fica isolad
 | `useHeroMotion` | Pointer + scroll (só no Hero) |
 
 Detalhes: `docs/HERO-V3.md`.
+
+---
+
+## Product Showcase
+
+| Componente | Papel |
+|------------|-------|
+| `ProductShowcase` | Intro + stack editorial de produtos |
+| `ProductFeature` | Capítulo full-width por produto |
+| `ShowcaseVisuals` | SVGs por personalidade (timeline / constellation / canvas / signal) |
+| `useFeaturePointer` | Pointer local → CSS vars no feature |
+
+Detalhes: `docs/PRODUCT-SHOWCASE.md`.
