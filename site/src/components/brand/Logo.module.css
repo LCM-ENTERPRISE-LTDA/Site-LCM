@@ -4,12 +4,21 @@
   flex-shrink: 0;
   text-decoration: none;
   line-height: 0;
-  transition: opacity var(--duration-fast) var(--ease-standard);
+  transition:
+    opacity 240ms var(--ease-standard),
+    transform 240ms var(--ease-emphasized);
 }
 
 .link:hover {
-  opacity: 0.88;
+  opacity: 0.92;
   color: inherit;
+  transform: translateY(-0.5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link:hover {
+    transform: none;
+  }
 }
 
 .wrap {

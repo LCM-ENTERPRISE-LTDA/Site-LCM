@@ -53,3 +53,9 @@ Transparente no topo → superfície translúcida + blur após scroll. Logo ofic
 - `site/src/components/hero/*`
 - `docs/HERO-EXPERIENCE.md`
 - `docs/MOTION-POLICY.md`
+
+---
+
+## Milestone 3
+
+A atmosfera escura permanece. O Hero evolui para ecossistema vivo (camadas, parallax independente, iluminação metálica discreta) sem mudança de tokens de cor ou tipografia.

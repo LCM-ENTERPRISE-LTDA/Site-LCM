@@ -47,3 +47,9 @@
 ## Critério
 
 Reutilizar quando houver variação ou comportamento. A cena do hero fica isolada em `components/hero/` para refinamentos futuros.
+
+---
+
+## Milestone 3 — Living Hero
+
+`TriadScene` ganhou camadas físicas (grid / glow / bg / particles / main / fg) e `PointerParallax` passou a escrever profundidades e proximidades independentes. Estrutura de componentes da Sprint 02 permanece.

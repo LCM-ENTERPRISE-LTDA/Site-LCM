@@ -19,15 +19,16 @@
   pointer-events: none;
   z-index: 0;
   background:
+    radial-gradient(ellipse 50% 40% at 72% 34%, rgba(47, 107, 255, 0.09), transparent 65%),
     repeating-linear-gradient(
       var(--triad-angle),
       transparent 0,
       transparent 64px,
-      rgba(130, 170, 220, 0.04) 64px,
-      rgba(130, 170, 220, 0.04) 65px
+      rgba(130, 170, 220, 0.028) 64px,
+      rgba(130, 170, 220, 0.028) 65px
     );
   mask-image: radial-gradient(ellipse 75% 60% at 70% 40%, black 10%, transparent 70%);
-  opacity: 0.7;
+  opacity: 0.55;
 }
 
 .layout {

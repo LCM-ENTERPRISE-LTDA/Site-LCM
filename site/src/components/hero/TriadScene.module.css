@@ -1,64 +1,155 @@
 .stage {
   --px: 0;
   --py: 0;
-  --plight-x: 55%;
+  --px-bg: 0;
+  --py-bg: 0;
+  --px-main: 0;
+  --py-main: 0;
+  --px-fg: 0;
+  --py-fg: 0;
+  --px-glow: 0;
+  --py-glow: 0;
+  --px-part: 0;
+  --py-part: 0;
+  --plight-x: 52%;
   --plight-y: 38%;
+  --near-top: 0;
+  --near-left: 0;
+  --near-right: 0;
+  --near-core: 0;
   position: relative;
   width: 100%;
   aspect-ratio: 420 / 380;
   max-width: 34rem;
   margin-inline: auto;
   isolation: isolate;
-  transform: perspective(900px) rotateX(calc(var(--py) * -0.35deg)) rotateY(calc(var(--px) * 0.35deg));
+  transform: perspective(1100px) rotateX(calc(var(--py) * -0.42deg)) rotateY(calc(var(--px) * 0.42deg));
   transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.atmosphereDepth {
+  position: absolute;
+  inset: -8%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 48%, rgba(13, 22, 38, 0) 0%, rgba(5, 9, 18, 0.45) 100%),
+    radial-gradient(ellipse 40% 35% at var(--plight-x) var(--plight-y), rgba(47, 107, 255, 0.1), transparent 70%);
+}
+
+/* ——— Layers ——— */
+.layerGrid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.08;
+  background:
+    repeating-linear-gradient(
+      var(--triad-angle),
+      transparent 0,
+      transparent 30px,
+      rgba(130, 170, 220, 0.55) 30px,
+      rgba(130, 170, 220, 0.55) 31px
+    ),
+    repeating-linear-gradient(
+      calc(var(--triad-angle) * -1),
+      transparent 0,
+      transparent 42px,
+      rgba(130, 170, 220, 0.35) 42px,
+      rgba(130, 170, 220, 0.35) 43px
+    );
+  mask-image: radial-gradient(
+    circle 42% at var(--plight-x) var(--plight-y),
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.35) 38%,
+    transparent 72%
+  );
+  transform: translate3d(calc(var(--px-bg) * 1px), calc(var(--py-bg) * 1px), -40px);
+  transition: opacity var(--duration-slow) var(--ease-soft);
+}
+
+.layerGlow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transform: translate3d(calc(var(--px-glow) * 1px), calc(var(--py-glow) * 1px), -20px);
 }
 
 .bloom {
   position: absolute;
-  inset: 8% 12%;
+  inset: 6% 10%;
   border-radius: 50%;
   background: radial-gradient(
     circle at var(--plight-x) var(--plight-y),
-    rgba(47, 107, 255, 0.28),
-    rgba(25, 184, 242, 0.08) 42%,
+    rgba(47, 107, 255, 0.26),
+    rgba(25, 184, 242, 0.07) 40%,
     transparent 68%
   );
-  filter: blur(8px);
-  z-index: 0;
-  pointer-events: none;
-  transition: opacity var(--duration-slow) var(--ease-soft);
+  filter: blur(10px);
+  opacity: 0.9;
 }
 
-.gridFade {
+.specular {
   position: absolute;
-  inset: 0;
-  z-index: 0;
+  width: 38%;
+  height: 28%;
+  left: var(--plight-x);
+  top: var(--plight-y);
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 247, 251, 0.12), transparent 70%);
+  filter: blur(12px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
   pointer-events: none;
-  opacity: 0.45;
-  background:
-    linear-gradient(180deg, transparent 0%, var(--background-base) 96%),
-    repeating-linear-gradient(
-      var(--triad-angle),
-      transparent 0,
-      transparent 28px,
-      rgba(130, 170, 220, 0.05) 28px,
-      rgba(130, 170, 220, 0.05) 29px
-    );
-  mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, black 20%, transparent 75%);
 }
 
 .canvas {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow: visible;
+  pointer-events: none;
 }
 
-.planeFar {
-  transform: translate(calc(var(--px) * 0.25px), calc(var(--py) * 0.25px));
-  transition: opacity var(--duration-assemble) var(--ease-assemble);
+.layerBg {
+  z-index: 3;
+  transform: translate3d(calc(var(--px-bg) * 1px), calc(var(--py-bg) * 1px), -30px);
+}
+
+.layerParticles {
+  z-index: 4;
+  transform: translate3d(calc(var(--px-part) * 1px), calc(var(--py-part) * 1px), 0);
+}
+
+.layerMain {
+  z-index: 5;
+  transform: translate3d(calc(var(--px-main) * 1px), calc(var(--py-main) * 1px), 12px);
+}
+
+.layerFg {
+  z-index: 7;
+  transform: translate3d(calc(var(--px-fg) * 1px), calc(var(--py-fg) * 1px), 28px);
+}
+
+.planeFar,
+.planeMid {
   opacity: 0;
+  transition: opacity var(--duration-assemble) var(--ease-assemble);
 }
 
 .connections {
@@ -72,6 +163,11 @@
   transition: stroke-dashoffset var(--duration-assemble) var(--ease-assemble);
 }
 
+.channelGlow {
+  opacity: calc(0.08 + (var(--near-top) + var(--near-left) + var(--near-right) + var(--near-core)) * 0.12);
+  transition: opacity var(--duration-normal) var(--ease-soft);
+}
+
 .node {
   transform-box: fill-box;
   transform-origin: center;
@@ -82,49 +178,105 @@
 }
 
 .nodeTop {
-  transform: translate(calc(var(--px) * 0.55px), calc(-28px + var(--py) * 0.4px));
+  transform: translate(calc(var(--px-main) * 0.15px), calc(-28px + var(--py-main) * 0.1px))
+    scale(calc(1 + var(--near-top) * 0.04));
+  filter: brightness(calc(1 + var(--near-top) * 0.18));
 }
 
 .nodeLeft {
-  transform: translate(calc(-34px + var(--px) * 0.7px), calc(18px + var(--py) * 0.55px));
+  transform: translate(calc(-34px + var(--px-main) * 0.12px), calc(18px + var(--py-main) * 0.12px))
+    scale(calc(1 + var(--near-left) * 0.04));
+  filter: brightness(calc(1 + var(--near-left) * 0.18));
 }
 
 .nodeRight {
-  transform: translate(calc(34px + var(--px) * 0.7px), calc(18px + var(--py) * 0.55px));
+  transform: translate(calc(34px + var(--px-main) * 0.12px), calc(18px + var(--py-main) * 0.12px))
+    scale(calc(1 + var(--near-right) * 0.04));
+  filter: brightness(calc(1 + var(--near-right) * 0.18));
+}
+
+.metalWash {
+  opacity: calc(0.35 + var(--near-core) * 0.25);
+  mix-blend-mode: soft-light;
 }
 
 .core {
   opacity: 0;
-  transform: translate(calc(var(--px) * 0.35px), calc(var(--py) * 0.35px));
+  transform-origin: 210px 210px;
+  transform: translate(calc(var(--px-main) * 0.08px), calc(var(--py-main) * 0.08px))
+    scale(calc(1 + var(--near-core) * 0.03));
   transition: opacity var(--duration-assemble) var(--ease-assemble);
 }
 
-.pulse,
-.pulseDelayed {
+.coreRingOuter {
+  opacity: calc(0.45 + var(--near-core) * 0.4);
+}
+
+.signals {
+  opacity: 0;
+  transition: opacity var(--duration-assemble) var(--ease-assemble);
+}
+
+.signalA,
+.signalD,
+.signalS,
+.signalB {
+  opacity: 0.35;
+  fill: var(--product-autohist);
+}
+
+.signalD {
+  fill: var(--product-dyson);
+}
+
+.signalS {
+  fill: var(--product-studio);
+}
+
+.signalB {
+  fill: var(--product-businesszap);
+}
+
+.dust,
+.dustB,
+.dustC {
+  fill: rgba(180, 205, 235, 0.45);
   opacity: 0;
 }
 
-/* Phases */
+.fgSpec,
+.fgSpecB {
+  opacity: 0;
+}
+
+.dataPulses {
+  opacity: 0;
+}
+
+/* ——— Phases ——— */
 .enter .node {
-  opacity: 0.85;
+  opacity: 0.88;
 }
 
 .enter .nodeTop {
-  transform: translate(calc(var(--px) * 0.55px), calc(-48px + var(--py) * 0.4px));
+  transform: translate(calc(var(--px-main) * 0.15px), calc(-48px + var(--py-main) * 0.1px));
 }
 
 .enter .nodeLeft {
-  transform: translate(calc(-56px + var(--px) * 0.7px), calc(36px + var(--py) * 0.55px));
+  transform: translate(calc(-56px + var(--px-main) * 0.12px), calc(36px + var(--py-main) * 0.12px));
 }
 
 .enter .nodeRight {
-  transform: translate(calc(56px + var(--px) * 0.7px), calc(36px + var(--py) * 0.55px));
+  transform: translate(calc(56px + var(--px-main) * 0.12px), calc(36px + var(--py-main) * 0.12px));
 }
 
 .join .planeFar,
+.join .planeMid,
 .join .connections,
 .join .node,
-.join .core {
+.join .core,
+.join .signals,
+.join .dataPulses {
   opacity: 1;
 }
 
@@ -133,21 +285,27 @@
 }
 
 .join .nodeTop {
-  transform: translate(calc(var(--px) * 0.55px), calc(-8px + var(--py) * 0.4px));
+  transform: translate(calc(var(--px-main) * 0.15px), calc(-8px + var(--py-main) * 0.1px))
+    scale(calc(1 + var(--near-top) * 0.04));
 }
 
 .join .nodeLeft {
-  transform: translate(calc(-10px + var(--px) * 0.7px), calc(4px + var(--py) * 0.55px));
+  transform: translate(calc(-10px + var(--px-main) * 0.12px), calc(4px + var(--py-main) * 0.12px))
+    scale(calc(1 + var(--near-left) * 0.04));
 }
 
 .join .nodeRight {
-  transform: translate(calc(10px + var(--px) * 0.7px), calc(4px + var(--py) * 0.55px));
+  transform: translate(calc(10px + var(--px-main) * 0.12px), calc(4px + var(--py-main) * 0.12px))
+    scale(calc(1 + var(--near-right) * 0.04));
 }
 
 .settle .planeFar,
+.settle .planeMid,
 .settle .connections,
 .settle .node,
-.settle .core {
+.settle .core,
+.settle .signals,
+.settle .dataPulses {
   opacity: 1;
 }
 
@@ -156,42 +314,87 @@
 }
 
 .settle .nodeTop {
-  transform: translate(calc(var(--px) * 0.55px), calc(var(--py) * 0.4px));
+  transform: translate(0, 0) scale(calc(1 + var(--near-top) * 0.04));
 }
 
 .settle .nodeLeft {
-  transform: translate(calc(var(--px) * 0.7px), calc(var(--py) * 0.55px));
+  transform: translate(0, 0) scale(calc(1 + var(--near-left) * 0.04));
 }
 
 .settle .nodeRight {
-  transform: translate(calc(var(--px) * 0.7px), calc(var(--py) * 0.55px));
+  transform: translate(0, 0) scale(calc(1 + var(--near-right) * 0.04));
 }
 
-/* Ambient motion — only while in view and after settle */
+.settle .dust,
+.settle .dustB,
+.settle .dustC,
+.settle .fgSpec,
+.settle .fgSpecB {
+  opacity: 0.55;
+}
+
+/* ——— Ambient life (in view + settle) ——— */
 .alive.settle .nodeTop {
-  animation: floatA 7.5s var(--ease-soft) infinite;
+  animation: floatA 7.8s var(--ease-soft) infinite;
 }
 
 .alive.settle .nodeLeft {
-  animation: floatB 8.4s var(--ease-soft) infinite;
+  animation: floatB 9.2s var(--ease-soft) infinite;
 }
 
 .alive.settle .nodeRight {
-  animation: floatC 9.1s var(--ease-soft) infinite;
+  animation: floatC 8.5s var(--ease-soft) infinite;
 }
 
-.alive.settle .pulse {
-  opacity: 0.9;
-  animation: travel 4.8s linear infinite;
-}
-
-.alive.settle .pulseDelayed {
-  opacity: 0.9;
-  animation: travel 4.8s linear 1.6s infinite;
+.alive.settle .core {
+  animation: coreBreath 5.6s var(--ease-soft) infinite;
 }
 
 .alive.settle .bloom {
-  animation: breathe 6.5s var(--ease-soft) infinite;
+  animation: bloomPulse 7.2s var(--ease-soft) infinite;
+}
+
+.alive.settle .dust {
+  animation: driftA 11s var(--ease-soft) infinite;
+  opacity: 0.4;
+}
+
+.alive.settle .dustB {
+  animation: driftB 14s var(--ease-soft) infinite;
+  opacity: 0.32;
+}
+
+.alive.settle .dustC {
+  animation: driftC 12.5s var(--ease-soft) infinite;
+  opacity: 0.36;
+}
+
+.alive.settle .signalA {
+  animation: emitA 9s linear infinite;
+}
+
+.alive.settle .signalD {
+  animation: emitD 10.5s linear 1.2s infinite;
+}
+
+.alive.settle .signalS {
+  animation: emitS 11.2s linear 2.4s infinite;
+}
+
+.alive.settle .signalB {
+  animation: emitB 9.8s linear 3.1s infinite;
+}
+
+.alive.settle .fgSpec {
+  animation: twinkle 6.4s var(--ease-soft) infinite;
+}
+
+.alive.settle .fgSpecB {
+  animation: twinkle 8.1s var(--ease-soft) 1.5s infinite;
+}
+
+.alive.settle .layerGrid {
+  opacity: calc(0.06 + (var(--near-top) + var(--near-left) + var(--near-right) + var(--near-core)) * 0.08);
 }
 
 @keyframes floatA {
@@ -200,7 +403,7 @@
     translate: 0 0;
   }
   50% {
-    translate: 0 -3px;
+    translate: 0 -2.5px;
   }
 }
 
@@ -210,7 +413,7 @@
     translate: 0 0;
   }
   50% {
-    translate: -2px 2px;
+    translate: -2px 1.5px;
   }
 }
 
@@ -220,44 +423,149 @@
     translate: 0 0;
   }
   50% {
-    translate: 2px 2px;
+    translate: 2px 1.5px;
   }
 }
 
-@keyframes travel {
-  0% {
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.95;
-  }
-  85% {
-    opacity: 0.95;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes breathe {
+@keyframes coreBreath {
   0%,
   100% {
-    opacity: 0.85;
-    transform: scale(1);
+    scale: 1;
+  }
+  50% {
+    scale: 1.03;
+  }
+}
+
+@keyframes bloomPulse {
+  0%,
+  100% {
+    opacity: 0.82;
   }
   50% {
     opacity: 1;
-    transform: scale(1.03);
   }
 }
 
+@keyframes driftA {
+  0%,
+  100% {
+    translate: 0 0;
+    opacity: 0.28;
+  }
+  50% {
+    translate: 3px -4px;
+    opacity: 0.48;
+  }
+}
+
+@keyframes driftB {
+  0%,
+  100% {
+    translate: 0 0;
+    opacity: 0.22;
+  }
+  50% {
+    translate: -4px 2px;
+    opacity: 0.4;
+  }
+}
+
+@keyframes driftC {
+  0%,
+  100% {
+    translate: 0 0;
+    opacity: 0.25;
+  }
+  50% {
+    translate: 2px 3px;
+    opacity: 0.42;
+  }
+}
+
+@keyframes emitA {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate(-38px, -52px);
+    opacity: 0;
+  }
+}
+
+@keyframes emitD {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(48px, -28px);
+    opacity: 0;
+  }
+}
+
+@keyframes emitS {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.48;
+  }
+  100% {
+    transform: translate(-44px, 36px);
+    opacity: 0;
+  }
+}
+
+@keyframes emitB {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(40px, 40px);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ——— Reduced motion ——— */
 .reduced .node,
 .reduced .connections,
 .reduced .planeFar,
-.reduced .core {
+.reduced .planeMid,
+.reduced .core,
+.reduced .signals {
   opacity: 1;
-  transform: none !important;
   animation: none !important;
+  filter: none;
+}
+
+.reduced .nodeTop,
+.reduced .nodeLeft,
+.reduced .nodeRight,
+.reduced .core {
+  transform: none !important;
 }
 
 .reduced .channel {
@@ -265,19 +573,72 @@
 }
 
 .reduced .bloom,
-.reduced .pulse,
-.reduced .pulseDelayed {
+.reduced .dust,
+.reduced .dustB,
+.reduced .dustC,
+.reduced .fgSpec,
+.reduced .fgSpecB,
+.reduced .signalA,
+.reduced .signalD,
+.reduced .signalS,
+.reduced .signalB {
   animation: none !important;
 }
 
-.reduced .pulse,
-.reduced .pulseDelayed {
-  opacity: 0.55;
+.reduced .dust,
+.reduced .dustB,
+.reduced .dustC {
+  opacity: 0.25;
+}
+
+.reduced .layerGrid {
+  opacity: 0.1;
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 45%, black 20%, transparent 75%);
+}
+
+.reduced .dataPulses {
+  display: none;
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 959px) {
+  .stage {
+    transform: none;
+    will-change: auto;
+  }
+
+  .layerFg .fgSpecB {
+    display: none;
+  }
+
+  .suspended .dustC:nth-child(n + 5) {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {
   .stage {
     max-width: 22rem;
-    transform: none;
+  }
+
+  .layerGlow .specular {
+    opacity: 0.35;
+  }
+
+  .signals {
+    opacity: 0.7;
+  }
+
+  .alive.settle .signalA,
+  .alive.settle .signalD,
+  .alive.settle .signalS,
+  .alive.settle .signalB {
+    animation-duration: 12s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    will-change: auto;
   }
 }

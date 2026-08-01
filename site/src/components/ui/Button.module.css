@@ -13,11 +13,11 @@
   isolation: isolate;
   overflow: hidden;
   transition:
-    transform var(--duration-fast) var(--ease-standard),
-    background-color var(--duration-fast) var(--ease-standard),
-    border-color var(--duration-fast) var(--ease-standard),
-    color var(--duration-fast) var(--ease-standard),
-    box-shadow var(--duration-fast) var(--ease-standard);
+    transform 220ms var(--ease-emphasized),
+    background-color 220ms var(--ease-standard),
+    border-color 220ms var(--ease-standard),
+    color 220ms var(--ease-standard),
+    box-shadow 260ms var(--ease-standard);
 }
 
 .button::before {
@@ -37,19 +37,31 @@
       var(--color-brand) 67% 100%
     );
   opacity: 0;
-  transition: opacity var(--duration-fast) var(--ease-standard);
+  transition: opacity 220ms var(--ease-standard);
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.14), transparent 42%);
+  opacity: 0;
+  transition: opacity 260ms var(--ease-soft);
+  pointer-events: none;
 }
 
 .button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-1.5px);
 }
 
-.button:hover::before {
+.button:hover::before,
+.button:hover::after {
   opacity: 1;
 }
 
 .button:active {
   transform: translateY(0);
+  transition-duration: 90ms;
 }
 
 .md {

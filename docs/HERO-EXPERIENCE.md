@@ -69,3 +69,36 @@ PrinciplesBand
 - Cena ainda abstrata — pode ganhar sinais de produto sem virar diagrama
 - Páginas internas usam `PageHero` (ainda válido; atmosfera global já escura)
 - `TriadHero` legado permanece no repo, fora da Home
+
+---
+
+## Milestone 3 — Living Hero Experience
+
+Expansão da cena (sem alterar layout, copy, logo, paleta ou tipografia).
+
+### Camadas
+
+| Camada | Papel | Parallax |
+|--------|-------|----------|
+| Grid Layer | Malha 60° revelada pela luz | ~2px |
+| Glow Layer | Bloom + specular metálico | ~4–5px |
+| Background | Planos estruturais distantes | ~2px |
+| Particles | Poeira suspensa + pacotes nas conexões | ~9px |
+| Main | Módulos, conexões, núcleo, sinais de produto | ~7px |
+| Foreground | Speculares de superfície | ~11–12px |
+
+### Vida do sistema
+
+- Núcleo respira `1.00 → 1.03`
+- Módulos oscilam em tempos dessincronizados
+- Pulsos de dados percorrem conexões (intervalos irregulares, SMIL `animateMotion`)
+- Quatro sinais de cor emanam do núcleo (sem cards/ícones/labels)
+- Proximidade do cursor: brilho + escala ≤ 4% no módulo próximo
+- Grid quase invisível até a luz passar
+
+### Performance
+
+- Variáveis CSS multicamada via um único rAF
+- Sem re-render React no pointer
+- Ambient pausa fora da viewport
+- Reduced motion: composição final, sem pulses/parallax/loops

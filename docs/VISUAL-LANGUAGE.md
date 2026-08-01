@@ -40,3 +40,9 @@ LCM permanece neutra.
 - Cards com marca de junção em três segmentos
 - Botões com faceta tríplice no hover
 - Fundo em rede 60° quase invisível
+
+---
+
+## Milestone 3 — Living field
+
+A geometria da tríade permanece a origem. A cena do Hero passa a se comportar como campo vivo (camadas, luz, energia nas conexões) sem estampar a logo nem alterar a paleta/tipografia aprovadas.

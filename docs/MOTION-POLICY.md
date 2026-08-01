@@ -44,3 +44,15 @@ Após settle: float de poucos pixels, pulsos nas conexões, respiração do bloo
 | Reveal seções | `Reveal` |
 | Header scrolled | `Header` |
 | CTA arrow | `HeroActions` |
+
+---
+
+## Milestone 3 — Living ecosystem motion
+
+- Parallax multicamada independente (`--px-bg/main/fg/glow/part`)
+- Iluminação metálica via `--plight-*` + specular
+- Proximidade de módulos (`--near-top/left/right/core`)
+- Pacotes de dados: SVG `animateMotion` (sem JS por frame)
+- Ambient: float dessincronizado, core breath ≤ 1.03, sinais de produto
+- Microinterações: botão mais físico, header scrolled mais longo, logo hover ±0.5px
+- Sem Three.js / GSAP / Framer / WebGL / canvas
