@@ -6,22 +6,36 @@ Desktop.ini
 .idea/
 .vscode/
 
-# Local env / secrets (none expected in Milestone 1)
+# Env / secrets (keep example)
 .env
-.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+site/.env
+site/.env.local
+!site/.env.example
 
 # Python
 __pycache__/
 *.pyc
 
-# Node (if added later)
+# Node / Next.js
 node_modules/
+site/node_modules/
+.next/
+site/.next/
+out/
+site/out/
 dist/
 .vite/
+*.tsbuildinfo
 
 # Logs
 *.log
 npm-debug.log*
 
-# Keep HTTrack cache out of future clutter if regenerated
-# (original backup already preserves capture metadata)
+# Coverage / test
+coverage/
+site/coverage/
