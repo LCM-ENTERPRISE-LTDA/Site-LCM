@@ -2,26 +2,27 @@
   position: relative;
   z-index: 1;
   padding-block: var(--space-6) var(--space-8);
-  background: var(--background-elevated);
-  border-bottom: var(--border-width) solid var(--color-border);
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 0%, rgba(47, 107, 255, 0.06), transparent 55%),
+    var(--background-elevated);
+  border-bottom: var(--border-width) solid color-mix(in srgb, var(--color-border) 70%, transparent);
 }
 
 .band::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 50%;
-  translate: -50% 0;
-  width: min(16rem, 50%);
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(47, 107, 255, 0.35),
-    rgba(25, 184, 242, 0.4),
-    rgba(47, 107, 255, 0.35),
-    transparent
-  );
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background:
+    repeating-linear-gradient(
+      var(--triad-angle),
+      transparent 0,
+      transparent 64px,
+      rgba(130, 170, 220, 0.5) 64px,
+      rgba(130, 170, 220, 0.5) 65px
+    );
+  mask-image: linear-gradient(180deg, black 0%, transparent 85%);
 }
 
 .grid {
@@ -50,6 +51,7 @@
 
 .title {
   margin: 0 0 var(--space-2);
+  font-family: var(--font-instrument), var(--font-display), sans-serif;
   font-size: var(--text-sm);
   font-weight: 600;
   letter-spacing: -0.01em;
