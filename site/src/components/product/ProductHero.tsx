@@ -1,5 +1,6 @@
 import { PageHero } from "@/components/sections/PageHero";
 import { ProductStatusBadge } from "@/components/product/ProductStatusBadge";
+import { getProductCssVars } from "@/config/productThemes";
 import type { Product } from "@/types/product";
 import styles from "./ProductHero.module.css";
 
@@ -16,15 +17,7 @@ export function ProductHero({ product }: ProductHeroProps) {
       primaryCta={{ label: "Falar com a LCM", href: "/contato" }}
       secondaryCta={{ label: "Ver todos os produtos", href: "/produtos" }}
     >
-      <div
-        className={styles.panel}
-        style={
-          {
-            "--product-accent": `var(--product-${product.colorKey === "studio" ? "studio" : product.colorKey})`,
-            "--product-accent-soft": `var(--product-${product.colorKey === "studio" ? "studio" : product.colorKey}-soft)`,
-          } as React.CSSProperties
-        }
-      >
+      <div className={styles.panel} style={getProductCssVars(product.colorKey)}>
         <div className={styles.status}>
           <ProductStatusBadge status={product.status} />
           <span>{product.availabilityLabel}</span>

@@ -1,10 +1,12 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/sections/CTASection";
+import { EcosystemHero } from "@/components/sections/EcosystemHero";
 import { PageHero } from "@/components/sections/PageHero";
 import { PrincipleCard } from "@/components/sections/PrincipleCard";
 import { TechnologyLayer } from "@/components/sections/TechnologyLayer";
 import { Container } from "@/components/ui/Container";
+import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tabs } from "@/components/ui/Tabs";
@@ -13,6 +15,7 @@ import {
   principles,
   technologyLayers,
 } from "@/content/institutional";
+import { getProductCssVars } from "@/config/productThemes";
 import { getFeaturedProducts } from "@/data/products";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
@@ -33,30 +36,13 @@ export default function HomePage() {
         eyebrow="LCM Enterprise"
         title={homeContent.hero.title}
         subtitle={homeContent.hero.subtitle}
-        primaryCta={homeContent.hero.primaryCta}
+        primaryCta={{
+          label: homeContent.hero.primaryCta.label,
+          href: homeContent.hero.primaryCta.href,
+        }}
         secondaryCta={homeContent.hero.secondaryCta}
       >
-        <div className={styles.heroVisual} aria-hidden="true">
-          <div className={styles.heroCard}>
-            <span className={styles.dot} />
-            <strong>Produtos próprios</strong>
-            <p>Software · Automação · IA</p>
-          </div>
-          <div className={styles.heroCard}>
-            <span className={styles.dot} />
-            <strong>Experiência</strong>
-            <p>Usabilidade e performance</p>
-          </div>
-          <div className={styles.heroCardWide}>
-            <div className={styles.bars}>
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-            <p>Composição visual provisória — sem métricas reais.</p>
-          </div>
-        </div>
+        <EcosystemHero products={featured} />
       </PageHero>
 
       <Section id="produtos">
@@ -70,7 +56,7 @@ export default function HomePage() {
           </Reveal>
           <div className={styles.productGrid}>
             {featured.map((product, index) => (
-              <Reveal key={product.slug} delay={Math.min(index * 80, 240)}>
+              <Reveal key={product.slug} delay={Math.min(index * 70, 210)}>
                 <ProductCard product={product} />
               </Reveal>
             ))}
@@ -89,7 +75,7 @@ export default function HomePage() {
           </Reveal>
           <div className={styles.principleGrid}>
             {principles.map((principle, index) => (
-              <Reveal key={principle.id} delay={Math.min(index * 70, 210)}>
+              <Reveal key={principle.id} delay={Math.min(index * 60, 180)}>
                 <PrincipleCard principle={principle} />
               </Reveal>
             ))}
@@ -108,7 +94,7 @@ export default function HomePage() {
               />
               <TechnologyLayer layers={technologyLayers} />
             </Reveal>
-            <Reveal direction="left" delay={100}>
+            <Reveal direction="left" delay={80}>
               <Tabs
                 label="Perspectivas tecnológicas"
                 items={[
@@ -147,17 +133,17 @@ export default function HomePage() {
               align="center"
             />
           </Reveal>
-          <div className={styles.ecosystem}>
-            <div className={styles.core}>LCM</div>
+          <div className={styles.ecosystemRow}>
+            <div className={styles.coreChip}>
+              <Icon name="spark" size={16} />
+              LCM
+            </div>
+            <span className={styles.connector} aria-hidden="true" />
             {featured.map((product) => (
               <div
                 key={product.slug}
-                className={styles.orbit}
-                style={
-                  {
-                    "--product-accent": `var(--product-${product.colorKey === "studio" ? "studio" : product.colorKey})`,
-                  } as React.CSSProperties
-                }
+                className={styles.productChip}
+                style={getProductCssVars(product.colorKey)}
               >
                 {product.name}
               </div>
@@ -169,12 +155,14 @@ export default function HomePage() {
       <Section id="origem">
         <Container>
           <Reveal direction="up">
-            <SectionHeading
-              eyebrow={homeContent.origin.eyebrow}
-              title={homeContent.origin.title}
-            />
-            <p className={styles.origin}>{homeContent.origin.body}</p>
-            <p className="draft-note">{homeContent.origin.draftNote}</p>
+            <div className={styles.originBlock}>
+              <SectionHeading
+                eyebrow={homeContent.origin.eyebrow}
+                title={homeContent.origin.title}
+              />
+              <p className={styles.origin}>{homeContent.origin.body}</p>
+              <p className="draft-note">{homeContent.origin.draftNote}</p>
+            </div>
           </Reveal>
         </Container>
       </Section>
