@@ -69,6 +69,17 @@ Detalhes: `docs/sprints/05-technology/README.md`
 Conteúdo: `site/src/content/ecosystem.ts`  
 Detalhes: `docs/sprints/06-ecosystem/README.md`
 
+## Origin & Vision Experience
+
+| Componente | Papel |
+|------------|-------|
+| `OriginVisionExperience` | Seção Visão (Home), pós-Ecosystem, pré-CTA |
+| `OriginField` | Núcleo geométrico único — protagonista visual |
+| `useOriginMotion` | Luz ≤2.5px (CSS vars), sem mover objetos |
+
+Conteúdo: `site/src/content/originVision.ts`  
+Detalhes: `docs/sprints/07-origin-vision/README.md`
+
 ## Navigation / UI / Product / Motion
 
 `DesktopNavigation`, `MobileNavigation`, `ProductMenu` · `Button`, `Badge`, `Section`, `Tabs`… · `ProductCard`, `ProductHero` · `Reveal`
