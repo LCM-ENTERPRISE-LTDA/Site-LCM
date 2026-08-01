@@ -1,26 +1,29 @@
 .link {
   display: inline-flex;
+  align-items: center;
   text-decoration: none;
   transition: opacity var(--duration-fast) var(--ease-standard);
 }
 
 .link:hover {
-  opacity: 0.88;
+  opacity: 0.9;
   color: inherit;
 }
 
 .wrap {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
   line-height: 0;
 }
 
-.word {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.35rem;
-  letter-spacing: -0.04em;
-  color: var(--color-text);
-  line-height: 1;
+.image {
+  width: auto;
+  height: 2.35rem;
+  object-fit: contain;
+}
+
+@media (min-width: 960px) {
+  .image {
+    height: 2.6rem;
+  }
 }
