@@ -1,3 +1,7 @@
+"use client";
+
+import { cn } from "@/lib/cn";
+import { AnimatedTitle } from "./AnimatedTitle";
 import { HeroActions } from "./HeroActions";
 import styles from "./HeroContent.module.css";
 
@@ -9,6 +13,8 @@ type HeroContentProps = {
   subtitle: string;
   primaryCta: Cta;
   secondaryCta: Cta;
+  ready: boolean;
+  reduced: boolean;
 };
 
 export function HeroContent({
@@ -17,22 +23,17 @@ export function HeroContent({
   subtitle,
   primaryCta,
   secondaryCta,
+  ready,
+  reduced,
 }: HeroContentProps) {
-  const lines = title.split("\n");
-
   return (
-    <div className={styles.copy}>
+    <div className={cn(styles.copy, ready && styles.ready, reduced && styles.reduced)}>
       <p className={styles.eyebrow}>{eyebrow}</p>
-      <h1 id="hero-title" className={styles.title}>
-        {lines.map((line, index) => (
-          <span key={line}>
-            {line}
-            {index < lines.length - 1 ? <br /> : null}
-          </span>
-        ))}
-      </h1>
+      <AnimatedTitle id="hero-title" title={title} ready={ready} reduced={reduced} />
       <p className={styles.subtitle}>{subtitle}</p>
-      <HeroActions primary={primaryCta} secondary={secondaryCta} />
+      <div className={styles.actions}>
+        <HeroActions primary={primaryCta} secondary={secondaryCta} />
+      </div>
     </div>
   );
 }

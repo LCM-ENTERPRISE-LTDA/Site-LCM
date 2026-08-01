@@ -1,5 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
-import { ImmersiveHero } from "@/components/hero/ImmersiveHero";
+import { HeroExperience } from "@/components/hero/HeroExperience";
 import { PrinciplesBand } from "@/components/hero/PrinciplesBand";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/sections/CTASection";
@@ -31,7 +31,7 @@ export default function HomePage() {
 
   return (
     <>
-      <ImmersiveHero
+      <HeroExperience
         eyebrow={homeContent.hero.eyebrow}
         title={homeContent.hero.title}
         subtitle={homeContent.hero.subtitle}

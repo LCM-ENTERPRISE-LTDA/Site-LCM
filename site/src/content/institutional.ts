@@ -4,7 +4,7 @@ import type { Principle } from "@/types/product";
 export const homeContent = {
   hero: {
     eyebrow: "Tecnologia construída com propósito",
-    title: "Construímos tecnologia\npara quem resolve\nproblemas reais.",
+    title: "Construímos tecnologia\npara quem resolve problemas reais.",
     subtitle:
       "Criamos produtos digitais, automações e soluções inteligentes com foco em usabilidade, performance e impacto real no trabalho das empresas.",
     primaryCta: { label: "Conheça nossos produtos", href: "/produtos" },

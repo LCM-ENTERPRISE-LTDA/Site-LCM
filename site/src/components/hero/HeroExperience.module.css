@@ -1,0 +1,90 @@
+.hero {
+  --pointer-x: 0;
+  --pointer-y: 0;
+  --depth-far-x: 0;
+  --depth-far-y: 0;
+  --depth-mid-x: 0;
+  --depth-mid-y: 0;
+  --depth-main-x: 0;
+  --depth-main-y: 0;
+  --depth-near-x: 0;
+  --depth-near-y: 0;
+  --light-x: 52%;
+  --light-y: 42%;
+  --scroll-p: 0;
+  --hero-bg-deep: #0d1118;
+  --hero-bg-base: #121720;
+  --hero-bg-elevated: #171e29;
+  --hero-text: #f3f6fa;
+  --hero-text-muted: #a9b2c1;
+  --hero-blue: #2f6bff;
+  --hero-cyan: #25b4e8;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(45rem, 82vh, 55rem);
+  display: flex;
+  flex-direction: column;
+  padding-top: calc(var(--header-height) + var(--space-6));
+  background: var(--hero-bg-deep);
+  contain: layout paint style;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 55% at var(--light-x) var(--light-y), rgba(47, 107, 255, 0.16), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 82% 22%, rgba(37, 180, 232, 0.07), transparent 55%),
+    linear-gradient(165deg, var(--hero-bg-deep) 0%, var(--hero-bg-base) 48%, var(--hero-bg-elevated) 100%);
+}
+
+.shell {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--space-6) var(--space-7);
+  /* preserve Container institutional width — do not force 100% */
+  pointer-events: none;
+}
+
+.shell > * {
+  pointer-events: auto;
+}
+
+.exit {
+  position: relative;
+  z-index: 2;
+  height: 4.5rem;
+  margin-top: auto;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--background-elevated, #0d1626) 45%, transparent) 50%,
+    var(--background-elevated, #0d1626) 100%
+  );
+}
+
+.heroPaused {
+  /* visual freeze when off-screen — JS already stops rAF */
+}
+
+@media (max-width: 959px) {
+  .hero {
+    min-height: clamp(42.5rem, 88vh, 51.25rem);
+    padding-top: calc(var(--header-height) + var(--space-5));
+  }
+
+  .shell {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-block: var(--space-5) var(--space-8);
+  }
+}
