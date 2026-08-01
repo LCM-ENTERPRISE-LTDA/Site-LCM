@@ -5,7 +5,7 @@ export type PhilosophyStatement = {
 
 /**
  * Institutional narrative — why LCM builds technology.
- * Not marketing. Not promises. Principles in plain language.
+ * Four cinematic beats. Not marketing.
  */
 export const philosophyIntro = {
   eyebrow: "Filosofia",
@@ -32,10 +32,6 @@ export const philosophyStatements: readonly PhilosophyStatement[] = [
       "Cada produto nasce de um problema concreto.",
       "Nunca de uma tendência.",
     ],
-  },
-  {
-    id: "clareza",
-    lines: ["A complexidade fica no sistema.", "A experiência fica clara."],
   },
   {
     id: "pessoas",

@@ -16,7 +16,7 @@ A Milestone 1 (auditoria do espelho Pemogan) permanece documentada em `docs/`.
 | `reference/` | Documentação da referência visual |
 | `nva.nirmanavisual.com/` | Espelho HTTrack Pemogan (referência, não produção) |
 | `_backups/original-httrack-pemogan/` | Backup imutável da captura original |
-| `docs/` | Auditorias e documentos das milestones |
+| `docs/` | Documentação por sprint (`docs/sprints/`) + screenshots |
 | `scripts/` | Servidor HTTP da referência |
 
 ## Como executar o site novo (Next.js)

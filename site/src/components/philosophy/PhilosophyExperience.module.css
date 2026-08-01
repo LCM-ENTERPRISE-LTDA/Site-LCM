@@ -1,27 +1,42 @@
 .experience {
   --manifest-p: 0;
-  --manifest-alive: 0;
+  --mx: 0;
+  --my: 0;
+  --lx: 50%;
+  --ly: 45%;
+  --story-lx: 50%;
+  --story-ly: 42%;
 
   position: relative;
   isolation: isolate;
+  overflow: clip;
+  background: #060a12;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--background-base) 70%, #050912) 0%,
-    #060a12 22%,
-    #070d16 55%,
-    #061018 78%,
-    var(--background-elevated) 100%
-  );
 }
 
 .intro {
-  position: relative;
+  position: absolute;
+  top: calc(var(--header-height, 4.5rem) + 1.25rem);
+  left: 0;
+  right: 0;
   z-index: 2;
-  width: min(100% - 2rem, 40rem);
-  margin-inline: auto;
-  padding-block: clamp(2.75rem, 6vh, 4.25rem) clamp(1rem, 2.5vh, 1.75rem);
   text-align: center;
+  pointer-events: none;
 }
 
 .eyebrow {
@@ -31,37 +46,75 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-text-muted) 75%, #4d9be8);
-  text-shadow: 0 0 40px rgba(77, 155, 232, 0.15);
+  color: color-mix(in srgb, var(--color-text-muted) 78%, #4d9be8);
 }
 
-.gallery {
+.stage {
   position: relative;
   z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  width: min(100% - 2.5rem, 40rem);
+  margin-inline: auto;
+  min-height: 10rem;
 }
 
 .bridge {
   position: relative;
   z-index: 2;
-  height: clamp(3.25rem, 7vh, 5.5rem);
-  margin-top: clamp(0.5rem, 2vh, 1.5rem);
+  height: clamp(3rem, 6vh, 5rem);
   pointer-events: none;
   background: linear-gradient(
     180deg,
-    transparent 0%,
-    color-mix(in srgb, var(--background-elevated) 35%, transparent) 40%,
-    var(--background-elevated) 100%
+    #060a12 0%,
+    var(--background-elevated, #0d1626) 100%
   );
 }
 
 @media (max-width: 959px) {
   .intro {
     text-align: left;
-    margin-inline: 1.15rem;
-    width: auto;
-    padding-block: 2.5rem 1rem;
+    padding-inline: 1.15rem;
   }
+
+  .stage {
+    width: min(100% - 2.3rem, 34rem);
+    margin-inline: 1.15rem auto 1.15rem 1.15rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .sticky {
+    min-height: 100svh;
+  }
+
+  .stage {
+    width: calc(100% - 2rem);
+    margin-inline: 1rem;
+  }
+}
+
+/* Reduced motion: quiet stacked reading, no sticky cinema */
+.reduced .track {
+  height: auto !important;
+}
+
+.reduced .sticky {
+  position: relative;
+  height: auto;
+  min-height: 0;
+  padding-block: 3.5rem 2rem;
+}
+
+.reduced .stage {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  min-height: 0;
+}
+
+.reduced :global([data-phrase]) {
+  position: relative !important;
+  inset: auto !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
 }

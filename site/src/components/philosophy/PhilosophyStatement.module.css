@@ -1,127 +1,76 @@
 .panel {
-  position: relative;
-  isolation: isolate;
+  --pv: 0;
+
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* ~40% less vertical air than the empty-screen version */
-  min-height: clamp(42vh, 48vh, 56vh);
-  padding-block: clamp(2.25rem, 5.5vh, 3.75rem);
-  padding-inline: 1.25rem;
-}
-
-.aura {
-  position: absolute;
-  inset: 8% 10%;
-  z-index: 0;
+  margin: 0;
+  /* Scroll-driven cinema — no enter-once flash */
+  opacity: var(--pv);
+  filter: blur(calc((1 - var(--pv)) * 16px));
+  transform: translate3d(0, calc((1 - var(--pv)) * 28px), 0)
+    scale(calc(0.985 + var(--pv) * 0.015));
+  will-change: opacity, transform, filter;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 58% 48% at 46% 46%, rgba(77, 155, 232, 0.11), transparent 68%),
-    radial-gradient(ellipse 54% 46% at 54% 50%, rgba(139, 124, 240, 0.09), transparent 70%),
-    radial-gradient(ellipse 52% 44% at 48% 54%, rgba(240, 160, 64, 0.07), transparent 70%),
-    radial-gradient(ellipse 50% 42% at 56% 48%, rgba(47, 191, 134, 0.08), transparent 72%);
-  opacity: 0;
-  filter: blur(10px);
-  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-  /* Bias which energy reads stronger along the narrative */
-  transform: translate3d(calc(var(--panel-p) * 12px - 6px), calc(var(--panel-p) * 8px), 0);
 }
 
 .statement {
-  position: relative;
-  z-index: 1;
   margin: 0;
-  width: min(100%, 50rem);
+  width: 100%;
+  max-width: 36ch;
   text-align: center;
   font-family: var(--font-instrument), var(--font-display), sans-serif;
-  font-size: clamp(1.6rem, 1rem + 2.2vw, 3rem);
-  font-weight: 600;
-  line-height: 1.24;
-  letter-spacing: -0.028em;
-  color: var(--color-text);
-  text-shadow: 0 0 60px rgba(10, 14, 22, 0.45);
+  /* Contained editorial — not billboard */
+  font-size: clamp(1.2rem, 1.05rem + 0.85vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.018em;
+  color: color-mix(in srgb, var(--color-text) 94%, transparent);
+  text-wrap: pretty;
 }
 
 .line {
   display: block;
-  overflow: hidden;
-  margin-block: 0.1em;
 }
 
-.lineInner {
-  display: block;
-  opacity: 0;
-  transform: translateY(0.55em);
-  filter: blur(2.5px);
-  transition:
-    opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 950ms cubic-bezier(0.16, 1, 0.3, 1),
-    filter 850ms ease;
-  transition-delay: calc(60ms + var(--line-i, 0) * 120ms);
-}
-
-.visible .aura {
-  opacity: 1;
-}
-
-.visible .lineInner {
-  opacity: 1;
-  transform: translateY(0);
-  filter: blur(0);
-}
-
-.reduced .aura {
-  opacity: 0.9;
-}
-
-.reduced .lineInner {
-  opacity: 1;
-  transform: none;
-  filter: none;
-  transition: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .lineInner {
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    transition: none !important;
-  }
-
-  .aura {
-    opacity: 0.9 !important;
-    transition: none !important;
-  }
+.line + .line {
+  margin-top: 0.35em;
+  color: color-mix(in srgb, var(--color-text) 78%, var(--color-text-muted));
+  font-weight: 500;
 }
 
 @media (max-width: 959px) {
   .panel {
-    min-height: clamp(38vh, 44vh, 52vh);
     justify-content: flex-start;
-    padding-inline: 1.15rem;
-    padding-block: clamp(2rem, 5vh, 3.25rem);
+    align-items: center;
+    padding-top: 18vh;
   }
 
   .statement {
-    width: min(100%, 34rem);
     text-align: left;
-    font-size: clamp(1.5rem, 4.6vw, 2.25rem);
-    line-height: 1.28;
-    margin-left: 0;
-  }
-
-  .aura {
-    inset: 5% 0 5% -5%;
+    max-width: 32ch;
+    font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+    line-height: 1.5;
   }
 }
 
 @media (max-width: 479px) {
   .panel {
-    min-height: clamp(36vh, 42vh, 48vh);
+    padding-top: 16vh;
   }
 
   .statement {
-    font-size: clamp(1.4rem, 6.6vw, 1.8rem);
+    max-width: 28ch;
+    font-size: clamp(1.1rem, 4.4vw, 1.35rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    filter: none;
+    transform: none;
+    will-change: auto;
   }
 }

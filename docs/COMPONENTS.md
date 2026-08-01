@@ -1,4 +1,6 @@
-# COMPONENTS — Sprint 02
+# COMPONENTS — índice
+
+Mapa vivo dos componentes. Docs detalhados por sprint em `docs/sprints/`.
 
 ## Layout
 
@@ -9,100 +11,41 @@
 | `ScrollToTop` | Botão após scroll |
 | `Container` | Largura máxima |
 
-## Hero Experience
-
-| Componente | Responsabilidade |
-|------------|------------------|
-| `HeroExperience` | Shell escuro, layout, transição |
-| `HeroContent` | Eyebrow, título, subtítulo |
-| `HeroActions` | CTAs |
-| `TriadScene` | Cena interativa da tríade |
-| `PointerParallax` | Hook de profundidade por pointer |
-| `PrinciplesBand` | Quatro princípios pós-hero |
-
-## Navigation
-
-`DesktopNavigation`, `MobileNavigation`, `ProductMenu`
-
-## UI
-
-`Button`, `LinkButton`, `Badge`, `Section`, `SectionHeading`, `FeatureCard`, `Tabs`, `Accordion`, `Counter`
-
-## Product
-
-`ProductCard`, `ProductStatusBadge`, `ProductHero`
-
-## Sections (legado / páginas internas)
-
-`PageHero`, `CTASection`, `PrincipleCard`, `TechnologyLayer`, `ContactForm`, `TriadHero` (não usado na Home)
-
-## Brand
-
-`Logo` (oficial, wordmark LCM), `TriadMark` (geometria estrutural, não substitui a logo)
-
-## Motion
-
-`Reveal`
-
-## Critério
-
-Reutilizar quando houver variação ou comportamento. A cena do hero fica isolada em `components/hero/` para refinamentos futuros.
-
----
-
-## Milestone 3 — Living Hero
-
-`TriadScene` ganhou camadas físicas (grid / glow / bg / particles / main / fg) e `PointerParallax` passou a escrever profundidades e proximidades independentes. Estrutura de componentes da Sprint 02 permanece.
-
----
-
-## Milestone 4 — Immersive Hero
-
-| Componente | Papel |
-|------------|-------|
-| `ImmersiveHero` | Shell contínuo + pointer root |
-| `HeroEnvironment` | Camadas full-bleed |
-| `HeroContent` / `HeroActions` | Copy + CTAs (inalterados em texto) |
-| `PrinciplesBand` | Continuação visual do ambiente |
-| `TriadScene` | Legado (não usado na Home) |
-| `HeroExperience` | Reexport legado → `ImmersiveHero` |
-
----
-
-## Hero V3 / V3.1
+## Hero V3 (congelado)
 
 | Componente | Papel |
 |------------|-------|
 | `HeroExperience` | Shell full-width + motion root |
-| `HeroArtComposition` | Objeto visual único + camadas (refinado em V3.1) |
+| `HeroArtComposition` | Objeto visual único + camadas |
 | `AnimatedTitle` | Entrada tipográfica por linha |
 | `HeroContent` / `HeroActions` | Copy + CTAs |
 | `useHeroMotion` | Pointer + scroll (só no Hero) |
+| `PrinciplesBand` | Quatro princípios pós-hero |
 
-Detalhes: `docs/HERO-V3.md`.
-
----
+Detalhes: `docs/sprints/02-hero/HERO-V3.md`
 
 ## Product Showcase
 
 | Componente | Papel |
 |------------|-------|
-| `ProductShowcase` | Intro + stack editorial de produtos |
+| `ProductShowcase` | Intro + stack editorial |
 | `ProductFeature` | Capítulo full-width por produto |
-| `ShowcaseVisuals` | SVGs por personalidade (timeline / constellation / canvas / signal) |
-| `useFeaturePointer` | Pointer local → CSS vars no feature |
+| `ShowcaseVisuals` | SVGs por personalidade |
+| `useFeaturePointer` | Pointer local |
 
-Detalhes: `docs/PRODUCT-SHOWCASE.md`.
+Detalhes: `docs/sprints/03-product-showcase/PRODUCT-SHOWCASE.md`
 
----
-
-## Philosophy Experience
+## Philosophy — Cinematic Manifesto
 
 | Componente | Papel |
 |------------|-------|
-| `PhilosophyExperience` | Manifesto vivo + scroll progress |
-| `ManifestAtmosphere` | Camadas: haze, corrente, poeira, respiração |
-| `PhilosophyStatementBlock` | Tipografia editorial por princípio |
-| `useManifestScroll` | `--manifest-p` (1 rAF) |
+| `PhilosophyExperience` | Sticky stage + scroll cinema |
+| `ManifestAtmosphere` | Haze, mist, dust, grain, light wash |
+| `PhilosophyStatementBlock` | Frase editorial (`--pv`) |
+| `useManifestMotion` | Scroll + pointer atmosfera (≤4px) |
 
-Detalhes: `docs/PHILOSOPHY-EXPERIENCE.md`.
+Detalhes: `docs/sprints/04-philosophy/CINEMATIC-MANIFESTO.md`
+
+## Navigation / UI / Product / Motion
+
+`DesktopNavigation`, `MobileNavigation`, `ProductMenu` · `Button`, `Badge`, `Section`, `Tabs`… · `ProductCard`, `ProductHero` · `Reveal`
