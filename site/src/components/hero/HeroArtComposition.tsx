@@ -11,8 +11,8 @@ type Props = {
 };
 
 /**
- * Refined V3.1 art — same concept, tighter craft.
- * One structure with layered depth; peripheral lines support, never compete.
+ * V3.2 — same construction, premium finish.
+ * Depth, materials and nucleus presence — no new forms or effects.
  */
 export function HeroArtComposition({ phase, alive, reduced }: Props) {
   const uid = useId().replace(/:/g, "");
@@ -34,19 +34,12 @@ export function HeroArtComposition({ phase, alive, reduced }: Props) {
         <div className={styles.haze} />
       </div>
 
-      {/* Mid — fewer, longer, quieter ribbons */}
       <svg className={styles.mid} viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" fill="none">
         <path
           className={styles.ribbon}
-          d="M-80 240 C 360 160, 640 300, 920 230 S 1280 150, 1520 210"
-          stroke="rgba(130,170,220,0.07)"
-          strokeWidth="0.9"
-        />
-        <path
-          className={styles.ribbonB}
-          d="M-40 560 C 400 500, 720 620, 1040 540 S 1360 480, 1500 520"
-          stroke="rgba(47,107,255,0.06)"
-          strokeWidth="0.85"
+          d="M-60 255 C 380 175, 660 290, 940 220 S 1300 145, 1520 200"
+          stroke="rgba(130,170,220,0.05)"
+          strokeWidth="0.7"
         />
       </svg>
 
@@ -54,108 +47,166 @@ export function HeroArtComposition({ phase, alive, reduced }: Props) {
         <defs>
           <linearGradient id={id("beam")} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#25B4E8" stopOpacity="0" />
-            <stop offset="40%" stopColor="#2F6BFF" stopOpacity="0.42" />
+            <stop offset="36%" stopColor="#2F6BFF" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#25B4E8" stopOpacity="0" />
           </linearGradient>
-          <radialGradient id={id("core")} cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(243,246,250,0.34)" />
-            <stop offset="28%" stopColor="rgba(47,107,255,0.2)" />
-            <stop offset="62%" stopColor="rgba(37,180,232,0.06)" />
-            <stop offset="100%" stopColor="rgba(47,107,255,0)" />
+          <radialGradient id={id("core")} cx="46%" cy="44%" r="54%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.55)" />
+            <stop offset="14%" stopColor="rgba(220,232,255,0.28)" />
+            <stop offset="36%" stopColor="rgba(47,107,255,0.2)" />
+            <stop offset="62%" stopColor="rgba(37,180,232,0.05)" />
+            <stop offset="100%" stopColor="rgba(13,17,24,0)" />
           </radialGradient>
-          <linearGradient id={id("plate")} x1="0.15" y1="0" x2="0.9" y2="1">
-            <stop offset="0%" stopColor="rgba(47,107,255,0.14)" />
-            <stop offset="55%" stopColor="rgba(18,23,32,0.45)" />
-            <stop offset="100%" stopColor="rgba(37,180,232,0.05)" />
+          <radialGradient id={id("coreHalo")} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="rgba(47,107,255,0.18)" />
+            <stop offset="45%" stopColor="rgba(37,180,232,0.05)" />
+            <stop offset="100%" stopColor="rgba(13,17,24,0)" />
+          </radialGradient>
+          <linearGradient id={id("plateFar")} x1="0.1" y1="0" x2="0.9" y2="1">
+            <stop offset="0%" stopColor="rgba(40,78,150,0.32)" />
+            <stop offset="38%" stopColor="rgba(8,12,20,0.78)" />
+            <stop offset="100%" stopColor="rgba(18,42,88,0.28)" />
+          </linearGradient>
+          <linearGradient id={id("plateMid")} x1="0.18" y1="0" x2="0.88" y2="1">
+            <stop offset="0%" stopColor="rgba(70,120,210,0.16)" />
+            <stop offset="28%" stopColor="rgba(6,10,18,0.85)" />
+            <stop offset="72%" stopColor="rgba(12,28,55,0.55)" />
+            <stop offset="100%" stopColor="rgba(37,180,232,0.12)" />
+          </linearGradient>
+          <linearGradient id={id("plateNear")} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+            <stop offset="40%" stopColor="rgba(47,107,255,0.12)" />
+            <stop offset="100%" stopColor="rgba(6,10,18,0.5)" />
           </linearGradient>
           <linearGradient id={id("rim")} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="rgba(180,205,235,0.28)" />
+            <stop offset="0%" stopColor="rgba(230,240,255,0.55)" />
+            <stop offset="40%" stopColor="rgba(47,107,255,0.35)" />
+            <stop offset="100%" stopColor="rgba(37,180,232,0.18)" />
+          </linearGradient>
+          <linearGradient id={id("rimFar")} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="rgba(160,190,230,0.28)" />
             <stop offset="100%" stopColor="rgba(47,107,255,0.12)" />
           </linearGradient>
+          <linearGradient id={id("spec")} x1="0.35" y1="0.15" x2="0.7" y2="0.85">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.16)" />
+            <stop offset="45%" stopColor="rgba(255,255,255,0)" />
+            <stop offset="100%" stopColor="rgba(47,107,255,0.06)" />
+          </linearGradient>
           <filter id={id("soft")} x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="1.2" />
+            <feGaussianBlur stdDeviation="1.15" />
           </filter>
         </defs>
 
-        {/* Quiet side leads into the object — not decorative waves */}
-        <g className={styles.leads} stroke="rgba(130,170,220,0.1)" strokeWidth="0.8">
-          <path d="M40 330 C 220 300, 380 350, 540 320" />
-          <path d="M900 340 C 1080 300, 1260 350, 1420 320" />
-        </g>
+        <ellipse
+          className={styles.cast}
+          cx="720"
+          cy="418"
+          rx="128"
+          ry="20"
+          fill="rgba(0,0,0,0.45)"
+          filter={`url(#${id("soft")})`}
+        />
 
-        {/* Unified structure: back plate → mid plate → rim → core */}
+        {/* Far plate */}
         <g className={styles.planeFar}>
           <path
-            d="M560 270 L720 185 L880 270 L820 395 L620 395 Z"
-            fill={`url(#${id("plate")})`}
-            stroke={`url(#${id("rim")})`}
-            strokeWidth="1"
-            opacity="0.85"
+            d="M542 265 L720 165 L898 265 L832 415 L608 415 Z"
+            fill={`url(#${id("plateFar")})`}
+            stroke={`url(#${id("rimFar")})`}
+            strokeWidth="1.15"
+          />
+          <path
+            d="M568 282 L720 198 L872 282"
+            stroke="rgba(210,225,245,0.14)"
+            strokeWidth="0.75"
+            fill="none"
           />
         </g>
 
+        {/* Mid plate — primary engineered surface */}
         <g className={styles.planeMid}>
           <path
-            d="M600 295 L780 235 L860 330 L720 390 L580 345 Z"
-            fill="rgba(13,17,24,0.42)"
-            stroke="rgba(47,107,255,0.28)"
-            strokeWidth="1.05"
+            d="M588 295 L788 228 L872 340 L716 408 L572 350 Z"
+            fill={`url(#${id("plateMid")})`}
+            stroke={`url(#${id("rim")})`}
+            strokeWidth="1.25"
+          />
+          <path
+            d="M588 295 L788 228 L872 340 L716 408 L572 350 Z"
+            fill={`url(#${id("spec")})`}
+          />
+          <path
+            d="M612 310 L768 262 L838 342 L712 386 L602 342 Z"
+            fill="none"
+            stroke="rgba(37,180,232,0.12)"
+            strokeWidth="0.7"
           />
         </g>
 
+        {/* Near plate */}
         <g className={styles.planeNear}>
           <rect
-            x="655"
-            y="248"
-            width="130"
-            height="52"
-            rx="3"
-            fill="rgba(47,107,255,0.06)"
-            stroke="rgba(37,180,232,0.22)"
-            strokeWidth="0.9"
-            transform="rotate(-8 720 274)"
+            x="650"
+            y="244"
+            width="140"
+            height="50"
+            rx="2"
+            fill={`url(#${id("plateNear")})`}
+            stroke="rgba(230,240,255,0.38)"
+            strokeWidth="0.95"
+            transform="rotate(-7.5 720 269)"
+          />
+          <line
+            x1="666"
+            y1="256"
+            x2="794"
+            y2="256"
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="0.65"
+            transform="rotate(-7.5 720 269)"
           />
         </g>
 
         <g className={styles.forces}>
-          <path className={styles.force} d="M720 228 L720 378" stroke={`url(#${id("beam")})`} strokeWidth="1.25" />
-          <path className={styles.force} d="M640 345 L800 275" stroke={`url(#${id("beam")})`} strokeWidth="1.1" />
-          <path className={styles.force} d="M640 285 L800 345" stroke={`url(#${id("beam")})`} strokeWidth="1.1" />
+          <path className={styles.force} d="M720 212 L720 398" stroke={`url(#${id("beam")})`} strokeWidth="1.2" />
+          <path className={styles.force} d="M628 355 L812 265" stroke={`url(#${id("beam")})`} strokeWidth="1.05" />
+          <path className={styles.force} d="M628 275 L812 355" stroke={`url(#${id("beam")})`} strokeWidth="1.05" />
           <path
             className={styles.forceGlow}
-            d="M720 228 L720 378 M640 345 L800 275 M640 285 L800 345"
+            d="M720 212 L720 398 M628 355 L812 265 M628 275 L812 355"
             stroke="#2F6BFF"
-            strokeWidth="2.2"
+            strokeWidth="2.1"
             filter={`url(#${id("soft")})`}
           />
         </g>
 
         <g className={styles.nodes}>
-          <circle className={styles.coreBloom} cx="720" cy="305" r="64" fill={`url(#${id("core")})`} />
-          <circle cx="720" cy="228" r="2.6" fill="#25B4E8" opacity="0.85" />
-          <circle cx="640" cy="345" r="2.2" fill="#2F6BFF" opacity="0.75" />
-          <circle cx="800" cy="345" r="2.2" fill="#2F6BFF" opacity="0.75" />
-          <circle cx="720" cy="305" r="9" stroke="rgba(243,246,250,0.28)" strokeWidth="1" />
-          <circle cx="720" cy="305" r="2.6" fill="#F3F6FA" />
+          <circle className={styles.coreHalo} cx="720" cy="308" r="98" fill={`url(#${id("coreHalo")})`} />
+          <circle className={styles.coreBloom} cx="720" cy="308" r="56" fill={`url(#${id("core")})`} />
+          <circle cx="720" cy="212" r="2.5" fill="#25B4E8" opacity="0.92" />
+          <circle cx="628" cy="355" r="2.1" fill="#2F6BFF" opacity="0.85" />
+          <circle cx="812" cy="355" r="2.1" fill="#2F6BFF" opacity="0.85" />
+          <circle cx="720" cy="308" r="13" stroke="rgba(243,246,250,0.18)" strokeWidth="0.85" fill="none" />
+          <circle cx="720" cy="308" r="6.5" stroke="rgba(47,107,255,0.4)" strokeWidth="0.75" fill="rgba(8,12,20,0.4)" />
+          <circle cx="720" cy="308" r="2.35" fill="#FFFFFF" />
         </g>
 
         {!reduced && alive ? (
           <g className={styles.packets}>
-            <circle r="1.25" fill="#25B4E8">
-              <animateMotion dur="7.2s" begin="0.6s" repeatCount="indefinite" path="M720 228 L720 378" />
-              <animate attributeName="opacity" values="0;0.7;0.7;0" keyTimes="0;0.15;0.8;1" dur="7.2s" begin="0.6s" repeatCount="indefinite" />
+            <circle r="1.15" fill="#25B4E8">
+              <animateMotion dur="7.8s" begin="0.8s" repeatCount="indefinite" path="M720 212 L720 398" />
+              <animate attributeName="opacity" values="0;0.65;0.65;0" keyTimes="0;0.15;0.8;1" dur="7.8s" begin="0.8s" repeatCount="indefinite" />
             </circle>
-            <circle r="1.1" fill="#2F6BFF">
-              <animateMotion dur="8.4s" begin="2.8s" repeatCount="indefinite" path="M640 345 L800 275" />
-              <animate attributeName="opacity" values="0;0.55;0.55;0" keyTimes="0;0.12;0.85;1" dur="8.4s" begin="2.8s" repeatCount="indefinite" />
+            <circle r="1" fill="#2F6BFF">
+              <animateMotion dur="9s" begin="3.2s" repeatCount="indefinite" path="M628 355 L812 265" />
+              <animate attributeName="opacity" values="0;0.5;0.5;0" keyTimes="0;0.12;0.85;1" dur="9s" begin="3.2s" repeatCount="indefinite" />
             </circle>
           </g>
         ) : null}
       </svg>
 
       <svg className={styles.near} viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice" fill="none">
-        <circle className={styles.spec} cx="1120" cy="210" r="1.1" fill="rgba(243,246,250,0.32)" />
-        <circle className={styles.specB} cx="300" cy="540" r="0.9" fill="rgba(37,180,232,0.28)" />
+        <circle className={styles.spec} cx="1140" cy="200" r="1" fill="rgba(243,246,250,0.26)" />
       </svg>
 
       <div className={styles.readSafe} />

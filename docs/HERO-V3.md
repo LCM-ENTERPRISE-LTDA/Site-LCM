@@ -57,3 +57,19 @@ Preserves V3 concept/layout/copy/architecture. Craft improvements only:
 - Quieter ambient (glow + one ribbon + one plane)
 - Shorter exit fade; optical lift of copy block
 - Screenshots: `docs/screenshots/hero-v31-*.png`
+
+---
+
+## V3.2 — Final polish (Hero Freeze)
+
+Last craft pass. No new direction, elements, or effects.
+
+- Materials: plate gradients, rim highlights, cast shadow, clearer plane separation
+- Nucleus: controlled energy (halo + bloom + nested rings) without neon brightness
+- Local contrast: deeper edge haze, quieter fill light, object reads on static frame
+- Lines: single peripheral ribbon; side leads removed
+- Motion: heavier pointer inertia; light tracks more slowly
+- Editorial spacing; CTA pair gap; taller exit fade before PrinciplesBand
+- Screenshots: `docs/screenshots/hero-v32-*.png`
+
+**Hero Freeze:** no further visual exploration of this Hero. Next work → remaining Home sections and internal pages.

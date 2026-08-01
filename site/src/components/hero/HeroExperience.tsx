@@ -21,7 +21,7 @@ type HeroExperienceProps = {
 type Phase = "idle" | "enter" | "ready";
 
 /**
- * LCM Hero V3 — full-width interactive composition.
+ * LCM Hero V3.2 — full-width interactive composition (frozen).
  * All motion is strictly contained inside this section (overflow: hidden).
  */
 export function HeroExperience({

@@ -19,48 +19,48 @@
 .far {
   transform: translate3d(
     calc(var(--depth-far-x, 0) * 1px),
-    calc(var(--depth-far-y, 0) * 1px + var(--scroll-p, 0) * 8px),
+    calc(var(--depth-far-y, 0) * 1px + var(--scroll-p, 0) * 6px),
     0
   );
 }
 
 .glowCore {
   position: absolute;
-  inset: 18% 22%;
+  inset: 20% 24%;
   background: radial-gradient(
-    ellipse 42% 38% at var(--light-x, 50%) var(--light-y, 44%),
-    rgba(47, 107, 255, 0.18),
-    rgba(37, 180, 232, 0.05) 42%,
-    transparent 70%
+    ellipse 38% 34% at var(--light-x, 50%) var(--light-y, 44%),
+    rgba(47, 107, 255, 0.2),
+    rgba(37, 180, 232, 0.04) 40%,
+    transparent 68%
   );
-  filter: blur(12px);
-  opacity: 0.9;
+  filter: blur(14px);
+  opacity: 0.92;
 }
 
 .glowSoft {
   position: absolute;
-  width: 28%;
-  height: 24%;
+  width: 22%;
+  height: 20%;
   left: 50%;
-  top: 42%;
+  top: 43%;
   translate: -50% -50%;
-  background: radial-gradient(circle, rgba(243, 246, 250, 0.07), transparent 72%);
-  filter: blur(18px);
-  transform: translate3d(calc(var(--depth-mid-x, 0) * 0.3px), calc(var(--depth-mid-y, 0) * 0.3px), 0);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 70%);
+  filter: blur(16px);
+  transform: translate3d(calc(var(--depth-mid-x, 0) * 0.25px), calc(var(--depth-mid-y, 0) * 0.25px), 0);
 }
 
 .haze {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(13, 17, 24, 0.5), transparent 52%),
-    linear-gradient(90deg, rgba(13, 17, 24, 0.2) 0%, transparent 30%, transparent 70%, rgba(13, 17, 24, 0.16) 100%);
+    radial-gradient(ellipse 65% 48% at 50% 100%, rgba(8, 11, 16, 0.62), transparent 50%),
+    linear-gradient(90deg, rgba(8, 11, 16, 0.28) 0%, transparent 28%, transparent 72%, rgba(8, 11, 16, 0.24) 100%);
 }
 
 .mid {
   transform: translate3d(
     calc(var(--depth-mid-x, 0) * 1px),
-    calc(var(--depth-mid-y, 0) * 1px + var(--scroll-p, 0) * 5px),
+    calc(var(--depth-mid-y, 0) * 1px + var(--scroll-p, 0) * 4px),
     0
   );
   opacity: 0;
@@ -70,21 +70,21 @@
 .main {
   transform: translate3d(
     calc(var(--depth-main-x, 0) * 1px),
-    calc(var(--depth-main-y, 0) * 1px + var(--scroll-p, 0) * 4px),
+    calc(var(--depth-main-y, 0) * 1px + var(--scroll-p, 0) * 3px),
     0
   );
   opacity: 0;
-  transition: opacity 820ms cubic-bezier(0.22, 1, 0.36, 1) 60ms;
+  transition: opacity 820ms cubic-bezier(0.22, 1, 0.36, 1) 50ms;
 }
 
 .near {
   transform: translate3d(
     calc(var(--depth-near-x, 0) * 1px),
-    calc(var(--depth-near-y, 0) * 1px + var(--scroll-p, 0) * 3px),
+    calc(var(--depth-near-y, 0) * 1px + var(--scroll-p, 0) * 2px),
     0
   );
   opacity: 0;
-  transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+  transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1) 100ms;
 }
 
 .planeFar,
@@ -95,69 +95,69 @@
 }
 
 .planeFar {
-  transform: translate(calc(var(--depth-far-x, 0) * 0.5px), calc(var(--depth-far-y, 0) * 0.5px));
+  transform: translate(calc(var(--depth-far-x, 0) * 0.55px), calc(var(--depth-far-y, 0) * 0.55px));
 }
 
 .planeMid {
-  transform: translate(calc(var(--depth-mid-x, 0) * 0.55px), calc(var(--depth-mid-y, 0) * 0.55px));
+  transform: translate(calc(var(--depth-mid-x, 0) * 0.7px), calc(var(--depth-mid-y, 0) * 0.7px));
 }
 
 .planeNear {
-  transform: translate(calc(var(--depth-near-x, 0) * 0.45px), calc(var(--depth-near-y, 0) * 0.45px));
+  transform: translate(calc(var(--depth-near-x, 0) * 0.55px), calc(var(--depth-near-y, 0) * 0.55px));
 }
 
 .ribbon,
-.ribbonB,
-.leads,
+.cast,
 .forces,
 .nodes,
-.spec,
-.specB {
+.spec {
   opacity: 0;
   transition: opacity 880ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .force {
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
-  transition: stroke-dashoffset 1.05s cubic-bezier(0.2, 0.85, 0.25, 1) 140ms;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.2, 0.85, 0.25, 1) 120ms;
 }
 
 .forceGlow {
-  opacity: 0.08;
+  opacity: 0.07;
 }
 
 .coreBloom {
-  opacity: 0.95;
+  opacity: 1;
+}
+
+.coreHalo {
+  opacity: 0.85;
 }
 
 .readSafe {
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    ellipse 44% 40% at 50% 45%,
-    rgba(13, 17, 24, 0.48) 0%,
-    rgba(13, 17, 24, 0.16) 48%,
-    transparent 72%
+    ellipse 40% 34% at 50% 44%,
+    rgba(10, 14, 20, 0.32) 0%,
+    rgba(10, 14, 20, 0.1) 52%,
+    transparent 76%
   );
   pointer-events: none;
 }
 
 .enter .mid,
 .enter .ribbon {
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
 .ready .mid,
 .ready .main,
 .ready .near,
 .ready .ribbon,
-.ready .ribbonB,
-.ready .leads,
+.ready .cast,
 .ready .forces,
 .ready .nodes,
-.ready .spec,
-.ready .specB {
+.ready .spec {
   opacity: 1;
 }
 
@@ -165,30 +165,26 @@
   stroke-dashoffset: 0;
 }
 
-/* Ambient — restrained: glow + one ribbon only */
+/* Ambient — restrained: glow + mid plane only */
 .alive.ready .glowCore {
-  animation: breathe 8.5s ease-in-out infinite;
+  animation: breathe 9.5s ease-in-out infinite;
 }
 
 .alive.ready .planeMid {
-  animation: floatSoft 10s ease-in-out infinite;
-}
-
-.alive.ready .ribbonB {
-  animation: driftQuiet 18s ease-in-out infinite;
+  animation: floatSoft 11s ease-in-out infinite;
 }
 
 .alive.ready .spec {
-  animation: twinkle 9s ease-in-out infinite;
+  animation: twinkle 10s ease-in-out infinite;
 }
 
 @keyframes breathe {
   0%,
   100% {
-    opacity: 0.82;
+    opacity: 0.84;
   }
   50% {
-    opacity: 1;
+    opacity: 0.98;
   }
 }
 
@@ -198,27 +194,17 @@
     translate: 0 0;
   }
   50% {
-    translate: 0 -2px;
-  }
-}
-
-@keyframes driftQuiet {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 2px -1px;
+    translate: 0 -1.5px;
   }
 }
 
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.2;
+    opacity: 0.18;
   }
   50% {
-    opacity: 0.55;
+    opacity: 0.45;
   }
 }
 
@@ -226,12 +212,10 @@
 .reduced .main,
 .reduced .near,
 .reduced .ribbon,
-.reduced .ribbonB,
-.reduced .leads,
+.reduced .cast,
 .reduced .forces,
 .reduced .nodes,
-.reduced .spec,
-.reduced .specB {
+.reduced .spec {
   opacity: 1;
   animation: none !important;
   transform: none !important;
@@ -248,33 +232,31 @@
 
 .reduced .glowCore {
   animation: none !important;
-  opacity: 0.88;
+  opacity: 0.9;
 }
 
 @media (max-width: 959px) {
   .main {
-    opacity: 0.82;
+    opacity: 0.88;
   }
 
   .ready .main {
-    opacity: 0.82;
+    opacity: 0.88;
   }
 
-  .ribbonB,
-  .leads {
-    opacity: 0.45;
+  .ribbon {
+    opacity: 0.4;
   }
 
-  .ready .ribbonB,
-  .ready .leads {
-    opacity: 0.45;
+  .ready .ribbon {
+    opacity: 0.4;
   }
 
   .readSafe {
     background: linear-gradient(
       180deg,
-      rgba(13, 17, 24, 0.52) 0%,
-      rgba(13, 17, 24, 0.28) 42%,
+      rgba(13, 17, 24, 0.48) 0%,
+      rgba(13, 17, 24, 0.22) 42%,
       transparent 78%
     );
   }

@@ -120,4 +120,4 @@ A `TriadScene` em caixa foi **eliminada**. `ImmersiveHero` + `HeroEnvironment` e
 
 ## Hero V3 / V3.1
 
-Ver `docs/HERO-V3.md`. Composição full-width com objeto visual único, tipografia centralizada, motion isolado na seção. **V3.1** refina craft (linhas, núcleo, luz, espaçamento, pointer) sem mudar conceito nem copy.
+Ver `docs/HERO-V3.md`. Composição full-width com objeto visual único, tipografia centralizada, motion isolado na seção. **V3.2** é o polish final (**Hero Freeze**).

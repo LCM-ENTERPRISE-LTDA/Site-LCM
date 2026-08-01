@@ -47,24 +47,25 @@ export function useHeroPointer(
       if (!active) return;
       const c = current.current;
       const t = target.current;
-      c.x += (t.x - c.x) * 0.085;
-      c.y += (t.y - c.y) * 0.085;
-      c.nx += (t.nx - c.nx) * 0.1;
-      c.ny += (t.ny - c.ny) * 0.1;
+      // Heavier inertia — object feels physical, not cursor-chasing
+      c.x += (t.x - c.x) * 0.055;
+      c.y += (t.y - c.y) * 0.055;
+      c.nx += (t.nx - c.nx) * 0.065;
+      c.ny += (t.ny - c.ny) * 0.065;
 
       node.style.setProperty("--pointer-x", c.x.toFixed(3));
       node.style.setProperty("--pointer-y", c.y.toFixed(3));
-      // Far 1–2 · mid 2–4 · main 3–6 · near 4–8 (base unit 8)
-      node.style.setProperty("--depth-far-x", (c.x * 0.18).toFixed(3));
-      node.style.setProperty("--depth-far-y", (c.y * 0.18).toFixed(3));
-      node.style.setProperty("--depth-mid-x", (c.x * 0.38).toFixed(3));
-      node.style.setProperty("--depth-mid-y", (c.y * 0.38).toFixed(3));
-      node.style.setProperty("--depth-main-x", (c.x * 0.58).toFixed(3));
-      node.style.setProperty("--depth-main-y", (c.y * 0.58).toFixed(3));
-      node.style.setProperty("--depth-near-x", (c.x * 0.85).toFixed(3));
-      node.style.setProperty("--depth-near-y", (c.y * 0.85).toFixed(3));
-      node.style.setProperty("--light-x", `${(50 + c.nx * 10).toFixed(2)}%`);
-      node.style.setProperty("--light-y", `${(44 + c.ny * 8).toFixed(2)}%`);
+      // Far 1–2 · mid 2–4 · main 3–6 · near 4–8 (base unit 7.5)
+      node.style.setProperty("--depth-far-x", (c.x * 0.2).toFixed(3));
+      node.style.setProperty("--depth-far-y", (c.y * 0.2).toFixed(3));
+      node.style.setProperty("--depth-mid-x", (c.x * 0.42).toFixed(3));
+      node.style.setProperty("--depth-mid-y", (c.y * 0.42).toFixed(3));
+      node.style.setProperty("--depth-main-x", (c.x * 0.62).toFixed(3));
+      node.style.setProperty("--depth-main-y", (c.y * 0.62).toFixed(3));
+      node.style.setProperty("--depth-near-x", (c.x * 0.88).toFixed(3));
+      node.style.setProperty("--depth-near-y", (c.y * 0.88).toFixed(3));
+      node.style.setProperty("--light-x", `${(50 + c.nx * 8).toFixed(2)}%`);
+      node.style.setProperty("--light-y", `${(44 + c.ny * 6).toFixed(2)}%`);
 
       frameRef.current = requestAnimationFrame(tick);
     };
@@ -73,7 +74,7 @@ export function useHeroPointer(
       const rect = node.getBoundingClientRect();
       const nx = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width) * 2 - 1));
       const ny = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height) * 2 - 1));
-      target.current = { x: nx * 8, y: ny * 8, nx, ny };
+      target.current = { x: nx * 7.5, y: ny * 7.5, nx, ny };
     };
 
     const onLeave = () => {

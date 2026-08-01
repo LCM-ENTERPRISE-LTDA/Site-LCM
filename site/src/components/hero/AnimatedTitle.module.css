@@ -3,8 +3,8 @@
   font-family: var(--font-instrument), var(--font-display), "Instrument Sans", sans-serif;
   font-size: clamp(2.35rem, 1.35rem + 2.4vw, 3.55rem);
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.032em;
+  line-height: 1.08;
+  letter-spacing: -0.034em;
   color: var(--hero-text, #f3f6fa);
   max-width: 19ch;
   margin-inline: auto;

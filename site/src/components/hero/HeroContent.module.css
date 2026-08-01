@@ -5,48 +5,48 @@
   max-width: 820px;
   margin-inline: auto;
   text-align: center;
-  /* Optical lift — content block sits slightly above geometric center */
-  margin-top: -1.25rem;
+  /* Optical lift — editorial block sits slightly above geometric center */
+  margin-top: -1.5rem;
 }
 
 .eyebrow {
-  margin: 0 0 0.85rem;
+  margin: 0 0 0.95rem;
   font-family: var(--font-instrument), var(--font-display), sans-serif;
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.145em;
   text-transform: uppercase;
   color: #25b4e8;
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(6px);
   transition:
     opacity 480ms cubic-bezier(0.22, 1, 0.36, 1) 80ms,
     transform 480ms cubic-bezier(0.16, 1, 0.3, 1) 80ms;
 }
 
 .subtitle {
-  margin: 1.15rem auto 0;
-  max-width: 40ch;
+  margin: 1.25rem auto 0;
+  max-width: 42ch;
   font-family: var(--font-inter), var(--font-body), Inter, sans-serif;
   font-size: clamp(1rem, 0.95rem + 0.2vw, 1.1rem);
-  line-height: 1.58;
-  color: #a9b2c1;
+  line-height: 1.6;
+  color: #a4adb9;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
   transition:
     opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) 320ms,
     transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 320ms;
 }
 
 .actions {
-  margin-top: 1.35rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
   transition:
-    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) 460ms,
-    transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 460ms;
+    opacity 500ms cubic-bezier(0.22, 1, 0.36, 1) 440ms,
+    transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 440ms;
 }
 
 .ready .eyebrow,
