@@ -95,9 +95,10 @@ SiteTLCM / Site-LCM
 
 ## Git
 
-Repositório de trabalho: **Site-LCM** (branch sugerida: `feature/lcm-rebranding`).
+Repositório: **[LCM-ENTERPRISE-LTDA/Site-LCM](https://github.com/LCM-ENTERPRISE-LTDA/Site-LCM)** (privado).  
+Branch de trabalho: `feature/lcm-rebranding`.
 
-Não fazer push, merge ou deploy sem autorização explícita.
+Não fazer merge em produção ou deploy sem autorização explícita.
 
 ## Próximos passos
 
