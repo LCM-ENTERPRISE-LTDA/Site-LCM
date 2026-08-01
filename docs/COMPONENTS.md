@@ -1,21 +1,28 @@
-# COMPONENTS — Milestone 2
+# COMPONENTS — Sprint 02
 
 ## Layout
 
 | Componente | Responsabilidade |
 |------------|------------------|
-| `Header` | Logo, nav desktop/mobile, CTA, Escape, scroll lock |
-| `Footer` | Links institucionais, produtos, legal provisório |
+| `Header` | Logo LCM, nav, CTA, scroll surface, menu mobile |
+| `Footer` | Legal `LCM Enterprise LTDA`, links |
 | `ScrollToTop` | Botão após scroll |
 | `Container` | Largura máxima |
 
-## Navigation
+## Hero Experience
 
 | Componente | Responsabilidade |
 |------------|------------------|
-| `DesktopNavigation` | Links + dropdown produtos |
-| `MobileNavigation` | Drawer acessível |
-| `ProductMenu` | Lista de produtos + visão geral |
+| `HeroExperience` | Shell escuro, layout, transição |
+| `HeroContent` | Eyebrow, título, subtítulo |
+| `HeroActions` | CTAs |
+| `TriadScene` | Cena interativa da tríade |
+| `PointerParallax` | Hook de profundidade por pointer |
+| `PrinciplesBand` | Quatro princípios pós-hero |
+
+## Navigation
+
+`DesktopNavigation`, `MobileNavigation`, `ProductMenu`
 
 ## UI
 
@@ -25,14 +32,18 @@
 
 `ProductCard`, `ProductStatusBadge`, `ProductHero`
 
-## Sections
+## Sections (legado / páginas internas)
 
-`PageHero`, `CTASection`, `PrincipleCard`, `TechnologyLayer`, `ContactForm`
+`PageHero`, `CTASection`, `PrincipleCard`, `TechnologyLayer`, `ContactForm`, `TriadHero` (não usado na Home)
+
+## Brand
+
+`Logo` (oficial, wordmark LCM), `TriadMark` (geometria estrutural, não substitui a logo)
 
 ## Motion
 
-`Reveal` — Intersection Observer + CSS; conteúdo visível sem JS / com reduced motion.
+`Reveal`
 
-## Critério de componentização
+## Critério
 
-Reutilização, variação, comportamento ou responsabilidade visual clara — não microcomponentizar markup trivial.
+Reutilizar quando houver variação ou comportamento. A cena do hero fica isolada em `components/hero/` para refinamentos futuros.

@@ -1,50 +1,55 @@
-# DESIGN SYSTEM — Milestone 3A
+# DESIGN SYSTEM — Sprint 02 (dark engineering)
 
-Identidade visual premium light-first da LCM Enterprise.
+Identidade visual da LCM centrada em atmosfera escura, precisão e geometria da tríade.
 
 ## Princípio
 
-O branco é protagonista. Neutros carregam hierarquia. O azul de sinal (`#1A56F0`) aparece com precisão — UI, foco, CTAs — não como decoração.
+O fundo profundo (navy/grafite) carrega a presença. Azul da marca e ciano aparecem com precisão — CTAs, foco, conexões, sinais — nunca como “glow show”.
 
-## Cor principal (proposta)
+## Atmosfera
 
-| Token | Valor | Justificativa |
-|-------|-------|---------------|
-| `--color-brand` | `#1A56F0` | Contraste em botões brancos/texto branco; gráficos; foco acessível; inversão previsível em dark mode futuro; evita clichê roxo “AI” |
+| Token | Valor | Uso |
+|-------|-------|-----|
+| `--background-deep` | `#050912` | Hero / profundidade |
+| `--background-base` | `#080E1A` | Body |
+| `--background-elevated` | `#0D1626` | Faixas / header scrolled |
+| `--surface` | `#101B2D` | Cards / painéis |
+| `--border-subtle` | `rgba(130,170,220,0.12)` | Separadores |
+| `--text-primary` | `#F4F7FB` | Títulos / corpo |
+| `--text-secondary` | `#AAB6C8` | Apoio |
+| `--brand-blue` | `#2F6BFF` | Marca / CTA |
+| `--brand-cyan` | `#19B8F2` | Sinais / eyebrow |
 
-Ainda **proposta oficial provisória** até aprovação da marca.
+Aliases `--color-*` mapeiam para esses valores no `tokens.css`.
 
-## Neutros
+## Produtos
 
-Escala `--neutral-0` … `--neutral-950`. Superfícies usam `0/25/50/75`. Texto usa `900` + muted `500`.
-
-## Produtos (família)
-
-| Produto | Accent | Personalidade |
-|---------|--------|---------------|
-| AutoHist | `#0B8FD9` | Clareza operacional |
-| Dyson | `#5B5BD6` | Exploração técnica (contida) |
-| LCM Studio | `#0D9F75` | Criação controlada |
-| BusinessZap | `#D97706` | Comunicação responsável |
+| Produto | Accent (dark-tuned) |
+|---------|---------------------|
+| AutoHist | `#4D9BE8` |
+| Dyson | `#8B7CF0` |
+| LCM Studio | `#F0A040` |
+| BusinessZap | `#2FBF86` |
 
 ## Tipografia
 
-- Display: Instrument Sans
+- Display / Hero: Instrument Sans (peso 600–700, tracking negativo)
 - Body: Inter
-- Escala fluida/contida (hero ≤ ~3.5rem) — sem 150px/450px
+- Wordmark visual: **LCM** (sem “Enterprise”)
+- Nome jurídico: **LCM Enterprise LTDA** (footer / metadados)
 
 ## Radius
 
-`6 / 8 / 12 / 16 / 20` — equilíbrio; pills só em badges.
+`--radius-triad: 10px` como assinatura. Pills só em badges.
 
-## Motion
+## Header
 
-Engineering-grade: delays curtos, `Reveal` discreto, hero com glow/conexões lentas, `prefers-reduced-motion` respeitado.
+Transparente no topo → superfície translúcida + blur após scroll. Logo oficial compacta (`lcm-logo-dark.png`).
 
 ## Arquivos
 
 - `site/src/styles/tokens.css`
 - `site/src/app/globals.css`
-- `site/src/config/productThemes.ts`
-- `site/src/components/sections/EcosystemHero.tsx`
-- `site/src/components/ui/Icon.tsx`
+- `site/src/components/hero/*`
+- `docs/HERO-EXPERIENCE.md`
+- `docs/MOTION-POLICY.md`

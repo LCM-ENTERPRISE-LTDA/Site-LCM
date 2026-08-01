@@ -1,49 +1,46 @@
-# MOTION POLICY — Milestone 2
+# MOTION POLICY — Sprint 02
 
 ## Estratégia
 
-Uma única abordagem principal:
+1. CSS transitions / transforms / keyframes leves
+2. Intersection Observer (`Reveal`, `TriadScene` visibility)
+3. `requestAnimationFrame` só para interpolar pointer → CSS variables
+4. Sem Framer Motion / GSAP / Three.js nesta sprint
 
-1. CSS transitions/transforms
-2. Intersection Observer no componente `Reveal`
-3. Sem Framer Motion / GSAP nesta fundação
+## Hero assemble
 
-### Milestone 3A
+Fases: `enter` → `join` → `settle` (~320 ms / ~980 ms). Duração total alvo: 900–1600 ms.
 
-Motion refinado para parecer engenharia: menos deslocamento (12px), delays menores, hero com glow/conexões lentas (`EcosystemHero`), microinterações em botões/cards/nav/tabs/accordion. Sem espetáculo.
+Após settle: float de poucos pixels, pulsos nas conexões, respiração do bloom — só com a cena em viewport.
 
-## Regras
+## Pointer parallax
 
-1. Conteúdo permanece no fluxo normal do documento.
-2. Sem `visibility: hidden` permanente.
-3. Delays máximos práticos ~400 ms (não 1800 ms do template).
-4. Não animar tudo — priorizar seções e cards.
-5. SEO: texto no HTML desde o primeiro paint (RSC/SSG).
-6. Evitar layout shift relevante.
+- Desktop + `pointer: fine` + motion ok
+- Offset máximo ~7px, interpolação 0.08
+- Sem setState por frame
 
 ## `prefers-reduced-motion`
 
-Quando ativo:
+- Tokens de duração → 1 ms
+- `Reveal` imediato
+- TriadScene: composição final, sem loops/parallax
+- Botões sem translate no hover
+- `scroll-behavior: auto`
 
-- `Reveal` marca conteúdo como visível imediatamente
-- tokens de duração caem para ~1 ms
-- `html { scroll-behavior: auto }`
-- sem translate/zoom de entrada
-- tabs, accordions e menu continuam funcionais
-- hover sem deslocamento acentuado
+## Regras
 
-## Efeitos cobertos
+1. Conteúdo no HTML desde o primeiro paint
+2. Sem informação essencial só por movimento
+3. Sem flashes / loops chamativos
+4. Pausar ambient fora do viewport
+5. Delays curtos — leitura imediata
 
-| Efeito | Implementação |
-|--------|---------------|
-| fade / up / down / left / right / zoom | `Reveal` directions |
-| delays escalonados | prop `delay` limitada |
-| hover cards/botões | CSS modules |
-| menu mobile | CSS + estado React |
-| tabs / accordion | componentes acessíveis |
-| scroll-to-top | `ScrollToTop` |
-| counters | `Counter` (animação só se `animate`) |
+## Cobertura
 
-## Referência
-
-Inventário histórico: `docs/EFFECTS-INVENTORY.md` (Pemogan). Reimplementação consciente, não cópia do Elementor.
+| Efeito | Onde |
+|--------|------|
+| Assemble tríade | `TriadScene` |
+| Pointer depth | `PointerParallax` |
+| Reveal seções | `Reveal` |
+| Header scrolled | `Header` |
+| CTA arrow | `HeroActions` |
