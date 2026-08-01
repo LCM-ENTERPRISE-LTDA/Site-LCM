@@ -1,0 +1,115 @@
+.panel {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(72vh, 78vh, 88vh);
+  padding-block: clamp(4rem, 10vh, 7rem);
+  padding-inline: 1.25rem;
+}
+
+.light {
+  position: absolute;
+  inset: 18% 12%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 55% 45% at 50% 48%,
+    rgba(47, 107, 255, 0.07),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.statement {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  width: min(100%, 52rem);
+  text-align: center;
+  font-family: var(--font-instrument), var(--font-display), sans-serif;
+  font-size: clamp(1.65rem, 1.05rem + 2.4vw, 3.15rem);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.028em;
+  color: var(--color-text);
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  margin-block: 0.08em;
+}
+
+.lineInner {
+  display: block;
+  opacity: 0;
+  transform: translateY(1.05em);
+  filter: blur(3px);
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 900ms ease;
+  transition-delay: calc(80ms + var(--line-i, 0) * 140ms + var(--panel-i, 0) * 20ms);
+}
+
+.visible .light {
+  opacity: 1;
+}
+
+.visible .lineInner {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.reduced .light {
+  opacity: 0.85;
+}
+
+.reduced .lineInner {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lineInner {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .light {
+    opacity: 0.85 !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 959px) {
+  .panel {
+    min-height: clamp(64vh, 70vh, 80vh);
+    padding-inline: 1.15rem;
+  }
+
+  .statement {
+    width: min(100%, 36rem);
+    text-align: left;
+    font-size: clamp(1.55rem, 4.8vw, 2.35rem);
+    line-height: 1.26;
+  }
+
+  .light {
+    inset: 20% 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .statement {
+    font-size: clamp(1.45rem, 7vw, 1.85rem);
+  }
+}
