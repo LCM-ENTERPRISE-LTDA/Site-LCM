@@ -1,0 +1,10 @@
+.mark {
+  display: block;
+  flex-shrink: 0;
+}
+
+.stroke {
+  stroke: var(--color-brand);
+  stroke-width: 2.75;
+  fill: none;
+}

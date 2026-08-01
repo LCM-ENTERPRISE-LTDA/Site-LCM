@@ -20,20 +20,22 @@
 .copy {
   display: grid;
   gap: var(--space-4);
-  max-width: 36rem;
+  max-width: 34rem;
 }
 
 .title {
   font-size: var(--text-hero);
   letter-spacing: var(--tracking-display);
-  max-width: 14ch;
+  max-width: 13ch;
+  font-weight: 600;
 }
 
 .subtitle {
   color: var(--color-text-muted);
   font-size: var(--text-lg);
   line-height: var(--leading-snug);
-  max-width: 38ch;
+  letter-spacing: -0.012em;
+  max-width: 36ch;
 }
 
 .actions {

@@ -4,16 +4,56 @@
   z-index: 1;
 }
 
+/* Triad rhythm divider — three soft points instead of a hard rule */
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: min(12rem, 40%);
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--color-border-strong) 12%,
+      var(--color-border-strong) 88%,
+      transparent
+    );
+  opacity: 0;
+}
+
+.elevated::before,
+.brand::before {
+  opacity: 1;
+}
+
 .elevated {
-  background: color-mix(in srgb, var(--neutral-0) 72%, transparent);
-  border-block: var(--border-width) solid var(--color-border);
+  background: color-mix(in srgb, var(--neutral-0) 78%, transparent);
+  border-block: var(--border-width) solid transparent;
+}
+
+.elevated::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  translate: -50% 0;
+  width: 36px;
+  height: 6px;
+  background:
+    radial-gradient(circle at 6px 50%, var(--color-brand) 0 1.6px, transparent 1.8px),
+    radial-gradient(circle at 18px 50%, var(--color-brand) 0 1.6px, transparent 1.8px),
+    radial-gradient(circle at 30px 50%, var(--color-brand) 0 1.6px, transparent 1.8px);
+  opacity: 0.45;
 }
 
 .brand {
   background:
-    radial-gradient(700px 280px at 15% 0%, var(--color-brand-soft), transparent 55%),
+    radial-gradient(700px 280px at 18% 0%, var(--color-brand-soft), transparent 55%),
     var(--neutral-0);
-  border-block: var(--border-width) solid var(--color-border);
+  border-block: var(--border-width) solid transparent;
 }
 
 @media (max-width: 767px) {

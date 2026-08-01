@@ -7,9 +7,7 @@ type IconProps = {
 };
 
 const paths: Record<IconProps["name"], React.ReactNode> = {
-  "arrow-right": (
-    <path d="M5 12h14M13 6l6 6-6 6" />
-  ),
+  "arrow-right": <path d="M5 12h14M13 6l6 6-6 6" />,
   menu: (
     <>
       <path d="M4 7h16" />
@@ -27,14 +25,10 @@ const paths: Record<IconProps["name"], React.ReactNode> = {
   check: <path d="M5 12l4 4L19 6" />,
   spark: (
     <>
-      <path d="M12 3v4" />
-      <path d="M12 17v4" />
-      <path d="M3 12h4" />
-      <path d="M17 12h4" />
-      <circle cx="12" cy="12" r="3" />
+      <path d="M12 4 L14.8 9.2 L20 12 L14.8 14.8 L12 20 L9.2 14.8 L4 12 L9.2 9.2 Z" />
     </>
   ),
-  node: <circle cx="12" cy="12" r="4" />,
+  node: <path d="M12 5 L19 12 L12 19 L5 12 Z" />,
   link: (
     <>
       <path d="M10 14a4 4 0 0 0 6 0l2-2a4 4 0 0 0-6-6l-1 1" />
@@ -43,6 +37,7 @@ const paths: Record<IconProps["name"], React.ReactNode> = {
   ),
 };
 
+/** Single icon language: triad-soft corners, consistent stroke. */
 export function Icon({ name, className, size = 18 }: IconProps) {
   return (
     <svg

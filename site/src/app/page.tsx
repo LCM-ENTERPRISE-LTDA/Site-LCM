@@ -1,10 +1,10 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/sections/CTASection";
-import { EcosystemHero } from "@/components/sections/EcosystemHero";
 import { PageHero } from "@/components/sections/PageHero";
 import { PrincipleCard } from "@/components/sections/PrincipleCard";
 import { TechnologyLayer } from "@/components/sections/TechnologyLayer";
+import { TriadHero } from "@/components/sections/TriadHero";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
@@ -36,13 +36,10 @@ export default function HomePage() {
         eyebrow="LCM Enterprise"
         title={homeContent.hero.title}
         subtitle={homeContent.hero.subtitle}
-        primaryCta={{
-          label: homeContent.hero.primaryCta.label,
-          href: homeContent.hero.primaryCta.href,
-        }}
+        primaryCta={homeContent.hero.primaryCta}
         secondaryCta={homeContent.hero.secondaryCta}
       >
-        <EcosystemHero products={featured} />
+        <TriadHero />
       </PageHero>
 
       <Section id="produtos">
@@ -133,12 +130,17 @@ export default function HomePage() {
               align="center"
             />
           </Reveal>
-          <div className={styles.ecosystemRow}>
+          <div className={styles.triadRow}>
             <div className={styles.coreChip}>
               <Icon name="spark" size={16} />
-              LCM
+              Três partes
             </div>
             <span className={styles.connector} aria-hidden="true" />
+            <div className={styles.coreChip}>Uma estrutura</div>
+            <span className={styles.connector} aria-hidden="true" />
+            <div className={styles.coreChip}>Um ecossistema</div>
+          </div>
+          <div className={styles.ecosystemRow}>
             {featured.map((product) => (
               <div
                 key={product.slug}

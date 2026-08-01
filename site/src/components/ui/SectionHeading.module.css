@@ -1,5 +1,5 @@
 .wrap {
-  max-width: 40rem;
+  max-width: 38rem;
   margin-bottom: var(--space-6);
 }
 
@@ -12,7 +12,7 @@
   color: var(--color-brand);
   font-size: var(--text-xs);
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   margin-bottom: var(--space-2);
 }
@@ -20,6 +20,11 @@
 .title {
   font-size: var(--text-2xl);
   letter-spacing: var(--tracking-display);
+  max-width: 18ch;
+}
+
+.center .title {
+  margin-inline: auto;
 }
 
 .subtitle {
@@ -27,4 +32,10 @@
   color: var(--color-text-muted);
   font-size: var(--text-lg);
   line-height: var(--leading-snug);
+  letter-spacing: -0.012em;
+  max-width: 42ch;
+}
+
+.center .subtitle {
+  margin-inline: auto;
 }

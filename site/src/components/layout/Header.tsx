@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
+import { Logo } from "@/components/brand/Logo";
 import { primaryNav } from "@/config/navigation";
-import { siteConfig } from "@/config/site";
 import { LinkButton } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { DesktopNavigation } from "@/components/navigation/DesktopNavigation";
@@ -44,10 +43,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Container className={styles.bar}>
-        <Link href="/" className={styles.logo} aria-label={`${siteConfig.name} — início`}>
-          <span className={styles.mark}>LCM</span>
-          <span className={styles.logoText}>Enterprise</span>
-        </Link>
+        <Logo />
 
         <DesktopNavigation items={primaryNav} currentPath={pathname} />
 
