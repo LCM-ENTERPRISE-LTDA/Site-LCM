@@ -9,8 +9,8 @@
   --depth-main-y: 0;
   --depth-near-x: 0;
   --depth-near-y: 0;
-  --light-x: 52%;
-  --light-y: 42%;
+  --light-x: 50%;
+  --light-y: 44%;
   --scroll-p: 0;
   --hero-bg-deep: #0d1118;
   --hero-bg-base: #121720;
@@ -23,10 +23,10 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: clamp(45rem, 82vh, 55rem);
+  min-height: clamp(45rem, 80vh, 53.75rem);
   display: flex;
   flex-direction: column;
-  padding-top: calc(var(--header-height) + var(--space-6));
+  padding-top: calc(var(--header-height) + var(--space-5));
   background: var(--hero-bg-deep);
   contain: layout paint style;
 }
@@ -37,9 +37,9 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 55% at var(--light-x) var(--light-y), rgba(47, 107, 255, 0.16), transparent 60%),
-    radial-gradient(ellipse 40% 35% at 82% 22%, rgba(37, 180, 232, 0.07), transparent 55%),
-    linear-gradient(165deg, var(--hero-bg-deep) 0%, var(--hero-bg-base) 48%, var(--hero-bg-elevated) 100%);
+    radial-gradient(ellipse 55% 48% at var(--light-x) var(--light-y), rgba(47, 107, 255, 0.14), transparent 62%),
+    radial-gradient(ellipse 32% 28% at 78% 24%, rgba(37, 180, 232, 0.05), transparent 55%),
+    linear-gradient(168deg, var(--hero-bg-deep) 0%, var(--hero-bg-base) 52%, var(--hero-bg-elevated) 100%);
 }
 
 .shell {
@@ -49,8 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: var(--space-6) var(--space-7);
-  /* preserve Container institutional width — do not force 100% */
+  padding-block: var(--space-5) var(--space-6);
   pointer-events: none;
 }
 
@@ -61,15 +60,16 @@
 .exit {
   position: relative;
   z-index: 2;
-  height: 4.5rem;
+  height: 3.75rem;
   margin-top: auto;
   pointer-events: none;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    color-mix(in srgb, var(--background-elevated, #0d1626) 45%, transparent) 50%,
+    color-mix(in srgb, var(--background-elevated, #0d1626) 35%, transparent) 55%,
     var(--background-elevated, #0d1626) 100%
   );
+  opacity: calc(0.85 + var(--scroll-p, 0) * 0.15);
 }
 
 .heroPaused {

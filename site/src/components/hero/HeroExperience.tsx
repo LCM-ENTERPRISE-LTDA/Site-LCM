@@ -72,9 +72,12 @@ export function HeroExperience({
       return;
     }
     setPhase("enter");
-    setCopyReady(true);
-    const t = window.setTimeout(() => setPhase("ready"), 280);
-    return () => window.clearTimeout(t);
+    const tCopy = window.setTimeout(() => setCopyReady(true), 90);
+    const t = window.setTimeout(() => setPhase("ready"), 220);
+    return () => {
+      window.clearTimeout(tCopy);
+      window.clearTimeout(t);
+    };
   }, [reduced]);
 
   useHeroPointer(rootRef, {

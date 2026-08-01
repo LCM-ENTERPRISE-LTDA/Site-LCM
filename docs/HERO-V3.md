@@ -42,3 +42,18 @@ Final static composition; no pointer/scroll/ambient/packets.
 - 1 scroll rAF throttle (while in view)
 - No React state per frame
 - No new dependencies
+
+---
+
+## V3.1 — Visual & motion refinement
+
+Preserves V3 concept/layout/copy/architecture. Craft improvements only:
+
+- Fewer peripheral ribbons (2 long, low-contrast); removed decorative side waves
+- Central object as layered plates (far/mid/near) with differential parallax
+- Softer nucleus bloom + longer falloff; contained blue/cyan
+- Tighter vertical rhythm (eyebrow → title → subtitle → CTAs)
+- Pointer amplitudes capped (~1–8px); smoother lerp
+- Quieter ambient (glow + one ribbon + one plane)
+- Shorter exit fade; optical lift of copy block
+- Screenshots: `docs/screenshots/hero-v31-*.png`

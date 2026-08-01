@@ -69,12 +69,14 @@ Reutilizar quando houver variação ou comportamento. A cena do hero fica isolad
 
 ---
 
-## Hero V3
+## Hero V3 / V3.1
 
 | Componente | Papel |
 |------------|-------|
 | `HeroExperience` | Shell full-width + motion root |
-| `HeroArtComposition` | Objeto visual único + camadas |
+| `HeroArtComposition` | Objeto visual único + camadas (refinado em V3.1) |
 | `AnimatedTitle` | Entrada tipográfica por linha |
 | `HeroContent` / `HeroActions` | Copy + CTAs |
 | `useHeroMotion` | Pointer + scroll (só no Hero) |
+
+Detalhes: `docs/HERO-V3.md`.
