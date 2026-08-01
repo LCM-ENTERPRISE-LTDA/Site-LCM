@@ -45,8 +45,8 @@ export function TechnologyPerspectives({
         window.setTimeout(() => {
           setPhase("idle");
           locked.current = false;
-        }, 420);
-      }, 280);
+        }, 480);
+      }, 220);
     },
     [active, onChange, reducedMotion],
   );

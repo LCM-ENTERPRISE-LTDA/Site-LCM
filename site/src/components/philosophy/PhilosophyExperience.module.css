@@ -57,15 +57,17 @@
   min-height: 10rem;
 }
 
+/* Intentional handoff into Technology — blue converges, no empty void */
 .bridge {
   position: relative;
   z-index: 2;
-  height: clamp(3rem, 6vh, 5rem);
+  height: clamp(6rem, 14vh, 10rem);
   pointer-events: none;
   background: linear-gradient(
     180deg,
     #060a12 0%,
-    var(--background-elevated, #0d1626) 100%
+    color-mix(in srgb, #2f6bff 10%, #070b12) 45%,
+    #070b12 100%
   );
 }
 

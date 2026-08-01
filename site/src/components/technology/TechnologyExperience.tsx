@@ -72,7 +72,7 @@ export function TechnologyExperience() {
     timerRef.current = window.setTimeout(() => {
       setLeavingMode(null);
       timerRef.current = null;
-    }, 300);
+    }, 480);
 
     return () => {
       if (timerRef.current !== null) {
@@ -112,7 +112,7 @@ export function TechnologyExperience() {
             <h2 className={styles.title}>{technologyExperienceCopy.title}</h2>
             <p className={styles.subtitle}>{technologyExperienceCopy.subtitle}</p>
 
-            <TechLayers />
+            <TechLayers active={active} />
 
             <TechnologyPerspectives
               items={techPerspectives}

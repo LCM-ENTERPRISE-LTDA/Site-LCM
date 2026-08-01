@@ -119,8 +119,11 @@ export function phraseVisibility(progress: number, index: number, total: number)
   // Enter early, hold long, exit late — ~overlap with neighbors
   const inStart = start - span * 0.08;
   const fullA = start + span * 0.18;
-  const fullB = end - span * 0.18;
-  const outEnd = end + span * 0.08;
+  // Final phrase holds through track end so Technology can carry the exit —
+  // avoids an empty sticky viewport before the engineering section.
+  const isLast = index === total - 1;
+  const fullB = isLast ? 1 : end - span * 0.18;
+  const outEnd = isLast ? 1.12 : end + span * 0.08;
 
   if (progress <= inStart || progress >= outEnd) return 0;
   if (progress < fullA) {

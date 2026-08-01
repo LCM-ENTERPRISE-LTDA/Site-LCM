@@ -10,5 +10,5 @@
 | `screenshots/hero/` | Capturas do Hero |
 | `screenshots/showcase/` | Capturas do Showcase |
 | `screenshots/philosophy/` | Capturas do Manifesto |
-| `screenshots/technology/` | Capturas da Tecnologia |
+| `screenshots/technology/` | Capturas Tecnologia (M5 / M5.1) |
 | `COMPONENTS.md` | Mapa de componentes (índice) |

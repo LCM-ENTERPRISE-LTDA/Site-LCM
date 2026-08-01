@@ -15,7 +15,11 @@ export function useTechPointer(
 
   useEffect(() => {
     const node = targetRef.current;
-    if (!node || !enabled) {
+    const finePointer =
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (!node || !enabled || !finePointer) {
       if (node) {
         node.style.setProperty("--tx", "0");
         node.style.setProperty("--ty", "0");

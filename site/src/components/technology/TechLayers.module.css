@@ -1,37 +1,90 @@
 .list {
   list-style: none;
   margin: 0;
-  padding: 0.35rem 0 0.15rem;
+  padding: 0.25rem 0 0.1rem;
   display: grid;
-  gap: 0.2rem;
+  gap: 0.1rem;
   max-width: 28ch;
+  position: relative;
+}
+
+.list::before {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  top: 0.45rem;
+  bottom: 0.45rem;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--tech-accent, #4d9be8) 35%, transparent) 20%,
+    color-mix(in srgb, var(--tech-accent, #4d9be8) 35%, transparent) 80%,
+    transparent
+  );
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 .item {
+  position: relative;
   display: grid;
-  grid-template-columns: 1.75rem 1fr;
-  gap: 0.65rem;
+  grid-template-columns: 1.75rem 1fr auto;
+  gap: 0.55rem;
   align-items: baseline;
-  padding: 0.2rem 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
-}
-
-.item:last-child {
-  border-bottom: 0;
+  padding: 0.18rem 0 0.18rem 0.15rem;
+  transition:
+    opacity 0.45s ease,
+    color 0.45s ease;
 }
 
 .index {
   font-family: var(--font-display);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: color-mix(in srgb, var(--tech-accent, #4d9be8) 70%, var(--color-text-muted));
-  opacity: 0.85;
+  transition: color 0.45s ease;
 }
 
 .label {
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  color: color-mix(in srgb, var(--color-text) 72%, transparent);
+  transition: color 0.45s ease;
+}
+
+.signal {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  margin-top: 0.35rem;
+  background: var(--tech-accent, #4d9be8);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--tech-accent, #4d9be8) 55%, transparent);
+  opacity: 0.85;
+}
+
+.on .index {
+  color: color-mix(in srgb, var(--tech-accent, #4d9be8) 85%, var(--color-text-muted));
+}
+
+.on .label {
+  color: color-mix(in srgb, var(--color-text) 92%, transparent);
+}
+
+.off {
+  opacity: 0.42;
+}
+
+.off .index {
+  color: var(--color-text-muted);
+}
+
+.off .label {
+  color: var(--color-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
 }
