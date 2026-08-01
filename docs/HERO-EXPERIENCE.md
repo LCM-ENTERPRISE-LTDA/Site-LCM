@@ -108,3 +108,10 @@ Expansão da cena (sem alterar layout, copy, logo, paleta ou tipografia).
 ## Milestone 4 — Immersive continuous environment
 
 A `TriadScene` em caixa foi **eliminada**. `ImmersiveHero` + `HeroEnvironment` espalham camadas por todo o Hero. Ver `docs/IMMERSIVE-HERO.md`.
+
+### Hotfix de composição
+
+- Estrutura principal **concentrada** no centro-direita (núcleo + 3 módulos conectados)
+- Ambiente (grid, luz, poeira) irradia a partir do núcleo — sem dispersão de módulos
+- Copy no `Container` institucional: **480–680px** (ideal ~520–620)
+- Hero `min-height` ~720–860px (sem espalhar verticalmente)

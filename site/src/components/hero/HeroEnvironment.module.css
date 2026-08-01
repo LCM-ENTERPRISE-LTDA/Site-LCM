@@ -8,20 +8,20 @@
 
 .atmosphere {
   position: absolute;
-  inset: -5%;
+  inset: -4%;
   opacity: var(--hero-atmosphere-strength);
   transform: translate3d(calc(var(--px-atm) * 1px), calc(var(--py-atm) * 1px), 0);
   background:
-    radial-gradient(ellipse 70% 55% at var(--hero-light-x) var(--hero-light-y), rgba(47, 107, 255, 0.2), transparent 58%),
-    radial-gradient(ellipse 45% 40% at 18% 70%, rgba(25, 184, 242, 0.06), transparent 55%),
-    radial-gradient(ellipse 50% 45% at 88% 20%, rgba(47, 107, 255, 0.1), transparent 60%),
-    linear-gradient(165deg, var(--background-deep) 0%, var(--background-base) 48%, var(--background-elevated) 100%);
+    radial-gradient(ellipse 48% 52% at 68% 44%, rgba(47, 107, 255, 0.22), transparent 62%),
+    radial-gradient(ellipse 36% 40% at 72% 38%, rgba(25, 184, 242, 0.08), transparent 58%),
+    radial-gradient(ellipse 40% 35% at 18% 70%, rgba(25, 184, 242, 0.04), transparent 55%),
+    linear-gradient(165deg, var(--background-deep) 0%, var(--background-base) 52%, var(--background-elevated) 100%);
 }
 
 .noise {
   position: absolute;
   inset: 0;
-  opacity: 0.035;
+  opacity: 0.03;
   mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -35,22 +35,19 @@
     repeating-linear-gradient(
       var(--triad-angle),
       transparent 0,
-      transparent 52px,
-      rgba(130, 170, 220, 0.55) 52px,
-      rgba(130, 170, 220, 0.55) 53px
+      transparent 56px,
+      rgba(130, 170, 220, 0.45) 56px,
+      rgba(130, 170, 220, 0.45) 57px
     ),
     repeating-linear-gradient(
       calc(var(--triad-angle) * -1),
       transparent 0,
-      transparent 78px,
-      rgba(130, 170, 220, 0.3) 78px,
-      rgba(130, 170, 220, 0.3) 79px
+      transparent 84px,
+      rgba(130, 170, 220, 0.22) 84px,
+      rgba(130, 170, 220, 0.22) 85px
     );
-  mask-image:
-    radial-gradient(circle 48% at var(--hero-light-x) var(--hero-light-y), rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.25) 45%, transparent 72%),
-    linear-gradient(90deg, transparent 0%, black 38%, black 100%);
-  mask-composite: intersect;
-  -webkit-mask-composite: source-in;
+  /* Revealed mainly around the nucleus */
+  mask-image: radial-gradient(ellipse 55% 60% at 68% 44%, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 48%, transparent 72%);
 }
 
 .light {
@@ -58,134 +55,130 @@
   inset: 0;
   transform: translate3d(calc(var(--px-light) * 1px), calc(var(--py-light) * 1px), 0);
   background:
-    radial-gradient(circle 28% at var(--hero-light-x) var(--hero-light-y), rgba(244, 247, 251, 0.08), transparent 70%),
-    radial-gradient(circle 36% at var(--hero-light-x) var(--hero-light-y), rgba(47, 107, 255, 0.16), transparent 72%);
+    radial-gradient(circle 26% at var(--hero-light-x, 68%) var(--hero-light-y, 42%), rgba(244, 247, 251, 0.1), transparent 70%),
+    radial-gradient(circle 34% at var(--hero-light-x, 68%) var(--hero-light-y, 42%), rgba(47, 107, 255, 0.18), transparent 72%);
   mix-blend-mode: screen;
-  opacity: 0.85;
+  opacity: 0.88;
 }
 
-.layer {
+/* ——— Concentrated structure (center-right) ——— */
+.nucleusField {
   position: absolute;
-  inset: 0;
+  top: 48%;
+  left: 42%;
+  width: min(40rem, 56%);
+  aspect-ratio: 640 / 560;
+  translate: 0 -50%;
+  transform: translate3d(calc(var(--px-main) * 1px), calc(var(--py-main) * 1px), 0);
+  z-index: 2;
+}
+
+.nucleusSvg {
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-.layerBg {
-  transform: translate3d(calc(var(--px-bg) * 1px), calc(var(--py-bg) * 1px), 0);
-}
-
-.layerPart {
-  transform: translate3d(calc(var(--px-part) * 1px), calc(var(--py-part) * 1px), 0);
-  opacity: var(--hero-particle-opacity);
-}
-
-.layerMain {
-  transform: translate3d(calc(var(--px-main) * 1px), calc(var(--py-main) * 1px), 0);
-}
-
-.layerFg {
-  transform: translate3d(calc(var(--px-fg) * 1px), calc(var(--py-fg) * 1px), 0);
-}
-
-.readVeil {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--background-deep) 72%, transparent) 0%,
-    color-mix(in srgb, var(--background-deep) 42%, transparent) 28%,
-    color-mix(in srgb, var(--background-deep) 12%, transparent) var(--hero-safe-zone),
-    transparent 58%
-  );
-  pointer-events: none;
-}
-
-.structFar,
-.structMid,
-.connections,
-.module,
-.core,
-.signals,
-.fgLine,
-.fgLineB,
-.fgSpec,
-.fgSpecB,
-.dustDeep circle {
+.ambientRays {
   opacity: 0;
+  transition: opacity 1.2s var(--ease-assemble);
+}
+
+.connections {
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-assemble);
 }
 
 .channel {
-  stroke-dasharray: 320;
-  stroke-dashoffset: 320;
-  transition: stroke-dashoffset 1.4s var(--ease-assemble);
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 1.35s var(--ease-assemble);
 }
 
-.channelSecondary {
+.channelHint {
   opacity: 0;
   transition: opacity 1.2s var(--ease-assemble);
 }
 
 .channelGlow {
-  opacity: calc(0.06 + (var(--near-a) + var(--near-b) + var(--near-c) + var(--near-core)) * 0.1);
+  opacity: calc(0.08 + (var(--near-a) + var(--near-b) + var(--near-c) + var(--near-core)) * 0.1);
 }
 
 .module {
   transform-box: fill-box;
   transform-origin: center;
+  opacity: 0;
   transition:
-    opacity 1.2s var(--ease-assemble),
-    transform 1.2s var(--ease-assemble);
+    opacity 1.15s var(--ease-assemble),
+    transform 1.15s var(--ease-assemble);
 }
 
 .moduleA {
-  transform: translate(0, -36px) scale(calc(1 + var(--near-a) * 0.03));
-  filter: brightness(calc(1 + var(--near-a) * 0.16));
+  transform: translate(0, -28px) scale(calc(1 + var(--near-a) * 0.03));
+  filter: brightness(calc(1 + var(--near-a) * 0.15));
 }
 
 .moduleB {
-  transform: translate(-28px, 24px) scale(calc(1 + var(--near-b) * 0.03));
-  filter: brightness(calc(1 + var(--near-b) * 0.16));
+  transform: translate(-22px, 16px) scale(calc(1 + var(--near-b) * 0.03));
+  filter: brightness(calc(1 + var(--near-b) * 0.15));
 }
 
 .moduleC {
-  transform: translate(32px, 20px) scale(calc(1 + var(--near-c) * 0.03));
-  filter: brightness(calc(1 + var(--near-c) * 0.16));
+  transform: translate(22px, 16px) scale(calc(1 + var(--near-c) * 0.03));
+  filter: brightness(calc(1 + var(--near-c) * 0.15));
 }
 
 .core {
-  transform-origin: 960px 380px;
+  opacity: 0;
+  transform-origin: 320px 260px;
   transform: scale(calc(1 + var(--near-core) * 0.025));
-  transition: opacity 1.2s var(--ease-assemble);
+  transition: opacity 1.15s var(--ease-assemble);
 }
 
-.connections {
-  opacity: var(--hero-connection-opacity);
-  transition: opacity 1.2s var(--ease-assemble);
+.signals,
+.localDust circle {
+  opacity: 0;
+}
+
+.farDust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+  transform: translate3d(calc(var(--px-part) * 1px), calc(var(--py-part) * 1px), 0);
+  z-index: 1;
+}
+
+.readVeil {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--background-deep) 55%, transparent) 0%,
+    color-mix(in srgb, var(--background-deep) 28%, transparent) 34%,
+    transparent 52%
+  );
+  pointer-events: none;
 }
 
 /* Phases */
 .enter .module {
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
-.enter .structFar {
-  opacity: 0.6;
+.enter .ambientRays {
+  opacity: 0.45;
 }
 
-.join .structFar,
-.join .structMid,
+.join .ambientRays,
 .join .connections,
 .join .module,
 .join .core,
 .join .signals,
-.join .channelSecondary,
-.join .fgLine,
-.join .fgLineB,
-.join .fgSpec,
-.join .fgSpecB,
-.join .dustDeep circle {
+.join .channelHint,
+.join .localDust circle {
   opacity: 1;
 }
 
@@ -194,29 +187,24 @@
 }
 
 .join .moduleA {
-  transform: translate(0, -8px) scale(calc(1 + var(--near-a) * 0.03));
+  transform: translate(0, -6px) scale(calc(1 + var(--near-a) * 0.03));
 }
 
 .join .moduleB {
-  transform: translate(-8px, 6px) scale(calc(1 + var(--near-b) * 0.03));
+  transform: translate(-6px, 4px) scale(calc(1 + var(--near-b) * 0.03));
 }
 
 .join .moduleC {
-  transform: translate(10px, 4px) scale(calc(1 + var(--near-c) * 0.03));
+  transform: translate(6px, 4px) scale(calc(1 + var(--near-c) * 0.03));
 }
 
-.settle .structFar,
-.settle .structMid,
+.settle .ambientRays,
 .settle .connections,
 .settle .module,
 .settle .core,
 .settle .signals,
-.settle .channelSecondary,
-.settle .fgLine,
-.settle .fgLineB,
-.settle .fgSpec,
-.settle .fgSpecB,
-.settle .dustDeep circle {
+.settle .channelHint,
+.settle .localDust circle {
   opacity: 1;
 }
 
@@ -224,9 +212,7 @@
   stroke-dashoffset: 0;
 }
 
-.settle .moduleA,
-.settle .moduleB,
-.settle .moduleC {
+.settle .moduleA {
   transform: translate(0, 0) scale(calc(1 + var(--near-a) * 0.03));
 }
 
@@ -238,73 +224,65 @@
   transform: translate(0, 0) scale(calc(1 + var(--near-c) * 0.03));
 }
 
-.settle .channelSecondary {
-  opacity: 0.85;
+.settle .channelHint {
+  opacity: 0.75;
 }
 
-.settle .dustDeep circle {
+.settle .localDust circle {
   opacity: 0.55;
 }
 
-/* Ambient */
+/* Ambient life */
 .alive.settle .moduleA {
-  animation: floatA 8.2s var(--ease-soft) infinite;
+  animation: floatA 8s var(--ease-soft) infinite;
 }
 
 .alive.settle .moduleB {
-  animation: floatB 9.6s var(--ease-soft) infinite;
+  animation: floatB 9.4s var(--ease-soft) infinite;
 }
 
 .alive.settle .moduleC {
-  animation: floatC 8.8s var(--ease-soft) infinite;
+  animation: floatC 8.6s var(--ease-soft) infinite;
 }
 
 .alive.settle .core {
-  animation: breath 5.8s var(--ease-soft) infinite;
+  animation: breath 5.6s var(--ease-soft) infinite;
 }
 
 .alive.settle .light {
-  animation: lightPulse 7.4s var(--ease-soft) infinite;
+  animation: lightPulse 7.2s var(--ease-soft) infinite;
 }
 
 .alive.settle .d1 {
-  animation: driftA 13s var(--ease-soft) infinite;
+  animation: driftA 12s var(--ease-soft) infinite;
 }
 
 .alive.settle .d2 {
-  animation: driftB 15s var(--ease-soft) infinite;
+  animation: driftB 14s var(--ease-soft) infinite;
 }
 
 .alive.settle .d3 {
-  animation: driftC 12s var(--ease-soft) infinite;
+  animation: driftC 11s var(--ease-soft) infinite;
 }
 
 .alive.settle .sigA {
-  animation: emitA 10s linear infinite;
+  animation: emitA 9.5s linear infinite;
 }
 
 .alive.settle .sigD {
-  animation: emitD 11.5s linear 1.1s infinite;
+  animation: emitD 11s linear 1.1s infinite;
 }
 
 .alive.settle .sigS {
-  animation: emitS 12s linear 2.3s infinite;
+  animation: emitS 11.5s linear 2.2s infinite;
 }
 
 .alive.settle .sigB {
-  animation: emitB 10.8s linear 3.2s infinite;
-}
-
-.alive.settle .fgSpec {
-  animation: twinkle 7s var(--ease-soft) infinite;
-}
-
-.alive.settle .fgSpecB {
-  animation: twinkle 8.4s var(--ease-soft) 1.4s infinite;
+  animation: emitB 10.2s linear 3s infinite;
 }
 
 .alive.settle .grid {
-  opacity: calc(var(--hero-grid-opacity) + (var(--near-a) + var(--near-b) + var(--near-c) + var(--near-core)) * 0.04);
+  opacity: calc(var(--hero-grid-opacity) + (var(--near-a) + var(--near-b) + var(--near-c) + var(--near-core)) * 0.035);
 }
 
 @keyframes floatA {
@@ -350,7 +328,7 @@
 @keyframes lightPulse {
   0%,
   100% {
-    opacity: 0.78;
+    opacity: 0.8;
   }
   50% {
     opacity: 0.95;
@@ -364,7 +342,7 @@
     opacity: 0.3;
   }
   50% {
-    translate: 4px -3px;
+    translate: 3px -3px;
     opacity: 0.5;
   }
 }
@@ -376,7 +354,7 @@
     opacity: 0.25;
   }
   50% {
-    translate: -3px 3px;
+    translate: -3px 2px;
     opacity: 0.42;
   }
 }
@@ -388,7 +366,7 @@
     opacity: 0.28;
   }
   50% {
-    translate: 2px 4px;
+    translate: 2px 3px;
     opacity: 0.45;
   }
 }
@@ -402,7 +380,7 @@
     opacity: 0.55;
   }
   100% {
-    transform: translate(-50px, -60px);
+    transform: translate(-36px, -48px);
     opacity: 0;
   }
 }
@@ -416,7 +394,7 @@
     opacity: 0.5;
   }
   100% {
-    transform: translate(55px, -40px);
+    transform: translate(42px, -32px);
     opacity: 0;
   }
 }
@@ -430,7 +408,7 @@
     opacity: 0.48;
   }
   100% {
-    transform: translate(-45px, 50px);
+    transform: translate(-34px, 40px);
     opacity: 0;
   }
 }
@@ -444,33 +422,18 @@
     opacity: 0.5;
   }
   100% {
-    transform: translate(48px, 48px);
+    transform: translate(38px, 38px);
     opacity: 0;
   }
 }
 
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-.reduced .structFar,
-.reduced .structMid,
+.reduced .ambientRays,
 .reduced .connections,
 .reduced .module,
 .reduced .core,
 .reduced .signals,
-.reduced .channelSecondary,
-.reduced .fgLine,
-.reduced .fgLineB,
-.reduced .fgSpec,
-.reduced .fgSpecB,
-.reduced .dustDeep circle {
+.reduced .channelHint,
+.reduced .localDust circle {
   opacity: 1;
   animation: none !important;
   filter: none;
@@ -485,44 +448,48 @@
   display: none;
 }
 
-.reduced .grid {
-  opacity: 0.1;
-  mask-image: radial-gradient(ellipse 70% 60% at 70% 40%, black 15%, transparent 75%);
-}
-
 .reduced .light {
   animation: none !important;
-  opacity: 0.7;
+  opacity: 0.72;
+}
+
+.reduced .grid {
+  opacity: 0.1;
+}
+
+@media (max-width: 1023px) {
+  .nucleusField {
+    left: 38%;
+    width: min(34rem, 60%);
+  }
 }
 
 @media (max-width: 959px) {
+  .nucleusField {
+    top: auto;
+    bottom: 2%;
+    left: 50%;
+    width: min(26rem, 92vw);
+    translate: -50% 0;
+    opacity: 0.9;
+  }
+
   .readVeil {
     background: linear-gradient(
       180deg,
-      color-mix(in srgb, var(--background-deep) 55%, transparent) 0%,
-      color-mix(in srgb, var(--background-deep) 25%, transparent) 42%,
-      transparent 70%
+      color-mix(in srgb, var(--background-deep) 62%, transparent) 0%,
+      color-mix(in srgb, var(--background-deep) 28%, transparent) 38%,
+      transparent 68%
     );
   }
 
-  .layerFg {
-    opacity: 0.55;
+  .atmosphere {
+    background:
+      radial-gradient(ellipse 70% 45% at 50% 72%, rgba(47, 107, 255, 0.2), transparent 60%),
+      linear-gradient(180deg, var(--background-deep) 0%, var(--background-base) 55%, var(--background-elevated) 100%);
   }
 
-  .dustDeep circle:nth-child(n + 7) {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .channelSecondary {
-    opacity: 0.5;
-  }
-
-  .alive.settle .sigA,
-  .alive.settle .sigD,
-  .alive.settle .sigS,
-  .alive.settle .sigB {
-    animation-duration: 14s;
+  .grid {
+    mask-image: radial-gradient(ellipse 70% 50% at 50% 75%, rgba(0, 0, 0, 0.85) 0%, transparent 70%);
   }
 }

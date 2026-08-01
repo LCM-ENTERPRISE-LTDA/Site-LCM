@@ -6,7 +6,14 @@ O Hero da Sprint 02 / Milestone 3 ainda separava **texto à esquerda** e **Triad
 
 ## Nova direção
 
-O Hero inteiro é o ambiente. Camadas atmosféricas, grid, luz, partículas, conexões e módulos ocupam `inset: 0` sobre a seção. O conteúdo flutuá em zona protegida (~40% esquerda) sem card. Texto e geometria compartilham o mesmo espaço.
+O Hero inteiro é o ambiente. Camadas atmosféricas, grid, luz e partículas ocupam o campo; a **estrutura principal** (núcleo + três módulos) permanece concentrada no centro-direita. O conteúdo fica no Container institucional (~480–680px), sem card.
+
+## Hotfix de composição
+
+- Estrutura concentrada; ambiente irradia a partir do núcleo
+- Sem módulos aleatórios nas bordas
+- Hero ~720–860px de altura
+- Equilíbrio perceptivo ~40% texto / 60% visual
 
 ## Arquitetura
 

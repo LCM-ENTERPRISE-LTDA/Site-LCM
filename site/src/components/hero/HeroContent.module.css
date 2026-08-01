@@ -1,5 +1,5 @@
 .copy {
-  max-width: 34rem;
+  max-width: 100%;
   position: relative;
   z-index: 2;
 }
@@ -16,35 +16,40 @@
 
 .title {
   margin: 0;
-  /* Design System: Instrument Sans (display) — not serif */
   font-family: var(--font-instrument), var(--font-display), "Instrument Sans", sans-serif;
   font-size: var(--text-hero);
   font-weight: 700;
-  line-height: 1.06;
+  line-height: 1.08;
   letter-spacing: var(--tracking-display);
   color: var(--color-text);
-  max-width: 13.5ch;
-  text-wrap: balance;
-  text-shadow: 0 0 40px rgba(5, 9, 18, 0.55);
+  /* Comfortable line length — not squeezed into many short lines */
+  max-width: 18ch;
+  text-shadow: 0 0 36px rgba(5, 9, 18, 0.5);
 }
 
 .subtitle {
   margin: var(--space-5) 0 0;
-  max-width: 36ch;
+  max-width: 40ch;
   font-family: var(--font-inter), var(--font-body), Inter, sans-serif;
   font-size: var(--text-lg);
   line-height: var(--leading-snug);
   color: var(--color-text-muted);
-  text-shadow: 0 0 28px rgba(5, 9, 18, 0.45);
+  text-shadow: 0 0 24px rgba(5, 9, 18, 0.4);
+}
+
+@media (min-width: 1280px) {
+  .title {
+    max-width: 20ch;
+  }
 }
 
 @media (max-width: 767px) {
   .title {
-    max-width: 12ch;
-    line-height: 1.08;
+    max-width: 16ch;
   }
 
   .subtitle {
     font-size: var(--text-base);
+    max-width: 36ch;
   }
 }

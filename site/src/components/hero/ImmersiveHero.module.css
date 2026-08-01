@@ -19,10 +19,13 @@
   --near-b: 0;
   --near-c: 0;
   --near-core: 0;
+  --hero-light-x: 68%;
+  --hero-light-y: 42%;
   position: relative;
   isolation: isolate;
   overflow: clip;
-  min-height: min(94vh, 56rem);
+  /* ~720–860px impact without empty sprawl */
+  min-height: clamp(45rem, 78vh, 53.75rem);
   display: flex;
   flex-direction: column;
   padding-top: calc(var(--header-height) + var(--space-5));
@@ -36,20 +39,21 @@
   flex: 1;
   display: flex;
   align-items: center;
-  width: 100%;
-  padding-block: var(--space-6) var(--space-7);
+  /* Keep Container institutional width/margins — do not force 100% */
+  padding-block: var(--space-5) var(--space-6);
   pointer-events: none;
 }
 
 .copyZone {
-  width: min(100%, 26.5rem);
-  max-width: 42%;
+  /* Institutional column: 480–680px, ideal ~520–620 */
+  width: clamp(30rem, 42vw, 38.75rem);
+  max-width: 42.5rem;
   pointer-events: auto;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(8px);
   transition:
-    opacity 520ms var(--ease-emphasized),
-    transform 520ms var(--ease-emphasized);
+    opacity 480ms var(--ease-emphasized),
+    transform 480ms var(--ease-emphasized);
 }
 
 .copyReady .copyZone {
@@ -60,42 +64,24 @@
 .transition {
   position: relative;
   z-index: 2;
-  height: 6.5rem;
+  height: 4.75rem;
   margin-top: auto;
   pointer-events: none;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    color-mix(in srgb, var(--background-elevated) 35%, transparent) 40%,
+    color-mix(in srgb, var(--background-elevated) 40%, transparent) 45%,
     var(--background-elevated) 100%
   );
-}
-
-.transition::before {
-  content: "";
-  position: absolute;
-  left: 58%;
-  bottom: 2.4rem;
-  width: min(22rem, 40%);
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(47, 107, 255, 0.35),
-    rgba(25, 184, 242, 0.4),
-    transparent
-  );
-  transform: rotate(8deg);
-  transform-origin: left center;
 }
 
 .transition::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: 1.1rem;
+  bottom: 1rem;
   translate: -50% 0;
-  width: min(12rem, 42%);
+  width: min(11rem, 40%);
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -107,13 +93,6 @@
   );
 }
 
-@media (max-width: 1023px) {
-  .copyZone {
-    max-width: 52%;
-    width: min(100%, 28rem);
-  }
-}
-
 @media (max-width: 959px) {
   .hero {
     min-height: auto;
@@ -122,16 +101,16 @@
 
   .shell {
     align-items: flex-start;
-    padding-block: var(--space-5) var(--space-6);
+    padding-block: var(--space-5) min(42vw, 16rem);
   }
 
   .copyZone {
+    width: min(100%, 38rem);
     max-width: 100%;
-    width: min(100%, 34rem);
   }
 
   .transition {
-    height: 4.5rem;
+    height: 3.5rem;
   }
 }
 

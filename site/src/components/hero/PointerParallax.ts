@@ -6,11 +6,11 @@ type Options = {
   enabled?: boolean;
 };
 
-/** Hotspots in normalized 0–1 space across the full hero. */
+/** Hotspots in normalized 0–1 space — nucleus cluster center-right. */
 const HOTSPOTS = {
-  a: { x: 0.72, y: 0.24 },
-  b: { x: 0.58, y: 0.62 },
-  c: { x: 0.84, y: 0.58 },
+  a: { x: 0.68, y: 0.3 },
+  b: { x: 0.58, y: 0.58 },
+  c: { x: 0.78, y: 0.58 },
   core: { x: 0.68, y: 0.44 },
 } as const;
 
@@ -36,40 +36,34 @@ export function usePointerParallax(
     const node = targetRef.current;
     if (!node || !enabled) {
       if (node) {
-        const keys = [
-          "--hero-light-x",
-          "--hero-light-y",
-          "--hero-depth-bg",
-          "--hero-depth-main",
-          "--hero-depth-fg",
-          "--px-atm",
-          "--py-atm",
-          "--px-grid",
-          "--py-grid",
-          "--px-light",
-          "--py-light",
-          "--px-bg",
-          "--py-bg",
-          "--px-main",
-          "--py-main",
-          "--px-part",
-          "--py-part",
-          "--px-fg",
-          "--py-fg",
-          "--px-sig",
-          "--py-sig",
-          "--near-a",
-          "--near-b",
-          "--near-c",
-          "--near-core",
-        ];
-        for (const key of keys) {
-          if (key.startsWith("--hero-light")) {
-            node.style.setProperty(key, key.endsWith("x") ? "62%" : "36%");
-          } else {
-            node.style.setProperty(key, "0");
-          }
-        }
+            node.style.setProperty("--hero-light-x", "68%");
+            node.style.setProperty("--hero-light-y", "42%");
+            const zeroKeys = [
+              "--hero-depth-bg",
+              "--hero-depth-main",
+              "--hero-depth-fg",
+              "--px-atm",
+              "--py-atm",
+              "--px-grid",
+              "--py-grid",
+              "--px-light",
+              "--py-light",
+              "--px-bg",
+              "--py-bg",
+              "--px-main",
+              "--py-main",
+              "--px-part",
+              "--py-part",
+              "--px-fg",
+              "--py-fg",
+              "--px-sig",
+              "--py-sig",
+              "--near-a",
+              "--near-b",
+              "--near-c",
+              "--near-core",
+            ];
+            for (const key of zeroKeys) node.style.setProperty(key, "0");
       }
       return;
     }
@@ -107,8 +101,8 @@ export function usePointerParallax(
       node.style.setProperty("--hero-depth-main", (c.x * 0.65).toFixed(3));
       node.style.setProperty("--hero-depth-fg", (c.x * 1.2).toFixed(3));
 
-      const lx = 58 + c.nx * 16;
-      const ly = 34 + c.ny * 14;
+      const lx = 68 + c.nx * 12;
+      const ly = 42 + c.ny * 10;
       node.style.setProperty("--hero-light-x", `${lx.toFixed(2)}%`);
       node.style.setProperty("--hero-light-y", `${ly.toFixed(2)}%`);
 
