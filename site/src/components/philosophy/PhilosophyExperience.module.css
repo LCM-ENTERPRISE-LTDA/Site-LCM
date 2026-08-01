@@ -1,5 +1,6 @@
 .experience {
   --manifest-p: 0;
+  --handoff: 0;
   --mx: 0;
   --my: 0;
   --lx: 50%;
@@ -11,6 +12,11 @@
   isolation: isolate;
   overflow: clip;
   background: #060a12;
+  /*
+    Sticky exit leaves empty panel. As --handoff rises, pull Technology up
+    enough to close the void — without covering the final phrase.
+  */
+  margin-bottom: calc(var(--handoff, 0) * -18vh);
 }
 
 .track {
@@ -27,6 +33,22 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  /* As handoff rises, pack content toward the bottom — toward Technology */
+  padding-bottom: calc(var(--handoff, 0) * 18vh);
+  padding-top: calc(var(--handoff, 0) * 4vh);
+  /* Soft bottom fade so atmosphere does not clip as a hard seam */
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 calc(100% - 2.5rem - var(--handoff, 0) * 6rem),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 calc(100% - 2.5rem - var(--handoff, 0) * 6rem),
+    transparent 100%
+  );
 }
 
 .intro {
@@ -37,6 +59,8 @@
   z-index: 2;
   text-align: center;
   pointer-events: none;
+  opacity: calc(1 - var(--handoff, 0) * 1.35);
+  transition: opacity 0.05s linear;
 }
 
 .eyebrow {
@@ -55,19 +79,26 @@
   width: min(100% - 2.5rem, 40rem);
   margin-inline: auto;
   min-height: 10rem;
+  /* Sink final phrase toward the section exit / Technology */
+  transform: translate3d(0, calc(var(--handoff, 0) * 32vh), 0);
+  will-change: transform;
 }
 
-/* Intentional handoff into Technology — blue converges, no empty void */
+/*
+  Seamless handoff — not a glowing orphan bar in empty space.
+  Short continuum into Technology's #070b12.
+*/
 .bridge {
   position: relative;
   z-index: 2;
-  height: clamp(6rem, 14vh, 10rem);
+  height: clamp(3rem, 8vh, 5.5rem);
   pointer-events: none;
+  margin-top: -2.5rem;
   background: linear-gradient(
     180deg,
-    #060a12 0%,
-    color-mix(in srgb, #2f6bff 10%, #070b12) 45%,
-    #070b12 100%
+    transparent 0%,
+    color-mix(in srgb, #2f6bff 8%, #060a12) 40%,
+    #060a12 100%
   );
 }
 
@@ -80,6 +111,11 @@
   .stage {
     width: min(100% - 2.3rem, 34rem);
     margin-inline: 1.15rem auto 1.15rem 1.15rem;
+    transform: translate3d(0, calc(var(--handoff, 0) * 18vh), 0);
+  }
+
+  .sticky {
+    padding-bottom: calc(var(--handoff, 0) * 12vh);
   }
 }
 
@@ -91,7 +127,12 @@
   .stage {
     width: calc(100% - 2rem);
     margin-inline: 1rem;
+    transform: translate3d(0, calc(var(--handoff, 0) * 12vh), 0);
   }
+}
+
+.reduced {
+  margin-bottom: 0;
 }
 
 /* Reduced motion: quiet stacked reading, no sticky cinema */
@@ -104,6 +145,8 @@
   height: auto;
   min-height: 0;
   padding-block: 3.5rem 2rem;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .reduced .stage {
@@ -111,6 +154,11 @@
   flex-direction: column;
   gap: 3.5rem;
   min-height: 0;
+  transform: none;
+}
+
+.reduced .intro {
+  opacity: 1;
 }
 
 .reduced :global([data-phrase]) {
@@ -119,4 +167,14 @@
   opacity: 1 !important;
   filter: none !important;
   transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    transform: none;
+  }
+
+  .intro {
+    opacity: 1;
+  }
 }

@@ -12,22 +12,28 @@
   background:
     radial-gradient(
       ellipse 70% 55% at var(--story-lx, 50%) var(--story-ly, 42%),
-      rgba(77, 155, 232, calc(0.14 * (1 - var(--manifest-p, 0) * 0.55))),
+      rgba(77, 155, 232, calc(0.14 * (1 - var(--manifest-p, 0) * 0.35) + 0.08 * var(--handoff, 0))),
       transparent 62%
     ),
     radial-gradient(
       ellipse 60% 50% at calc(58% + var(--manifest-p, 0) * 8%) calc(48% + var(--manifest-p, 0) * 10%),
-      rgba(139, 124, 240, calc(0.12 * (0.35 + var(--manifest-p, 0) * 0.5))),
+      rgba(139, 124, 240, calc(0.12 * (0.35 + var(--manifest-p, 0) * 0.5) * (1 - var(--handoff, 0)))),
       transparent 65%
     ),
     radial-gradient(
       ellipse 55% 45% at calc(45% - var(--manifest-p, 0) * 6%) calc(58% + var(--manifest-p, 0) * 8%),
-      rgba(240, 160, 64, calc(0.1 * (0.15 + var(--manifest-p, 0) * 0.7))),
+      rgba(240, 160, 64, calc(0.1 * (0.15 + var(--manifest-p, 0) * 0.7) * (1 - var(--handoff, 0)))),
       transparent 68%
     ),
     radial-gradient(
       ellipse 50% 40% at calc(52% + var(--manifest-p, 0) * 4%) 72%,
-      rgba(47, 191, 134, calc(0.11 * var(--manifest-p, 0))),
+      rgba(47, 191, 134, calc(0.11 * var(--manifest-p, 0) * (1 - var(--handoff, 0)))),
+      transparent 70%
+    ),
+    /* Engineering blue converges as handoff begins */
+    radial-gradient(
+      ellipse 80% 45% at 50% 85%,
+      rgba(47, 107, 255, calc(0.16 * var(--handoff, 0))),
       transparent 70%
     );
   transform: translate3d(calc(var(--mx, 0) * 0.6px), calc(var(--my, 0) * 0.6px), 0);

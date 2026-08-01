@@ -4,15 +4,15 @@
   isolation: isolate;
   overflow: clip;
   scroll-margin-top: var(--header-height, 4.5rem);
-  /* Tight entry after manifesto bridge — content soon, no empty void */
-  padding: clamp(0.75rem, 2vh, 1.5rem) 0 clamp(3.25rem, 7vh, 5.5rem);
+  /* Continuous from manifesto exit — no orphan glow bar */
+  padding: clamp(1.5rem, 4vh, 2.75rem) 0 clamp(3.25rem, 7vh, 5.5rem);
   background:
     radial-gradient(
       ellipse 70% 55% at var(--tlx, 62%) var(--tly, 42%),
       color-mix(in srgb, var(--tech-accent) 10%, transparent),
       transparent 62%
     ),
-    linear-gradient(180deg, #070b12 0%, #0a1018 48%, #0c121c 100%);
+    linear-gradient(180deg, #060a12 0%, #070b12 22%, #0a1018 55%, #0c121c 100%);
   color: var(--color-text);
   transition: background 0.7s ease;
 }
@@ -29,19 +29,19 @@
   --tech-accent: #8b7cf0;
 }
 
-/* Continues philosophy bridge — blue organization into engineering */
+/* Soft blue organization — full-field wash, not a horizontal stripe */
 .entryBridge {
   position: absolute;
   inset: 0 0 auto;
-  height: clamp(3.5rem, 10vh, 7rem);
+  height: min(42%, 16rem);
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    #070b12 0%,
-    color-mix(in srgb, #2f6bff 12%, #070b12) 35%,
-    transparent 100%
+  background: radial-gradient(
+    ellipse 90% 70% at 50% 0%,
+    color-mix(in srgb, #2f6bff 14%, transparent),
+    transparent 72%
   );
+  opacity: 0.85;
 }
 
 .atmosphere {

@@ -90,6 +90,7 @@ export function PhilosophyExperience() {
       style={
         {
           "--manifest-p": "0",
+          "--handoff": "0",
           "--mx": "0",
           "--my": "0",
           "--lx": "50%",
@@ -101,7 +102,8 @@ export function PhilosophyExperience() {
     >
       <div
         className={styles.track}
-        style={{ height: `${Math.max(TOTAL, 1) * 100}vh` }}
+        /* Trim trailing sticky-exit void; last phrase still has scroll room via --handoff */
+        style={{ height: `${Math.max(TOTAL, 1) * 100 - 38}vh` }}
       >
         <div className={styles.sticky}>
           <ManifestAtmosphere alive={inView && !reduced} />

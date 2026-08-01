@@ -22,6 +22,7 @@ export function useManifestMotion(
     if (!node || !enabled) {
       if (node) {
         node.style.setProperty("--manifest-p", "0");
+        node.style.setProperty("--handoff", "0");
         node.style.setProperty("--mx", "0");
         node.style.setProperty("--my", "0");
         node.style.setProperty("--lx", "50%");
@@ -39,9 +40,14 @@ export function useManifestMotion(
       const p = Math.max(0, Math.min(1, -rect.top / span));
       node.style.setProperty("--manifest-p", p.toFixed(4));
 
-      // Atmosphere light bias along narrative continuum
+      // 0→1 from mid-late cinema: sinks final phrase + pulls Technology up
+      // so sticky exit never leaves an empty dark panel.
+      const handoff = Math.max(0, Math.min(1, (p - 0.62) / 0.38));
+      node.style.setProperty("--handoff", handoff.toFixed(4));
+
+      // Atmosphere light bias along narrative continuum → engineering blue
       const lx = 42 + p * 16;
-      const ly = 38 + p * 22;
+      const ly = 38 + p * 22 + handoff * 18;
       node.style.setProperty("--story-lx", `${lx.toFixed(1)}%`);
       node.style.setProperty("--story-ly", `${ly.toFixed(1)}%`);
     };
