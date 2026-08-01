@@ -14,6 +14,7 @@ import styles from "./Header.module.css";
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuId = useId();
   const toggleRef = useRef<HTMLButtonElement | null>(null);
 
@@ -40,10 +41,19 @@ export function Header() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header className={cn(styles.header, scrolled && styles.scrolled)}>
       <Container className={styles.bar}>
-        <Logo />
+        <Logo priority />
 
         <DesktopNavigation items={primaryNav} currentPath={pathname} />
 

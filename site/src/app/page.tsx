@@ -1,10 +1,9 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { HeroExperience } from "@/components/hero/HeroExperience";
+import { PrinciplesBand } from "@/components/hero/PrinciplesBand";
 import { ProductCard } from "@/components/product/ProductCard";
 import { CTASection } from "@/components/sections/CTASection";
-import { PageHero } from "@/components/sections/PageHero";
-import { PrincipleCard } from "@/components/sections/PrincipleCard";
 import { TechnologyLayer } from "@/components/sections/TechnologyLayer";
-import { TriadHero } from "@/components/sections/TriadHero";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
@@ -23,7 +22,7 @@ import styles from "./page.module.css";
 export const metadata = buildMetadata({
   title: "Home",
   description:
-    "LCM Enterprise — produtos digitais, automações e inteligência artificial com foco em usabilidade e performance.",
+    "LCM — produtos digitais, automações e inteligência artificial com foco em usabilidade e performance.",
   path: "/",
 });
 
@@ -32,15 +31,15 @@ export default function HomePage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="LCM Enterprise"
+      <HeroExperience
+        eyebrow={homeContent.hero.eyebrow}
         title={homeContent.hero.title}
         subtitle={homeContent.hero.subtitle}
         primaryCta={homeContent.hero.primaryCta}
         secondaryCta={homeContent.hero.secondaryCta}
-      >
-        <TriadHero />
-      </PageHero>
+      />
+
+      <PrinciplesBand principles={principles} />
 
       <Section id="produtos">
         <Container>
@@ -55,25 +54,6 @@ export default function HomePage() {
             {featured.map((product, index) => (
               <Reveal key={product.slug} delay={Math.min(index * 70, 210)}>
                 <ProductCard product={product} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      <Section tone="elevated" id="principios">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow={homeContent.principlesIntro.eyebrow}
-              title={homeContent.principlesIntro.title}
-              subtitle={homeContent.principlesIntro.subtitle}
-            />
-          </Reveal>
-          <div className={styles.principleGrid}>
-            {principles.map((principle, index) => (
-              <Reveal key={principle.id} delay={Math.min(index * 60, 180)}>
-                <PrincipleCard principle={principle} />
               </Reveal>
             ))}
           </div>

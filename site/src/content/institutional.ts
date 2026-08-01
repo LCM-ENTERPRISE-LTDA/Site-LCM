@@ -3,9 +3,10 @@ import type { Principle } from "@/types/product";
 /** Rascunhos institucionais — ver docs/CONTENT-DRAFTS.md */
 export const homeContent = {
   hero: {
-    title: "Tecnologia que simplifica o trabalho das pessoas.",
+    eyebrow: "Tecnologia construída com propósito",
+    title: "Construímos tecnologia\npara quem resolve\nproblemas reais.",
     subtitle:
-      "A LCM Enterprise desenvolve produtos digitais, automações e soluções de inteligência artificial com foco em usabilidade, performance e acesso à tecnologia.",
+      "Criamos produtos digitais, automações e soluções inteligentes com foco em usabilidade, performance e impacto real no trabalho das empresas.",
     primaryCta: { label: "Conheça nossos produtos", href: "/produtos" },
     secondaryCta: { label: "Fale com a LCM", href: "/contato" },
   },
@@ -41,9 +42,9 @@ export const homeContent = {
 
 export const principles: Principle[] = [
   {
-    id: "usabilidade",
-    title: "Usabilidade",
-    description: "Produtos que não exigem manuais para tarefas simples.",
+    id: "problemas-reais",
+    title: "Problemas reais",
+    description: "Produtos construídos a partir de necessidades concretas.",
   },
   {
     id: "performance",
@@ -51,14 +52,15 @@ export const principles: Principle[] = [
     description: "Velocidade e estabilidade fazem parte da experiência.",
   },
   {
-    id: "acessibilidade",
-    title: "Acessibilidade",
-    description: "Tecnologia deve incluir, e não constranger quem a utiliza.",
+    id: "usabilidade",
+    title: "Usabilidade",
+    description:
+      "Interfaces claras para pessoas com diferentes níveis de familiaridade tecnológica.",
   },
   {
-    id: "problemas-reais",
-    title: "Problemas reais",
-    description: "Cada produto deve existir para resolver uma necessidade concreta.",
+    id: "seguranca",
+    title: "Segurança",
+    description: "Práticas responsáveis para proteger dados e operações.",
   },
 ];
 
