@@ -126,7 +126,7 @@
 
   --container: 1120px;
   --container-narrow: 680px;
-  --header-height: 4.25rem;
+  --header-height: 3rem;
   --section-gap: var(--space-8);
 
   --duration-instant: 80ms;

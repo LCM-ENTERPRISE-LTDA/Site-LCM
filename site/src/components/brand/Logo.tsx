@@ -17,11 +17,12 @@ export function Logo({ className, href = "/", priority = false }: LogoProps) {
       <Image
         src="/brand/lcm-logo-header.png"
         alt={siteConfig.name}
-        width={174}
-        height={61}
+        width={120}
+        height={42}
         className={styles.image}
         priority={priority}
-        sizes="140px"
+        sizes="120px"
+        style={{ width: "auto", height: "100%" }}
       />
     </span>
   );
