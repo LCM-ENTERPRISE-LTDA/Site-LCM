@@ -1,0 +1,88 @@
+:root {
+  /* Surfaces — provisional LCM tokens (not final brand palette) */
+  --color-bg: #0b0d10;
+  --color-surface: #12151a;
+  --color-surface-elevated: #1a1f27;
+  --color-text: #eef2f7;
+  --color-text-muted: #9aa3af;
+  --color-border: #2a313c;
+  --color-brand: #3d8bfd;
+  --color-brand-strong: #2563eb;
+  --color-brand-contrast: #061018;
+  --color-focus: #7dd3fc;
+  --color-success: #34d399;
+  --color-danger: #f87171;
+
+  /* Product accents (provisional, centralized) */
+  --product-autohist: #38bdf8;
+  --product-autohist-soft: rgba(56, 189, 248, 0.16);
+  --product-dyson: #a78bfa;
+  --product-dyson-soft: rgba(167, 139, 250, 0.16);
+  --product-studio: #34d399;
+  --product-studio-soft: rgba(52, 211, 153, 0.16);
+  --product-businesszap: #fb923c;
+  --product-businesszap-soft: rgba(251, 146, 60, 0.16);
+
+  /* Typography */
+  --font-display: var(--font-instrument), "Instrument Sans", "Segoe UI", sans-serif;
+  --font-body: var(--font-inter), Inter, "Segoe UI", sans-serif;
+
+  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.82rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-xl: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
+  --text-3xl: clamp(2.15rem, 1.6rem + 2vw, 3.25rem);
+  --text-hero: clamp(2.4rem, 1.7rem + 2.8vw, 4rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.35);
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --container: 1120px;
+  --header-height: 4.25rem;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-normal: 280ms;
+  --duration-slow: 450ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  /* Z-index */
+  --z-header: 40;
+  --z-overlay: 50;
+  --z-modal: 60;
+  --z-skip: 70;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 1ms;
+    --duration-normal: 1ms;
+    --duration-slow: 1ms;
+  }
+}
