@@ -66,3 +66,15 @@ Reutilizar quando houver variação ou comportamento. A cena do hero fica isolad
 | `PrinciplesBand` | Continuação visual do ambiente |
 | `TriadScene` | Legado (não usado na Home) |
 | `HeroExperience` | Reexport legado → `ImmersiveHero` |
+
+---
+
+## Hero V3
+
+| Componente | Papel |
+|------------|-------|
+| `HeroExperience` | Shell full-width + motion root |
+| `HeroArtComposition` | Objeto visual único + camadas |
+| `AnimatedTitle` | Entrada tipográfica por linha |
+| `HeroContent` / `HeroActions` | Copy + CTAs |
+| `useHeroMotion` | Pointer + scroll (só no Hero) |

@@ -115,3 +115,9 @@ A `TriadScene` em caixa foi **eliminada**. `ImmersiveHero` + `HeroEnvironment` e
 - Ambiente (grid, luz, poeira) irradia a partir do núcleo — sem dispersão de módulos
 - Copy no `Container` institucional: **480–680px** (ideal ~520–620)
 - Hero `min-height` ~720–860px (sem espalhar verticalmente)
+
+---
+
+## Hero V3
+
+Ver `docs/HERO-V3.md`. Composição full-width com objeto visual único, tipografia centralizada, motion isolado na seção.
