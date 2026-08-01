@@ -1,0 +1,63 @@
+.footer {
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding-block: var(--space-8) var(--space-6);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+  }
+}
+
+.brand {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 22rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-lg);
+}
+
+.blurb,
+.meta,
+.muted {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.heading {
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.list a {
+  text-decoration: none;
+  color: var(--color-text-muted);
+}
+
+.list a:hover {
+  color: var(--color-text);
+}
+
+.bottom {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

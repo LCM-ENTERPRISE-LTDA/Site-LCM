@@ -1,0 +1,19 @@
+.list {
+  list-style: none;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.link {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--color-text-muted);
+}
+
+.link:hover,
+.active {
+  color: var(--color-text);
+  background: color-mix(in srgb, var(--color-brand) 12%, transparent);
+}

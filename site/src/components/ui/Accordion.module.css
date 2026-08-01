@@ -1,0 +1,52 @@
+.accordion {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: transparent;
+  border: 0;
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: left;
+  font-weight: 600;
+}
+
+.trigger:hover {
+  background: color-mix(in srgb, var(--color-surface-elevated) 70%, transparent);
+}
+
+.icon {
+  color: var(--color-brand);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.panel {
+  padding: 0 var(--space-5) var(--space-5);
+  color: var(--color-text-muted);
+  border-top: 1px solid transparent;
+}
+
+.panel:not([hidden]) {
+  border-top-color: var(--color-border);
+  padding-top: var(--space-4);
+}

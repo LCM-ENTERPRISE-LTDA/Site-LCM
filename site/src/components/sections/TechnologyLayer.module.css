@@ -1,0 +1,30 @@
+.list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-brand) 10%, transparent),
+    var(--color-surface)
+  );
+}
+
+.index {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--color-brand);
+}
+
+.label {
+  font-weight: 500;
+}
