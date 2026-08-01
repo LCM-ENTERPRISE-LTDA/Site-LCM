@@ -72,4 +72,14 @@ Last craft pass. No new direction, elements, or effects.
 - Editorial spacing; CTA pair gap; taller exit fade before PrinciplesBand
 - Screenshots: `docs/screenshots/hero-v32-*.png`
 
-**Hero Freeze:** no further visual exploration of this Hero. Next work → remaining Home sections and internal pages.
+---
+
+## Living pass (post V3.2)
+
+User feedback: too dim; polygon pile felt awkward.
+
+- Replaced stacked plates with orbital structure (arcs + triad spokes + nucleus)
+- More ambient life: ribbon drift, slow orbit spin, packets, field specs
+- Stronger local light without neon overload
+- Copy parallax + gentle float (desktop / fine pointer); reduced motion respected
+- Pointer drives light + art depth + opposite copy depth

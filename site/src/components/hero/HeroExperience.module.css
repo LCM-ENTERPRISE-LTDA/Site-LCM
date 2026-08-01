@@ -9,6 +9,10 @@
   --depth-main-y: 0;
   --depth-near-x: 0;
   --depth-near-y: 0;
+  --copy-x: 0;
+  --copy-y: 0;
+  --copy-rx: 0;
+  --copy-ry: 0;
   --light-x: 50%;
   --light-y: 44%;
   --scroll-p: 0;
@@ -37,9 +41,10 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 48% 42% at var(--light-x) var(--light-y), rgba(47, 107, 255, 0.12), transparent 58%),
-    radial-gradient(ellipse 28% 24% at 80% 22%, rgba(37, 180, 232, 0.035), transparent 52%),
-    linear-gradient(172deg, #0a0e14 0%, var(--hero-bg-deep) 38%, var(--hero-bg-base) 72%, var(--hero-bg-elevated) 100%);
+    radial-gradient(ellipse 52% 46% at var(--light-x) var(--light-y), rgba(47, 107, 255, 0.2), transparent 60%),
+    radial-gradient(ellipse 30% 26% at 78% 20%, rgba(37, 180, 232, 0.07), transparent 55%),
+    radial-gradient(ellipse 24% 20% at 18% 70%, rgba(47, 107, 255, 0.05), transparent 50%),
+    linear-gradient(172deg, #0b1018 0%, var(--hero-bg-deep) 40%, var(--hero-bg-base) 74%, var(--hero-bg-elevated) 100%);
 }
 
 .shell {
