@@ -1,7 +1,9 @@
 .link {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
   text-decoration: none;
+  line-height: 0;
   transition: opacity var(--duration-fast) var(--ease-standard);
 }
 
@@ -14,16 +16,26 @@
   display: inline-flex;
   align-items: center;
   line-height: 0;
+  height: 1.75rem;
 }
 
 .image {
-  width: auto;
-  height: 2.35rem;
+  display: block;
+  width: auto !important;
+  height: 1.75rem !important;
+  max-height: 1.75rem;
+  max-width: 8.5rem;
   object-fit: contain;
 }
 
 @media (min-width: 960px) {
+  .wrap {
+    height: 2rem;
+  }
+
   .image {
-    height: 2.6rem;
+    height: 2rem !important;
+    max-height: 2rem;
+    max-width: 9.5rem;
   }
 }

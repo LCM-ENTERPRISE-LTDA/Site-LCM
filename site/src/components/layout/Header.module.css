@@ -9,6 +9,7 @@
 
 .bar {
   min-height: var(--header-height);
+  max-height: calc(var(--header-height) + 0.25rem);
   display: flex;
   align-items: center;
   justify-content: space-between;

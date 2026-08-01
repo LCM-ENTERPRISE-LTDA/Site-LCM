@@ -10,20 +10,18 @@ type LogoProps = {
   priority?: boolean;
 };
 
-/**
- * Official approved LCM logo (raster).
- * Never redrawn — only background adapted from black to site gray for light UI.
- */
+/** Official logo — cropped for header (no square padding). */
 export function Logo({ className, href = "/", priority = false }: LogoProps) {
   const mark = (
     <span className={cn(styles.wrap, className)}>
       <Image
-        src="/brand/lcm-logo.png"
+        src="/brand/lcm-logo-header.png"
         alt={siteConfig.name}
-        width={160}
-        height={160}
+        width={174}
+        height={61}
         className={styles.image}
         priority={priority}
+        sizes="140px"
       />
     </span>
   );
