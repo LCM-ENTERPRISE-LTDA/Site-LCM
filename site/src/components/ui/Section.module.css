@@ -4,7 +4,6 @@
   z-index: 1;
 }
 
-/* Triad rhythm divider — three soft points instead of a hard rule */
 .section::before {
   content: "";
   position: absolute;
@@ -30,7 +29,7 @@
 }
 
 .elevated {
-  background: color-mix(in srgb, var(--neutral-0) 78%, transparent);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
   border-block: var(--border-width) solid transparent;
 }
 
@@ -44,15 +43,15 @@
   height: 6px;
   background:
     radial-gradient(circle at 6px 50%, var(--color-brand) 0 1.6px, transparent 1.8px),
-    radial-gradient(circle at 18px 50%, var(--color-brand) 0 1.6px, transparent 1.8px),
+    radial-gradient(circle at 18px 50%, var(--color-brand-cyan) 0 1.6px, transparent 1.8px),
     radial-gradient(circle at 30px 50%, var(--color-brand) 0 1.6px, transparent 1.8px);
-  opacity: 0.45;
+  opacity: 0.55;
 }
 
 .brand {
   background:
     radial-gradient(700px 280px at 18% 0%, var(--color-brand-soft), transparent 55%),
-    var(--neutral-0);
+    var(--background-elevated);
   border-block: var(--border-width) solid transparent;
 }
 

@@ -1,50 +1,64 @@
 /*
-  LCM Visual Language System
+  LCM Visual Language System — Sprint 02 (dark engineering atmosphere)
   Origin: approved triad symbol (three parts → one structure).
   The logo itself is never redesigned — only extended into UI geometry.
 */
 
 :root {
-  /* ——— Neutrals (LCM remains neutral) ——— */
-  --neutral-0: #ffffff;
-  --neutral-25: #fbfcfd;
-  --neutral-50: #f5f7fa;
-  --neutral-75: #eef1f6;
-  --neutral-100: #e6ebf2;
-  --neutral-200: #d3dae6;
-  --neutral-300: #b4bdcc;
-  --neutral-400: #8893a7;
-  --neutral-500: #667084;
-  --neutral-600: #4a5568;
-  --neutral-700: #334155;
-  --neutral-800: #1e293b;
-  --neutral-900: #111827;
-  --neutral-950: #0b1220;
+  /* ——— Deep navy / graphite scale ——— */
+  --background-deep: #050912;
+  --background-base: #080e1a;
+  --background-elevated: #0d1626;
+  --surface: #101b2d;
+  --surface-raised: #152238;
+  --border-subtle: rgba(130, 170, 220, 0.12);
+  --border-strong: rgba(130, 170, 220, 0.22);
+  --text-primary: #f4f7fb;
+  --text-secondary: #aab6c8;
+  --text-tertiary: #7d8aa0;
+  --brand-blue: #2f6bff;
+  --brand-cyan: #19b8f2;
+  --brand-blue-strong: #1f56e6;
+
+  /* Legacy neutral aliases mapped into the dark system */
+  --neutral-0: #f4f7fb;
+  --neutral-25: #e8eef7;
+  --neutral-50: #d5deeb;
+  --neutral-75: #b8c4d6;
+  --neutral-100: #aab6c8;
+  --neutral-200: #7d8aa0;
+  --neutral-300: #5c6b82;
+  --neutral-400: #3d4d66;
+  --neutral-500: #2a3a52;
+  --neutral-600: #1c2a40;
+  --neutral-700: #152238;
+  --neutral-800: #101b2d;
+  --neutral-900: #0d1626;
+  --neutral-950: #080e1a;
 
   /* ——— Surfaces ——— */
-  --color-bg: var(--neutral-50);
-  --color-bg-accent: var(--neutral-25);
-  --color-surface: var(--neutral-0);
-  --color-surface-elevated: var(--neutral-0);
-  --color-surface-muted: var(--neutral-75);
-  --color-text: var(--neutral-900);
-  --color-text-muted: var(--neutral-500);
-  --color-text-subtle: var(--neutral-400);
-  --color-border: var(--neutral-100);
-  --color-border-strong: var(--neutral-200);
+  --color-bg: var(--background-base);
+  --color-bg-accent: var(--background-deep);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--background-elevated);
+  --color-surface-muted: var(--surface-raised);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-secondary);
+  --color-text-subtle: var(--text-tertiary);
+  --color-border: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
 
-  /*
-    Brand blue — matched to the approved triad stroke.
-  */
-  --color-brand: #2f6bff;
-  --color-brand-strong: #1f56e6;
-  --color-brand-soft: rgba(47, 107, 255, 0.09);
-  --color-brand-glow: rgba(47, 107, 255, 0.2);
+  --color-brand: var(--brand-blue);
+  --color-brand-strong: var(--brand-blue-strong);
+  --color-brand-soft: rgba(47, 107, 255, 0.14);
+  --color-brand-glow: rgba(47, 107, 255, 0.28);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-cyan-soft: rgba(25, 184, 242, 0.14);
   --color-brand-contrast: #ffffff;
-  --color-focus: #2f6bff;
-  --color-success: #168a5c;
-  --color-warning: #c47d0e;
-  --color-danger: #d14343;
+  --color-focus: #5b8cff;
+  --color-success: #2fbf86;
+  --color-warning: #e0a03a;
+  --color-danger: #e35a5a;
 
   --opacity-muted: 0.64;
   --opacity-soft: 0.4;
@@ -52,37 +66,36 @@
   --opacity-hairline: 0.06;
 
   /*
-    Product personality (governed saturation)
+    Product personality (governed saturation on dark)
     AutoHist → Azul | Dyson → Roxo | Studio → Laranja | BusinessZap → Verde
   */
-  --product-autohist: #2f7dd1;
-  --product-autohist-soft: rgba(47, 125, 209, 0.1);
-  --product-autohist-glow: rgba(47, 125, 209, 0.2);
-  --product-dyson: #6b5ce0;
-  --product-dyson-soft: rgba(107, 92, 224, 0.1);
-  --product-dyson-glow: rgba(107, 92, 224, 0.2);
-  --product-studio: #d97706;
-  --product-studio-soft: rgba(217, 119, 6, 0.1);
-  --product-studio-glow: rgba(217, 119, 6, 0.2);
-  --product-businesszap: #159a6a;
-  --product-businesszap-soft: rgba(21, 154, 106, 0.1);
-  --product-businesszap-glow: rgba(21, 154, 106, 0.2);
+  --product-autohist: #4d9be8;
+  --product-autohist-soft: rgba(47, 125, 209, 0.16);
+  --product-autohist-glow: rgba(47, 125, 209, 0.32);
+  --product-dyson: #8b7cf0;
+  --product-dyson-soft: rgba(107, 92, 224, 0.16);
+  --product-dyson-glow: rgba(107, 92, 224, 0.32);
+  --product-studio: #f0a040;
+  --product-studio-soft: rgba(217, 119, 6, 0.16);
+  --product-studio-glow: rgba(217, 119, 6, 0.32);
+  --product-businesszap: #2fbf86;
+  --product-businesszap-soft: rgba(21, 154, 106, 0.16);
+  --product-businesszap-glow: rgba(21, 154, 106, 0.32);
 
   /* ——— Triad geometry units ——— */
   --triad-angle: 60deg;
-  --triad-gap: 0.2rem;          /* channel between the three parts */
-  --triad-stroke: 0.14rem;      /* structural line weight */
-  --triad-unit: 0.5rem;         /* base rhythm */
-  --triad-join: 3;              /* three parts */
+  --triad-gap: 0.2rem;
+  --triad-stroke: 0.14rem;
+  --triad-unit: 0.5rem;
+  --triad-join: 3;
 
-  /* Corners derived from triad soft rounding — not pill, not sharp */
   --radius-xs: 5px;
   --radius-sm: 7px;
   --radius-md: 11px;
   --radius-lg: 14px;
   --radius-xl: 18px;
   --radius-pill: 999px;
-  --radius-triad: 10px;         /* signature corner for LCM components */
+  --radius-triad: 10px;
 
   /* ——— Typography ——— */
   --font-display: var(--font-instrument), "Instrument Sans", "Segoe UI", sans-serif;
@@ -95,25 +108,24 @@
   --text-xl: clamp(1.25rem, 1.15rem + 0.35vw, 1.375rem);
   --text-2xl: clamp(1.5rem, 1.3rem + 0.7vw, 1.85rem);
   --text-3xl: clamp(1.85rem, 1.5rem + 1.1vw, 2.4rem);
-  --text-hero: clamp(2.2rem, 1.65rem + 1.9vw, 3.35rem);
+  --text-hero: clamp(2.35rem, 1.55rem + 2.4vw, 3.65rem);
 
-  --leading-tight: 1.1;
-  --leading-snug: 1.38;
-  --leading-normal: 1.68;
-  --tracking-tight: -0.028em;
-  --tracking-display: -0.032em;
-  --tracking-wide: 0.08em;
+  --leading-tight: 1.08;
+  --leading-snug: 1.32;
+  --leading-normal: 1.65;
+  --tracking-tight: -0.03em;
+  --tracking-display: -0.036em;
+  --tracking-wide: 0.12em;
 
   --border-width: 1px;
   --border-width-strong: 1.5px;
 
-  --shadow-xs: 0 1px 2px rgba(17, 24, 39, 0.035);
-  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.035), 0 6px 16px rgba(17, 24, 39, 0.035);
-  --shadow-md: 0 2px 4px rgba(17, 24, 39, 0.035), 0 14px 32px rgba(17, 24, 39, 0.055);
-  --shadow-lg: 0 4px 8px rgba(17, 24, 39, 0.04), 0 24px 48px rgba(17, 24, 39, 0.07);
-  --shadow-glow: 0 0 0 1px var(--color-brand-soft), 0 10px 28px var(--color-brand-glow);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.28), 0 8px 24px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.32), 0 28px 56px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 0 1px var(--color-brand-soft), 0 12px 36px var(--color-brand-glow);
 
-  /* Spacing — triad rhythm (multiples that favor groups of 3) */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -126,14 +138,14 @@
 
   --container: 1120px;
   --container-narrow: 680px;
-  --header-height: 3rem;
+  --header-height: 3.25rem;
   --section-gap: var(--space-8);
 
   --duration-instant: 80ms;
   --duration-fast: 160ms;
   --duration-normal: 280ms;
   --duration-slow: 520ms;
-  --duration-assemble: 900ms;
+  --duration-assemble: 1100ms;
   --duration-glacial: 1400ms;
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);

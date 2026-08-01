@@ -17,18 +17,18 @@
 
 .brand {
   background: var(--color-brand-soft);
-  border-color: color-mix(in srgb, var(--color-brand) 22%, var(--color-border));
-  color: var(--color-brand-strong);
+  border-color: color-mix(in srgb, var(--color-brand) 35%, var(--color-border));
+  color: #9ec0ff;
 }
 
 .success {
-  background: rgba(15, 159, 110, 0.1);
-  border-color: rgba(15, 159, 110, 0.22);
-  color: #0b7a55;
+  background: rgba(47, 191, 134, 0.12);
+  border-color: rgba(47, 191, 134, 0.28);
+  color: #6fdbb0;
 }
 
 .warning {
-  background: rgba(196, 125, 14, 0.1);
-  border-color: rgba(196, 125, 14, 0.22);
-  color: #9a6209;
+  background: rgba(224, 160, 58, 0.12);
+  border-color: rgba(224, 160, 58, 0.28);
+  color: #e8bc6a;
 }

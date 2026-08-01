@@ -2,7 +2,7 @@
   position: fixed;
   inset: var(--header-height) 0 0;
   z-index: var(--z-overlay);
-  background: color-mix(in srgb, var(--neutral-0) 96%, transparent);
+  background: color-mix(in srgb, var(--background-elevated) 94%, transparent);
   border-top: var(--border-width) solid var(--color-border);
   padding: var(--space-5);
   overflow: auto;

@@ -1,6 +1,6 @@
 .footer {
   border-top: var(--border-width) solid var(--color-border);
-  background: var(--color-surface);
+  background: var(--background-elevated);
   padding-block: var(--space-8) var(--space-6);
   position: relative;
   z-index: 1;

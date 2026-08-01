@@ -8,6 +8,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -30,27 +31,22 @@ body {
   letter-spacing: -0.011em;
   color: var(--color-text);
   background-color: var(--color-bg);
-  /*
-    Triad-inspired field:
-    - soft brand bloom (construction light)
-    - 60° diagonal lattice at hairline opacity
-    - not a generic square SaaS grid
-  */
   background-image:
-    radial-gradient(ellipse 70% 45% at 50% -18%, var(--color-brand-soft), transparent 58%),
+    radial-gradient(ellipse 80% 50% at 70% -10%, rgba(47, 107, 255, 0.16), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 12% 20%, rgba(25, 184, 242, 0.06), transparent 50%),
     repeating-linear-gradient(
       var(--triad-angle),
       transparent 0,
-      transparent 47px,
-      color-mix(in srgb, var(--color-brand) 4.5%, transparent) 47px,
-      color-mix(in srgb, var(--color-brand) 4.5%, transparent) 48px
+      transparent 56px,
+      rgba(130, 170, 220, 0.035) 56px,
+      rgba(130, 170, 220, 0.035) 57px
     ),
     repeating-linear-gradient(
       calc(var(--triad-angle) * -1),
       transparent 0,
-      transparent 47px,
-      color-mix(in srgb, var(--neutral-400) 7%, transparent) 47px,
-      color-mix(in srgb, var(--neutral-400) 7%, transparent) 48px
+      transparent 72px,
+      rgba(130, 170, 220, 0.02) 72px,
+      rgba(130, 170, 220, 0.02) 73px
     );
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -62,21 +58,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: var(--z-base);
-  opacity: 0.028;
+  opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Subtle triad diamond markers — almost invisible construction points */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: var(--z-base);
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='84' viewBox='0 0 96 84'%3E%3Cpath d='M48 8 L56 22 L48 36 L40 22 Z' fill='none' stroke='%232f6bff' stroke-width='1'/%3E%3C/svg%3E");
-  background-size: 96px 84px;
-  background-position: 12px 18px;
 }
 
 body.nav-open {
@@ -91,7 +74,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-brand);
+  color: var(--color-brand-cyan);
 }
 
 img,
