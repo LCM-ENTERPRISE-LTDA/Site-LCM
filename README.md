@@ -1,105 +1,81 @@
-# Site-LCM / SiteTLCM
+# Site-LCM
 
-Base estática do futuro site institucional da **LCM Enterprise LTDA**, partindo da captura HTTrack do template **Pemogan** (WordPress + Elementor).
+Repositório do site institucional da **LCM Enterprise LTDA**.
 
-> **Milestone 1 (atual):** auditoria, estabilização local e documentação.  
-> **Não** há rebranding visual completo nesta etapa.
+## Estágio atual
 
-## Pré-requisitos
+**Milestone 2** — fundação Next.js (App Router + TypeScript + SSG), arquitetura institucional e páginas iniciais.
 
-- **Python 3** (`py -m http.server` no Windows) **ou** **Node.js** (fallback em `scripts/serve.mjs`)
-- Navegador moderno
+A Milestone 1 (auditoria do espelho Pemogan) permanece documentada em `docs/`.
 
-Não é necessário npm install, WordPress nem PHP para visualizar o espelho estático.
+## Estrutura do repositório
 
-## Como iniciar
+| Caminho | Função |
+|---------|--------|
+| `site/` | **Aplicação de produção** (Next.js) |
+| `reference/` | Documentação da referência visual |
+| `nva.nirmanavisual.com/` | Espelho HTTrack Pemogan (referência, não produção) |
+| `_backups/original-httrack-pemogan/` | Backup imutável da captura original |
+| `docs/` | Auditorias e documentos das milestones |
+| `scripts/` | Servidor HTTP da referência |
 
-Na raiz do repositório (recomendado no Windows):
+## Como executar o site novo (Next.js)
+
+```powershell
+cd site
+npm install
+npm run dev
+```
+
+URL: http://localhost:3000
+
+```powershell
+npm run typecheck
+npm run lint
+npm run build
+npm run start
+```
+
+## Como executar a referência Pemogan
+
+Na raiz do repositório:
 
 ```powershell
 .\scripts\serve.ps1
 ```
 
-Alternativas:
+URL: http://127.0.0.1:8080/
 
-```powershell
-py -m http.server 8080
-node scripts/serve.mjs 8080
-```
+Não misture assets do mirror com a aplicação em `site/`.
 
-Em bash:
+## Branch
 
-```bash
-./scripts/serve.sh
-# ou: python3 -m http.server 8080
-```
+`feature/lcm-rebranding`
 
-## URLs locais
+## Limitações atuais
 
-| Destino | URL |
-|--------|-----|
-| Entrada de desenvolvimento | http://127.0.0.1:8080/ |
-| Home (página real) | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/home/ |
-| About Us | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/about-us/ |
-| Services | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/services/ |
-| Service Detail | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/service-detail/ |
-| Our Team | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/our-team/ |
-| Testimonial | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/testimonial/ |
-| FAQ | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/faq/ |
-| Contacts | http://127.0.0.1:8080/nva.nirmanavisual.com/pemogan/template-kit/contacts/ |
+- Conteúdo institucional em rascunho (ver `docs/CONTENT-DRAFTS.md`)
+- Formulário de contato em modo desenvolvimento (sem envio real)
+- Paleta e tipografia provisórias
+- Sem CMS, autenticação ou backend complexo
+- Produtos com status conservadores (`development` / `concept`)
 
-O `index.html` da raiz redireciona automaticamente para a Home.
+## Próximos passos (Milestone 3 — não iniciada)
 
-**Não abra os arquivos via `file://`** — isso mascara CORS, caminhos e comportamentos de scripts.
+- Identidade visual definitiva
+- Copy aprovada pelos fundadores
+- Mockups/screenshots reais
+- Integração real do formulário
+- Refinamento de motion e performance
 
-## Estrutura das pastas
+## Documentação Milestone 2
 
-```text
-SiteTLCM / Site-LCM
-├── index.html                 # Entrada local → Home
-├── README.md
-├── scripts/serve.ps1|.sh      # Servidor HTTP mínimo
-├── docs/                      # Auditoria Milestone 1
-├── _backups/
-│   ├── BACKUP-RECORD.md
-│   └── original-httrack-pemogan/   # Cópia imutável da captura
-├── nva.nirmanavisual.com/
-│   └── pemogan/
-│       ├── template-kit/      # 8 páginas HTML
-│       └── wp-content/        # CSS, JS, plugins, uploads
-├── cdnjs.cloudflare.com/      # Chart.js espelhado
-└── hts-cache/ + hts-log.txt   # Metadados HTTrack
-```
-
-## Documentação Milestone 1
-
-| Documento | Conteúdo |
-|-----------|----------|
-| [docs/AUDIT-MILESTONE-1.md](docs/AUDIT-MILESTONE-1.md) | Auditoria geral |
-| [docs/EFFECTS-INVENTORY.md](docs/EFFECTS-INVENTORY.md) | Inventário de efeitos |
-| [docs/CONTENT-MAP.md](docs/CONTENT-MAP.md) | Mapa de conteúdo → LCM |
-| [docs/CURRENT-DESIGN-TOKENS.md](docs/CURRENT-DESIGN-TOKENS.md) | Tokens atuais |
-| [docs/DEPENDENCIES-MAP.md](docs/DEPENDENCIES-MAP.md) | Matriz de dependências |
-| [docs/BROKEN-ASSETS.md](docs/BROKEN-ASSETS.md) | Assets quebrados / ausentes |
-| [docs/RESPONSIVE-AUDIT.md](docs/RESPONSIVE-AUDIT.md) | Auditoria responsiva |
-| [docs/ARCHITECTURE-RECOMMENDATION.md](docs/ARCHITECTURE-RECOMMENDATION.md) | Opções A/B/C |
-
-## Limitações conhecidas da captura HTTrack
-
-- Páginas não espelhadas no menu: Industries, Case Study, Pricing Plan, 404, Blog.
-- Formulário MetForm desativado localmente (apontava para a API remota original).
-- WooCommerce / AJAX / REST do WordPress não funcionam offline (esperado).
-- Alguns tamanhos de imagem do `srcset` não foram baixados; o `src` principal local é usado.
-- `owl.video.play.png` retornou 404 no mirror original.
-- Código ainda é o stack WordPress/Elementor exportado — pesado e difícil de manter a longo prazo.
-
-## Git
-
-Repositório: **[LCM-ENTERPRISE-LTDA/Site-LCM](https://github.com/LCM-ENTERPRISE-LTDA/Site-LCM)** (privado).  
-Branch de trabalho: `feature/lcm-rebranding`.
-
-Não fazer merge em produção ou deploy sem autorização explícita.
-
-## Próximos passos
-
-Milestone 2 (não iniciada automaticamente): rebranding, conteúdo LCM, produtos (AutoHist, Dyson, LCM Studio) e eventual migração de arquitetura conforme a recomendação em `docs/ARCHITECTURE-RECOMMENDATION.md`.
+- `docs/MILESTONE-2-REPORT.md`
+- `docs/INFORMATION-ARCHITECTURE.md`
+- `docs/ROUTES.md`
+- `docs/COMPONENTS.md`
+- `docs/MOTION-POLICY.md`
+- `docs/NEW-DEPENDENCIES.md`
+- `docs/CONTENT-DRAFTS.md`
+- `docs/PERFORMANCE-BASELINE.md`
+- `docs/MIGRATION-MAP.md`
