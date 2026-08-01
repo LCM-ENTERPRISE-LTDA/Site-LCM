@@ -6,6 +6,7 @@
 
 .eyebrow {
   margin: 0 0 var(--space-4);
+  font-family: var(--font-instrument), var(--font-display), sans-serif;
   font-size: var(--text-xs);
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
@@ -15,26 +16,32 @@
 
 .title {
   margin: 0;
-  font-family: var(--font-display);
+  /* Design System: Instrument Sans (display) — not serif */
+  font-family: var(--font-instrument), var(--font-display), "Instrument Sans", sans-serif;
   font-size: var(--text-hero);
   font-weight: 700;
-  line-height: var(--leading-tight);
+  line-height: 1.06;
   letter-spacing: var(--tracking-display);
   color: var(--color-text);
-  max-width: 14ch;
+  max-width: 13.5ch;
+  text-wrap: balance;
+  text-shadow: 0 0 40px rgba(5, 9, 18, 0.55);
 }
 
 .subtitle {
   margin: var(--space-5) 0 0;
-  max-width: 38ch;
+  max-width: 36ch;
+  font-family: var(--font-inter), var(--font-body), Inter, sans-serif;
   font-size: var(--text-lg);
   line-height: var(--leading-snug);
   color: var(--color-text-muted);
+  text-shadow: 0 0 28px rgba(5, 9, 18, 0.45);
 }
 
 @media (max-width: 767px) {
   .title {
     max-width: 12ch;
+    line-height: 1.08;
   }
 
   .subtitle {
