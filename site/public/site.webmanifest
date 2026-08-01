@@ -1,0 +1,10 @@
+{
+  "name": "LCM Enterprise",
+  "short_name": "LCM",
+  "description": "Site institucional da LCM Enterprise LTDA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d10",
+  "theme_color": "#0b0d10",
+  "lang": "pt-BR"
+}
