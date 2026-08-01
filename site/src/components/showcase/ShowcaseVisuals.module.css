@@ -1,0 +1,279 @@
+.visual {
+  width: min(100%, 34rem);
+  height: auto;
+  display: block;
+  overflow: visible;
+  transform: translate3d(
+    calc(var(--fx, 0) * 0.45px),
+    calc(var(--fy, 0) * 0.45px),
+    0
+  );
+  transition: opacity 700ms ease;
+}
+
+/* ——— AutoHist ——— */
+.ahNode {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(120ms + var(--i, 0) * 90ms);
+}
+
+.ahTrack path {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.2, 0.85, 0.25, 1) 80ms;
+}
+
+.ahScan {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 700ms ease 380ms,
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 380ms;
+}
+
+.alive.autohist .ahNode {
+  opacity: 1;
+  transform: none;
+}
+
+.alive.autohist .ahTrack path {
+  stroke-dashoffset: 0;
+}
+
+.alive.autohist .ahScan {
+  opacity: 1;
+  transform: none;
+}
+
+.alive.autohist .ahScan rect {
+  animation: ahPulse 5.5s ease-in-out infinite;
+}
+
+@keyframes ahPulse {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ——— Dyson ——— */
+.dyHalo {
+  opacity: 0;
+  transform-origin: center;
+  transform: scale(0.85);
+  transition:
+    opacity 900ms ease,
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dyOrbit,
+.dyLinks,
+.dyNodes {
+  opacity: 0;
+  transition: opacity 800ms ease;
+}
+
+.dyLinks path {
+  stroke-dasharray: 180;
+  stroke-dashoffset: 180;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.2, 0.85, 0.25, 1);
+}
+
+.alive.dyson .dyHalo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.alive.dyson .dyOrbit,
+.alive.dyson .dyLinks,
+.alive.dyson .dyNodes {
+  opacity: 1;
+}
+
+.alive.dyson .dyLinks path {
+  stroke-dashoffset: 0;
+}
+
+.alive.dyson .dyOrbit {
+  animation: dySpin 42s linear infinite;
+  transform-origin: 260px 210px;
+}
+
+.alive.dyson .dyHalo {
+  animation: dyBreathe 6s ease-in-out infinite;
+}
+
+.alive.dyson .dySat {
+  animation: dyTwinkle 4.5s ease-in-out infinite;
+}
+
+.alive.dyson .dySat:nth-child(odd) {
+  animation-delay: 1.2s;
+}
+
+@keyframes dySpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dyBreathe {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes dyTwinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ——— Studio ——— */
+.stFrame {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 700ms ease,
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stBlock {
+  opacity: 0;
+  transform: translateY(14px) scale(0.97);
+  transition:
+    opacity 550ms ease,
+    transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(180ms + var(--i, 0) * 80ms);
+}
+
+.stCursor {
+  opacity: 0;
+  transition: opacity 500ms ease 560ms;
+}
+
+.alive.studio .stFrame,
+.alive.studio .stBlock {
+  opacity: 1;
+  transform: none;
+}
+
+.alive.studio .stCursor {
+  opacity: 1;
+  animation: stMove 7s ease-in-out infinite;
+}
+
+@keyframes stMove {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  40% {
+    translate: 12px -8px;
+  }
+  70% {
+    translate: -6px 10px;
+  }
+}
+
+/* ——— BusinessZap ——— */
+.bzHubs,
+.bzBubbles {
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+.bzPath {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  transition: stroke-dashoffset 1.15s cubic-bezier(0.2, 0.85, 0.25, 1);
+}
+
+.bzBubble {
+  transform-origin: center;
+  transition: transform 400ms ease;
+}
+
+.alive.businesszap .bzHubs,
+.alive.businesszap .bzBubbles {
+  opacity: 1;
+}
+
+.alive.businesszap .bzPath {
+  stroke-dashoffset: 0;
+}
+
+.alive.businesszap .bzBubble:nth-child(1) {
+  animation: bzFloat 5s ease-in-out infinite;
+}
+
+.alive.businesszap .bzBubble:nth-child(2) {
+  animation: bzFloat 6.2s ease-in-out infinite 0.8s;
+}
+
+.alive.businesszap .bzBubble:nth-child(3) {
+  animation: bzFloat 5.6s ease-in-out infinite 1.4s;
+}
+
+@keyframes bzFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive.autohist .ahScan rect,
+  .alive.dyson .dyOrbit,
+  .alive.dyson .dyHalo,
+  .alive.dyson .dySat,
+  .alive.studio .stCursor,
+  .alive.businesszap .bzBubble {
+    animation: none !important;
+  }
+
+  .ahNode,
+  .ahTrack path,
+  .ahScan,
+  .dyHalo,
+  .dyOrbit,
+  .dyLinks,
+  .dyNodes,
+  .dyLinks path,
+  .stFrame,
+  .stBlock,
+  .stCursor,
+  .bzHubs,
+  .bzBubbles,
+  .bzPath {
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .visual {
+    width: min(100%, 22rem);
+    margin-inline: auto;
+  }
+}
