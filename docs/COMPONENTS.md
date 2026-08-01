@@ -93,3 +93,14 @@ Detalhes: `docs/HERO-V3.md`.
 | `useFeaturePointer` | Pointer local → CSS vars no feature |
 
 Detalhes: `docs/PRODUCT-SHOWCASE.md`.
+
+---
+
+## Philosophy Experience
+
+| Componente | Papel |
+|------------|-------|
+| `PhilosophyExperience` | Galeria editorial de princípios |
+| `PhilosophyStatementBlock` | Painel tipográfico por frase |
+
+Detalhes: `docs/PHILOSOPHY-EXPERIENCE.md`.
