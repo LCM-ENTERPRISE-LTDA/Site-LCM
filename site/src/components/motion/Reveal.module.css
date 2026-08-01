@@ -1,38 +1,34 @@
-/* Content stays in normal flow; animation only enhances when JS runs. */
+/* Content stays readable without JS; motion only enhances. */
 .reveal {
   opacity: 1;
   transform: none;
   transition:
-    opacity var(--duration-slow) var(--ease-standard),
-    transform var(--duration-slow) var(--ease-standard);
-}
-
-@supports (animation-timeline: view()) {
-  /* progressive enhancement reserved — IO remains primary */
+    opacity var(--duration-slow) var(--ease-emphasized),
+    transform var(--duration-slow) var(--ease-emphasized);
 }
 
 .reveal:not(.visible):not(.reduced) {
-  opacity: 0.001;
+  opacity: 0.01;
 }
 
 .reveal:not(.visible):not(.reduced).up {
-  transform: translate3d(0, 18px, 0);
+  transform: translate3d(0, 12px, 0);
 }
 
 .reveal:not(.visible):not(.reduced).down {
-  transform: translate3d(0, -18px, 0);
+  transform: translate3d(0, -12px, 0);
 }
 
 .reveal:not(.visible):not(.reduced).left {
-  transform: translate3d(18px, 0, 0);
+  transform: translate3d(12px, 0, 0);
 }
 
 .reveal:not(.visible):not(.reduced).right {
-  transform: translate3d(-18px, 0, 0);
+  transform: translate3d(-12px, 0, 0);
 }
 
 .reveal:not(.visible):not(.reduced).zoom {
-  transform: scale(0.97);
+  transform: scale(0.985);
 }
 
 .reveal:not(.visible):not(.reduced).fade {

@@ -8,6 +8,10 @@ Uma única abordagem principal:
 2. Intersection Observer no componente `Reveal`
 3. Sem Framer Motion / GSAP nesta fundação
 
+### Milestone 3A
+
+Motion refinado para parecer engenharia: menos deslocamento (12px), delays menores, hero com glow/conexões lentas (`EcosystemHero`), microinterações em botões/cards/nav/tabs/accordion. Sem espetáculo.
+
 ## Regras
 
 1. Conteúdo permanece no fluxo normal do documento.
