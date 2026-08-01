@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { HeroExperience } from "@/components/hero/HeroExperience";
 import { PrinciplesBand } from "@/components/hero/PrinciplesBand";
-import { ProductCard } from "@/components/product/ProductCard";
+import { ProductShowcase } from "@/components/showcase/ProductShowcase";
 import { CTASection } from "@/components/sections/CTASection";
 import { TechnologyLayer } from "@/components/sections/TechnologyLayer";
 import { Container } from "@/components/ui/Container";
@@ -41,24 +41,7 @@ export default function HomePage() {
 
       <PrinciplesBand principles={principles} />
 
-      <Section id="produtos">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Produtos"
-              title="Portfólio em evolução"
-              subtitle="Cada produto tem estágio próprio. Status transparentes e editáveis em uma fonte central de dados."
-            />
-          </Reveal>
-          <div className={styles.productGrid}>
-            {featured.map((product, index) => (
-              <Reveal key={product.slug} delay={Math.min(index * 70, 210)}>
-                <ProductCard product={product} />
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      <ProductShowcase />
 
       <Section id="tecnologia">
         <Container>
