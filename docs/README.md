@@ -6,7 +6,9 @@
 | `sprints/02-hero/` | Hero V3 / immersive / experience |
 | `sprints/03-product-showcase/` | Product Showcase Premium |
 | `sprints/04-philosophy/` | Philosophy / Cinematic Manifesto |
+| `sprints/05-technology/` | Technology Experience |
 | `screenshots/hero/` | Capturas do Hero |
 | `screenshots/showcase/` | Capturas do Showcase |
 | `screenshots/philosophy/` | Capturas do Manifesto |
+| `screenshots/technology/` | Capturas da Tecnologia |
 | `COMPONENTS.md` | Mapa de componentes (índice) |

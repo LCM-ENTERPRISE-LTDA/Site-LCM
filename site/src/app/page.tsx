@@ -4,17 +4,12 @@ import { PrinciplesBand } from "@/components/hero/PrinciplesBand";
 import { PhilosophyExperience } from "@/components/philosophy/PhilosophyExperience";
 import { ProductShowcase } from "@/components/showcase/ProductShowcase";
 import { CTASection } from "@/components/sections/CTASection";
-import { TechnologyLayer } from "@/components/sections/TechnologyLayer";
+import { TechnologyExperience } from "@/components/technology/TechnologyExperience";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Tabs } from "@/components/ui/Tabs";
-import {
-  homeContent,
-  principles,
-  technologyLayers,
-} from "@/content/institutional";
+import { homeContent, principles } from "@/content/institutional";
 import { getProductCssVars } from "@/config/productThemes";
 import { getFeaturedProducts } from "@/data/products";
 import { buildMetadata } from "@/lib/metadata";
@@ -46,45 +41,7 @@ export default function HomePage() {
 
       <PhilosophyExperience />
 
-      <Section id="tecnologia" className={styles.technologyAfterPhilosophy}>
-        <Container>
-          <div className={styles.split}>
-            <Reveal direction="right">
-              <SectionHeading
-                eyebrow={homeContent.technologyIntro.eyebrow}
-                title={homeContent.technologyIntro.title}
-                subtitle={homeContent.technologyIntro.subtitle}
-              />
-              <TechnologyLayer layers={technologyLayers} />
-            </Reveal>
-            <Reveal direction="left" delay={80}>
-              <Tabs
-                label="Perspectivas tecnológicas"
-                items={[
-                  {
-                    id: "experiencia",
-                    label: "Experiência",
-                    content:
-                      "Interfaces claras e fluxos objetivos. A tecnologia só importa se as pessoas conseguem usá-la com confiança.",
-                  },
-                  {
-                    id: "sistemas",
-                    label: "Sistemas",
-                    content:
-                      "Aplicações, APIs e dados organizados para evoluir com segurança — sem promessas de escala não documentadas.",
-                  },
-                  {
-                    id: "ia",
-                    label: "IA",
-                    content:
-                      "Inteligência artificial tratada com responsabilidade e transparência de estágio, sempre ligada a problemas reais.",
-                  },
-                ]}
-              />
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
+      <TechnologyExperience />
 
       <Section tone="elevated" id="ecossistema">
         <Container>

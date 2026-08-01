@@ -1,0 +1,171 @@
+.wrap {
+  --tech-a: #4d9be8;
+  --tech-b: #2f6bff;
+  position: relative;
+  width: min(100%, 38rem);
+  aspect-ratio: 560 / 480;
+  margin-inline: auto;
+  transform: translate3d(calc(var(--tx, 0) * 0.45px), calc(var(--ty, 0) * 0.45px), 0);
+}
+
+.experiencia {
+  --tech-a: #4d9be8;
+  --tech-b: #25b4e8;
+}
+
+.sistemas {
+  --tech-a: #4d9be8;
+  --tech-b: #f0a040;
+}
+
+.ia {
+  --tech-a: #8b7cf0;
+  --tech-b: #c4b8ff;
+}
+
+.glow {
+  position: absolute;
+  inset: 8% 6%;
+  background: radial-gradient(
+    ellipse at var(--tlx, 62%) var(--tly, 42%),
+    color-mix(in srgb, var(--tech-a) 36%, transparent),
+    transparent 68%
+  );
+  filter: blur(32px);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.scene {
+  opacity: 1;
+}
+
+.node {
+  opacity: 0.85;
+}
+
+.module {
+  opacity: 0.9;
+}
+
+.core {
+  opacity: 0.95;
+}
+
+.pulsePath {
+  stroke-dasharray: 8 14;
+}
+
+.alive .glow {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+.alive .pulsePath {
+  animation: dash 14s linear infinite;
+}
+
+.alive .node {
+  animation: pulseNode 5.5s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.35s);
+}
+
+.alive .module {
+  animation: floatMod 9s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.25s);
+}
+
+.alive .orbit {
+  animation: spin 48s linear infinite;
+  transform-origin: 280px 240px;
+}
+
+.alive .orbitRev {
+  animation: spinRev 36s linear infinite;
+  transform-origin: 280px 240px;
+}
+
+.alive .ring {
+  animation: breathe 9s ease-in-out infinite;
+}
+
+.alive .core {
+  animation: breathe 7s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+
+@keyframes pulseNode {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes floatMod {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -2px;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinRev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive .glow,
+  .alive .pulsePath,
+  .alive .node,
+  .alive .module,
+  .alive .orbit,
+  .alive .orbitRev,
+  .alive .core {
+    animation: none !important;
+  }
+
+  .wrap {
+    transform: none;
+  }
+}
+
+@media (max-width: 959px) {
+  .wrap {
+    width: min(100%, 26rem);
+  }
+}

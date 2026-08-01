@@ -46,6 +46,18 @@ Detalhes: `docs/sprints/03-product-showcase/PRODUCT-SHOWCASE.md`
 
 Detalhes: `docs/sprints/04-philosophy/CINEMATIC-MANIFESTO.md`
 
+## Technology — Living Architecture
+
+| Componente | Papel |
+|------------|-------|
+| `TechnologyExperience` | Seção Tecnologia (Home) |
+| `TechnologyPerspectives` | Switcher Experiência / Sistemas / IA + dissolve |
+| `TechArchitecture` | Composição SVG viva por perspectiva |
+| `TechLayers` | Lista editorial de camadas |
+| `useTechPointer` | Parallax/luz ≤5px |
+
+Detalhes: `docs/sprints/05-technology/README.md`
+
 ## Navigation / UI / Product / Motion
 
 `DesktopNavigation`, `MobileNavigation`, `ProductMenu` · `Button`, `Badge`, `Section`, `Tabs`… · `ProductCard`, `ProductHero` · `Reveal`
