@@ -1,57 +1,112 @@
+/*
+  LCM Design System — Milestone 3A
+  Light-first premium identity. Everything inherits from these tokens.
+*/
+
 :root {
-  /* Surfaces — provisional LCM tokens (not final brand palette) */
-  --color-bg: #0b0d10;
-  --color-surface: #12151a;
-  --color-surface-elevated: #1a1f27;
-  --color-text: #eef2f7;
-  --color-text-muted: #9aa3af;
-  --color-border: #2a313c;
-  --color-brand: #3d8bfd;
-  --color-brand-strong: #2563eb;
-  --color-brand-contrast: #061018;
-  --color-focus: #7dd3fc;
-  --color-success: #34d399;
-  --color-danger: #f87171;
+  /* ——— Neutrals (as important as brand) ——— */
+  --neutral-0: #ffffff;
+  --neutral-25: #fbfbfc;
+  --neutral-50: #f6f7f9;
+  --neutral-75: #f0f2f5;
+  --neutral-100: #e8ebf0;
+  --neutral-200: #d5dae3;
+  --neutral-300: #b8c0ce;
+  --neutral-400: #8b95a8;
+  --neutral-500: #667085;
+  --neutral-600: #4a5568;
+  --neutral-700: #344054;
+  --neutral-800: #1d2736;
+  --neutral-900: #121a26;
+  --neutral-950: #0b1220;
 
-  /* Product accents (provisional, centralized) */
-  --product-autohist: #38bdf8;
-  --product-autohist-soft: rgba(56, 189, 248, 0.16);
-  --product-dyson: #a78bfa;
-  --product-dyson-soft: rgba(167, 139, 250, 0.16);
-  --product-studio: #34d399;
-  --product-studio-soft: rgba(52, 211, 153, 0.16);
-  --product-businesszap: #fb923c;
-  --product-businesszap-soft: rgba(251, 146, 60, 0.16);
+  /* ——— Surfaces ——— */
+  --color-bg: var(--neutral-50);
+  --color-bg-accent: var(--neutral-25);
+  --color-surface: var(--neutral-0);
+  --color-surface-elevated: var(--neutral-0);
+  --color-surface-muted: var(--neutral-75);
+  --color-text: var(--neutral-900);
+  --color-text-muted: var(--neutral-500);
+  --color-text-subtle: var(--neutral-400);
+  --color-border: var(--neutral-100);
+  --color-border-strong: var(--neutral-200);
 
-  /* Typography */
+  /*
+    Brand signal — LCM Blue
+    Chosen for UI contrast on white, button states, charts,
+    future dark mode inversion, and WCAG-friendly pairings.
+    Not decorative purple; engineering precision blue.
+  */
+  --color-brand: #1a56f0;
+  --color-brand-strong: #1347d4;
+  --color-brand-soft: rgba(26, 86, 240, 0.08);
+  --color-brand-glow: rgba(26, 86, 240, 0.18);
+  --color-brand-contrast: #ffffff;
+  --color-focus: #1a56f0;
+  --color-success: #0f9f6e;
+  --color-warning: #c47d0e;
+  --color-danger: #d14343;
+
+  /* ——— Opacity ——— */
+  --opacity-muted: 0.64;
+  --opacity-soft: 0.4;
+  --opacity-faint: 0.12;
+  --opacity-hairline: 0.06;
+
+  /* ——— Product family (distinct, same system) ——— */
+  --product-autohist: #0b8fd9;
+  --product-autohist-soft: rgba(11, 143, 217, 0.1);
+  --product-autohist-glow: rgba(11, 143, 217, 0.22);
+  --product-dyson: #5b5bd6;
+  --product-dyson-soft: rgba(91, 91, 214, 0.1);
+  --product-dyson-glow: rgba(91, 91, 214, 0.2);
+  --product-studio: #0d9f75;
+  --product-studio-soft: rgba(13, 159, 117, 0.1);
+  --product-studio-glow: rgba(13, 159, 117, 0.2);
+  --product-businesszap: #d97706;
+  --product-businesszap-soft: rgba(217, 119, 6, 0.1);
+  --product-businesszap-glow: rgba(217, 119, 6, 0.2);
+
+  /* ——— Typography ——— */
   --font-display: var(--font-instrument), "Instrument Sans", "Segoe UI", sans-serif;
   --font-body: var(--font-inter), Inter, "Segoe UI", sans-serif;
 
-  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
-  --text-sm: clamp(0.875rem, 0.82rem + 0.25vw, 0.9375rem);
-  --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
-  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
-  --text-xl: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
-  --text-2xl: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
-  --text-3xl: clamp(2.15rem, 1.6rem + 2vw, 3.25rem);
-  --text-hero: clamp(2.4rem, 1.7rem + 2.8vw, 4rem);
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.15rem + 0.4vw, 1.375rem);
+  --text-2xl: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.2vw, 2.5rem);
+  --text-hero: clamp(2.25rem, 1.7rem + 2vw, 3.5rem);
 
-  --leading-tight: 1.15;
+  --leading-tight: 1.12;
   --leading-snug: 1.35;
-  --leading-normal: 1.6;
+  --leading-normal: 1.65;
+  --tracking-tight: -0.03em;
+  --tracking-display: -0.035em;
 
-  /* Radius */
+  /* ——— Radius (elegant, not pill-everything / not square) ——— */
+  --radius-xs: 6px;
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-pill: 999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.28);
-  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.35);
+  /* ——— Borders ——— */
+  --border-width: 1px;
+  --border-width-strong: 1.5px;
 
-  /* Spacing scale */
+  /* ——— Shadows (depth without floating boxes) ——— */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 2px 4px rgba(15, 23, 42, 0.04), 0 12px 28px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 4px 8px rgba(15, 23, 42, 0.04), 0 24px 48px rgba(15, 23, 42, 0.08);
+  --shadow-glow: 0 0 0 1px var(--color-brand-soft), 0 8px 32px var(--color-brand-glow);
+
+  /* ——— Spacing (8pt rhythm) ——— */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -59,20 +114,26 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
   --space-7: 3rem;
-  --space-8: 4rem;
-  --space-9: 6rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
 
   --container: 1120px;
-  --header-height: 4.25rem;
+  --container-narrow: 720px;
+  --header-height: 4rem;
+  --section-gap: var(--space-8);
 
-  /* Motion */
-  --duration-fast: 150ms;
+  /* ——— Motion (engineering, not spectacle) ——— */
+  --duration-instant: 80ms;
+  --duration-fast: 160ms;
   --duration-normal: 280ms;
-  --duration-slow: 450ms;
-  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --ease-emphasized: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --duration-slow: 480ms;
+  --duration-glacial: 1200ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Z-index */
+  /* ——— Z-index ——— */
+  --z-base: 0;
   --z-header: 40;
   --z-overlay: 50;
   --z-modal: 60;
@@ -81,8 +142,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   :root {
+    --duration-instant: 1ms;
     --duration-fast: 1ms;
     --duration-normal: 1ms;
     --duration-slow: 1ms;
+    --duration-glacial: 1ms;
   }
 }

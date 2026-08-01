@@ -4,7 +4,7 @@
   "description": "Site institucional da LCM Enterprise LTDA",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b0d10",
-  "theme_color": "#0b0d10",
+  "background_color": "#F6F7F9",
+  "theme_color": "#F6F7F9",
   "lang": "pt-BR"
 }
