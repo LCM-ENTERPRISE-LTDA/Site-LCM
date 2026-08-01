@@ -157,6 +157,18 @@
   --z-overlay: 50;
   --z-modal: 60;
   --z-skip: 70;
+
+  /* ——— Hero immersive (Milestone 4) — scoped defaults ——— */
+  --hero-light-x: 62%;
+  --hero-light-y: 36%;
+  --hero-depth-bg: 0;
+  --hero-depth-main: 0;
+  --hero-depth-fg: 0;
+  --hero-grid-opacity: 0.07;
+  --hero-particle-opacity: 0.4;
+  --hero-connection-opacity: 0.55;
+  --hero-safe-zone: 42%;
+  --hero-atmosphere-strength: 0.85;
 }
 
 @media (prefers-reduced-motion: reduce) {

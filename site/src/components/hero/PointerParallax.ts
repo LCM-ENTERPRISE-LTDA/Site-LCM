@@ -2,35 +2,31 @@
 
 import { useEffect, useRef } from "react";
 
-type PointerParallaxOptions = {
-  /** Base unit for main-layer parallax (px). Other layers scale from this. */
-  maxOffset?: number;
+type Options = {
   enabled?: boolean;
 };
 
-/** Normalized hotspot positions inside the scene (0–1). */
+/** Hotspots in normalized 0–1 space across the full hero. */
 const HOTSPOTS = {
-  top: { x: 0.5, y: 0.284 },
-  left: { x: 0.305, y: 0.726 },
-  right: { x: 0.695, y: 0.726 },
-  core: { x: 0.5, y: 0.553 },
+  a: { x: 0.72, y: 0.24 },
+  b: { x: 0.58, y: 0.62 },
+  c: { x: 0.84, y: 0.58 },
+  core: { x: 0.68, y: 0.44 },
 } as const;
 
 function proximity(nx: number, ny: number, hx: number, hy: number) {
   const dx = nx - hx;
   const dy = ny - hy;
-  const d = Math.sqrt(dx * dx + dy * dy);
-  // Soft falloff — influence within ~28% of stage diagonal
-  return Math.max(0, 1 - d / 0.28);
+  return Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 0.32);
 }
 
 /**
- * Multi-layer pointer → CSS variables (no React re-renders).
- * Sets parallax depths, metallic light position, and module proximity.
+ * Single rAF loop → CSS variables on the Immersive Hero root.
+ * Influences the entire environment (not a boxed scene).
  */
 export function usePointerParallax(
   targetRef: React.RefObject<HTMLElement | null>,
-  { maxOffset = 10, enabled = true }: PointerParallaxOptions = {},
+  { enabled = true }: Options = {},
 ) {
   const frameRef = useRef<number | null>(null);
   const current = useRef({ x: 0, y: 0, nx: 0, ny: 0 });
@@ -40,27 +36,40 @@ export function usePointerParallax(
     const node = targetRef.current;
     if (!node || !enabled) {
       if (node) {
-        const reset = [
-          ["--px", "0"],
-          ["--py", "0"],
-          ["--px-bg", "0"],
-          ["--py-bg", "0"],
-          ["--px-main", "0"],
-          ["--py-main", "0"],
-          ["--px-fg", "0"],
-          ["--py-fg", "0"],
-          ["--px-glow", "0"],
-          ["--py-glow", "0"],
-          ["--px-part", "0"],
-          ["--py-part", "0"],
-          ["--plight-x", "52%"],
-          ["--plight-y", "38%"],
-          ["--near-top", "0"],
-          ["--near-left", "0"],
-          ["--near-right", "0"],
-          ["--near-core", "0"],
-        ] as const;
-        for (const [k, v] of reset) node.style.setProperty(k, v);
+        const keys = [
+          "--hero-light-x",
+          "--hero-light-y",
+          "--hero-depth-bg",
+          "--hero-depth-main",
+          "--hero-depth-fg",
+          "--px-atm",
+          "--py-atm",
+          "--px-grid",
+          "--py-grid",
+          "--px-light",
+          "--py-light",
+          "--px-bg",
+          "--py-bg",
+          "--px-main",
+          "--py-main",
+          "--px-part",
+          "--py-part",
+          "--px-fg",
+          "--py-fg",
+          "--px-sig",
+          "--py-sig",
+          "--near-a",
+          "--near-b",
+          "--near-c",
+          "--near-core",
+        ];
+        for (const key of keys) {
+          if (key.startsWith("--hero-light")) {
+            node.style.setProperty(key, key.endsWith("x") ? "62%" : "36%");
+          } else {
+            node.style.setProperty(key, "0");
+          }
+        }
       }
       return;
     }
@@ -71,60 +80,57 @@ export function usePointerParallax(
       if (!active) return;
       const c = current.current;
       const t = target.current;
-      c.x += (t.x - c.x) * 0.07;
-      c.y += (t.y - c.y) * 0.07;
-      c.nx += (t.nx - c.nx) * 0.1;
-      c.ny += (t.ny - c.ny) * 0.1;
+      c.x += (t.x - c.x) * 0.065;
+      c.y += (t.y - c.y) * 0.065;
+      c.nx += (t.nx - c.nx) * 0.09;
+      c.ny += (t.ny - c.ny) * 0.09;
 
-      const unit = maxOffset;
-      node.style.setProperty("--px", c.x.toFixed(3));
-      node.style.setProperty("--py", c.y.toFixed(3));
-      // Independent layer depths (2–12px range)
-      node.style.setProperty("--px-bg", (c.x * 0.22).toFixed(3));
-      node.style.setProperty("--py-bg", (c.y * 0.22).toFixed(3));
-      node.style.setProperty("--px-main", (c.x * 0.72).toFixed(3));
-      node.style.setProperty("--py-main", (c.y * 0.72).toFixed(3));
-      node.style.setProperty("--px-fg", (c.x * 1.15).toFixed(3));
-      node.style.setProperty("--py-fg", (c.y * 1.15).toFixed(3));
-      node.style.setProperty("--px-glow", (c.x * 0.45).toFixed(3));
-      node.style.setProperty("--py-glow", (c.y * 0.45).toFixed(3));
-      node.style.setProperty("--px-part", (c.x * 0.9).toFixed(3));
-      node.style.setProperty("--py-part", (c.y * 0.9).toFixed(3));
+      // Independent depths (px). Base unit ~10.
+      node.style.setProperty("--px-atm", (c.x * 0.12).toFixed(3));
+      node.style.setProperty("--py-atm", (c.y * 0.12).toFixed(3));
+      node.style.setProperty("--px-grid", (c.x * 0.28).toFixed(3));
+      node.style.setProperty("--py-grid", (c.y * 0.28).toFixed(3));
+      node.style.setProperty("--px-light", (c.x * 0.45).toFixed(3));
+      node.style.setProperty("--py-light", (c.y * 0.45).toFixed(3));
+      node.style.setProperty("--px-bg", (c.x * 0.25).toFixed(3));
+      node.style.setProperty("--py-bg", (c.y * 0.25).toFixed(3));
+      node.style.setProperty("--px-main", (c.x * 0.65).toFixed(3));
+      node.style.setProperty("--py-main", (c.y * 0.65).toFixed(3));
+      node.style.setProperty("--px-part", (c.x * 0.85).toFixed(3));
+      node.style.setProperty("--py-part", (c.y * 0.85).toFixed(3));
+      node.style.setProperty("--px-fg", (c.x * 1.2).toFixed(3));
+      node.style.setProperty("--py-fg", (c.y * 1.2).toFixed(3));
+      node.style.setProperty("--px-sig", (c.x * 0.4).toFixed(3));
+      node.style.setProperty("--py-sig", (c.y * 0.4).toFixed(3));
 
-      const lx = 50 + (c.x / unit) * 18;
-      const ly = 40 + (c.y / unit) * 16;
-      node.style.setProperty("--plight-x", `${lx.toFixed(2)}%`);
-      node.style.setProperty("--plight-y", `${ly.toFixed(2)}%`);
+      node.style.setProperty("--hero-depth-bg", (c.x * 0.25).toFixed(3));
+      node.style.setProperty("--hero-depth-main", (c.x * 0.65).toFixed(3));
+      node.style.setProperty("--hero-depth-fg", (c.x * 1.2).toFixed(3));
 
-      // Pointer as 0–1 for proximity (nx from -1..1 → 0..1)
+      const lx = 58 + c.nx * 16;
+      const ly = 34 + c.ny * 14;
+      node.style.setProperty("--hero-light-x", `${lx.toFixed(2)}%`);
+      node.style.setProperty("--hero-light-y", `${ly.toFixed(2)}%`);
+
       const px = (c.nx + 1) / 2;
       const py = (c.ny + 1) / 2;
-      node.style.setProperty("--near-top", proximity(px, py, HOTSPOTS.top.x, HOTSPOTS.top.y).toFixed(3));
-      node.style.setProperty("--near-left", proximity(px, py, HOTSPOTS.left.x, HOTSPOTS.left.y).toFixed(3));
-      node.style.setProperty("--near-right", proximity(px, py, HOTSPOTS.right.x, HOTSPOTS.right.y).toFixed(3));
+      node.style.setProperty("--near-a", proximity(px, py, HOTSPOTS.a.x, HOTSPOTS.a.y).toFixed(3));
+      node.style.setProperty("--near-b", proximity(px, py, HOTSPOTS.b.x, HOTSPOTS.b.y).toFixed(3));
+      node.style.setProperty("--near-c", proximity(px, py, HOTSPOTS.c.x, HOTSPOTS.c.y).toFixed(3));
       node.style.setProperty("--near-core", proximity(px, py, HOTSPOTS.core.x, HOTSPOTS.core.y).toFixed(3));
 
-      // Avoid writing when nearly settled and idle — still need continuous lerp while moving
       frameRef.current = requestAnimationFrame(tick);
     };
 
     const onMove = (event: PointerEvent) => {
       const rect = node.getBoundingClientRect();
-      const nx = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      const ny = ((event.clientY - rect.top) / rect.height) * 2 - 1;
-      const cx = Math.max(-1, Math.min(1, nx));
-      const cy = Math.max(-1, Math.min(1, ny));
-      target.current.x = cx * maxOffset;
-      target.current.y = cy * maxOffset;
-      target.current.nx = cx;
-      target.current.ny = cy;
+      const nx = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width) * 2 - 1));
+      const ny = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height) * 2 - 1));
+      target.current = { x: nx * 10, y: ny * 10, nx, ny };
     };
 
     const onLeave = () => {
-      target.current.x = 0;
-      target.current.y = 0;
-      target.current.nx = 0;
-      target.current.ny = 0;
+      target.current = { x: 0, y: 0, nx: 0, ny: 0 };
     };
 
     node.addEventListener("pointermove", onMove);
@@ -137,5 +143,5 @@ export function usePointerParallax(
       node.removeEventListener("pointerleave", onLeave);
       if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
     };
-  }, [targetRef, maxOffset, enabled]);
+  }, [targetRef, enabled]);
 }
