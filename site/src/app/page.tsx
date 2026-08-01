@@ -1,6 +1,7 @@
-import { Reveal } from "@/components/motion/Reveal";
+﻿import { Reveal } from "@/components/motion/Reveal";
 import { HeroExperience } from "@/components/hero/HeroExperience";
 import { PrinciplesBand } from "@/components/hero/PrinciplesBand";
+import { PhilosophyExperience } from "@/components/philosophy/PhilosophyExperience";
 import { ProductShowcase } from "@/components/showcase/ProductShowcase";
 import { CTASection } from "@/components/sections/CTASection";
 import { TechnologyLayer } from "@/components/sections/TechnologyLayer";
@@ -43,7 +44,9 @@ export default function HomePage() {
 
       <ProductShowcase />
 
-      <Section id="tecnologia">
+      <PhilosophyExperience />
+
+      <Section id="tecnologia" className={styles.technologyAfterPhilosophy}>
         <Container>
           <div className={styles.split}>
             <Reveal direction="right">

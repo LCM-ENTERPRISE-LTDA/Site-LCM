@@ -107,3 +107,12 @@
   line-height: var(--leading-snug);
   letter-spacing: -0.01em;
 }
+
+.technologyAfterPhilosophy {
+  padding-top: clamp(2.5rem, 5vh, 3.5rem);
+  background: linear-gradient(
+    180deg,
+    var(--background-elevated) 0%,
+    transparent 28%
+  );
+}
