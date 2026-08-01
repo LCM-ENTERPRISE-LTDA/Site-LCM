@@ -53,3 +53,16 @@ Reutilizar quando houver variação ou comportamento. A cena do hero fica isolad
 ## Milestone 3 — Living Hero
 
 `TriadScene` ganhou camadas físicas (grid / glow / bg / particles / main / fg) e `PointerParallax` passou a escrever profundidades e proximidades independentes. Estrutura de componentes da Sprint 02 permanece.
+
+---
+
+## Milestone 4 — Immersive Hero
+
+| Componente | Papel |
+|------------|-------|
+| `ImmersiveHero` | Shell contínuo + pointer root |
+| `HeroEnvironment` | Camadas full-bleed |
+| `HeroContent` / `HeroActions` | Copy + CTAs (inalterados em texto) |
+| `PrinciplesBand` | Continuação visual do ambiente |
+| `TriadScene` | Legado (não usado na Home) |
+| `HeroExperience` | Reexport legado → `ImmersiveHero` |

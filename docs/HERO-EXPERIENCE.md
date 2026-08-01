@@ -102,3 +102,9 @@ Expansão da cena (sem alterar layout, copy, logo, paleta ou tipografia).
 - Sem re-render React no pointer
 - Ambient pausa fora da viewport
 - Reduced motion: composição final, sem pulses/parallax/loops
+
+---
+
+## Milestone 4 — Immersive continuous environment
+
+A `TriadScene` em caixa foi **eliminada**. `ImmersiveHero` + `HeroEnvironment` espalham camadas por todo o Hero. Ver `docs/IMMERSIVE-HERO.md`.

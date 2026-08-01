@@ -56,3 +56,12 @@ Após settle: float de poucos pixels, pulsos nas conexões, respiração do bloo
 - Ambient: float dessincronizado, core breath ≤ 1.03, sinais de produto
 - Microinterações: botão mais físico, header scrolled mais longo, logo hover ±0.5px
 - Sem Three.js / GSAP / Framer / WebGL / canvas
+
+---
+
+## Milestone 4 — Immersive field motion
+
+- Pointer afeta o **Hero inteiro** (não um SVG isolado)
+- Entrada ~1.2–1.6s; copy aparece cedo
+- Reduced motion: composição final full-bleed, sem movimento
+- Detalhes: `docs/IMMERSIVE-HERO.md`

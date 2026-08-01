@@ -46,3 +46,9 @@ LCM permanece neutra.
 ## Milestone 3 — Living field
 
 A geometria da tríade permanece a origem. A cena do Hero passa a se comportar como campo vivo (camadas, luz, energia nas conexões) sem estampar a logo nem alterar a paleta/tipografia aprovadas.
+
+---
+
+## Milestone 4 — Continuous composition
+
+A tríade é descoberta em campo aberto (módulos indiretos, conexões distribuídas). Sem caixa, sem widget. Ver `docs/IMMERSIVE-HERO.md`.

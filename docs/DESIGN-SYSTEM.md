@@ -59,3 +59,9 @@ Transparente no topo → superfície translúcida + blur após scroll. Logo ofic
 ## Milestone 3
 
 A atmosfera escura permanece. O Hero evolui para ecossistema vivo (camadas, parallax independente, iluminação metálica discreta) sem mudança de tokens de cor ou tipografia.
+
+---
+
+## Milestone 4 — Immersive Hero tokens
+
+Tokens exclusivos do Hero (`--hero-*`) documentados em `docs/IMMERSIVE-HERO.md`. Paleta global inalterada. Tipografia do título do Hero confirmada como Instrument Sans.
