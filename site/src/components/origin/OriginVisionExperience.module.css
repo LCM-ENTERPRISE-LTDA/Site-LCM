@@ -1,0 +1,196 @@
+.root {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: clamp(36rem, 72vh, 48rem);
+  padding: clamp(3.5rem, 9vh, 6.5rem) 0 clamp(4rem, 10vh, 7rem);
+  background:
+    radial-gradient(
+      ellipse 70% 55% at var(--olx, 52%) var(--oly, 46%),
+      rgba(47, 107, 255, 0.07),
+      transparent 64%
+    ),
+    linear-gradient(180deg, #080e1a 0%, #070c16 45%, #060a12 100%);
+  color: var(--color-text);
+  scroll-margin-top: var(--header-height, 4.5rem);
+}
+
+/* Soft handoff from Ecosystem — decelerate into silence */
+.entryBridge {
+  position: absolute;
+  inset: 0 0 auto;
+  height: min(22%, 8rem);
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #080e1a 90%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mist {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.018) 50%,
+    transparent 70%
+  );
+  opacity: 0.6;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(2.5rem, 6vh, 4rem);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.intro {
+  max-width: 32rem;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #4d9be8 55%, var(--color-text-muted));
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-instrument), var(--font-display), sans-serif;
+  font-size: clamp(1.85rem, 3.4vw, 2.75rem);
+  font-weight: 560;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+  color: var(--color-text);
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 38ch;
+  color: var(--color-text-muted);
+  font-size: clamp(1.02rem, 1.5vw, 1.15rem);
+  line-height: 1.7;
+}
+
+.signature {
+  margin: 0;
+  max-width: 36rem;
+  padding-top: clamp(0.5rem, 2vh, 1.25rem);
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 55%, transparent);
+  font-family: var(--font-instrument), var(--font-display), sans-serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-text) 88%, #4d9be8);
+}
+
+.signatureLead {
+  color: var(--color-text-muted);
+  font-weight: 450;
+}
+
+.signatureClose {
+  color: var(--color-text);
+}
+
+.exitBridge {
+  position: absolute;
+  inset: auto 0 0;
+  height: min(14vh, 6rem);
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--background-base, #060a12) 50%, transparent) 50%,
+    var(--background-base, #060a12) 100%
+  );
+}
+
+.alive .mist {
+  animation: mistDrift 18s ease-in-out infinite;
+}
+
+@keyframes mistDrift {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@media (max-width: 959px) {
+  .root {
+    min-height: 0;
+    padding: clamp(3rem, 7vh, 5rem) 0 clamp(3.5rem, 8vh, 5.5rem);
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 4vh, 2.75rem);
+  }
+
+  .intro {
+    max-width: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .root {
+    padding: clamp(2.5rem, 6vh, 3.75rem) 0 clamp(3rem, 7vh, 4.5rem);
+  }
+
+  .title {
+    font-size: clamp(1.55rem, 7.2vw, 2rem);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    max-width: none;
+  }
+
+  .signature {
+    font-size: 1.02rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive .mist {
+    animation: none;
+  }
+}

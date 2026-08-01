@@ -1,17 +1,13 @@
-﻿import { Reveal } from "@/components/motion/Reveal";
-import { EcosystemExperience } from "@/components/ecosystem/EcosystemExperience";
+﻿import { EcosystemExperience } from "@/components/ecosystem/EcosystemExperience";
 import { HeroExperience } from "@/components/hero/HeroExperience";
 import { PrinciplesBand } from "@/components/hero/PrinciplesBand";
+import { OriginVisionExperience } from "@/components/origin/OriginVisionExperience";
 import { PhilosophyExperience } from "@/components/philosophy/PhilosophyExperience";
 import { ProductShowcase } from "@/components/showcase/ProductShowcase";
 import { CTASection } from "@/components/sections/CTASection";
 import { TechnologyExperience } from "@/components/technology/TechnologyExperience";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { homeContent, principles } from "@/content/institutional";
 import { buildMetadata } from "@/lib/metadata";
-import styles from "./page.module.css";
 
 export const metadata = buildMetadata({
   title: "Home",
@@ -41,20 +37,7 @@ export default function HomePage() {
 
       <EcosystemExperience />
 
-      <Section id="origem">
-        <Container>
-          <Reveal direction="up">
-            <div className={styles.originBlock}>
-              <SectionHeading
-                eyebrow={homeContent.origin.eyebrow}
-                title={homeContent.origin.title}
-              />
-              <p className={styles.origin}>{homeContent.origin.body}</p>
-              <p className="draft-note">{homeContent.origin.draftNote}</p>
-            </div>
-          </Reveal>
-        </Container>
-      </Section>
+      <OriginVisionExperience />
 
       <CTASection
         title={homeContent.finalCta.title}
