@@ -14,13 +14,13 @@
   inset: 14% -6% -4% -6%;
   background: radial-gradient(
     ellipse 65% 50% at 50% 72%,
-    rgba(61, 139, 253, 0.18),
+    rgba(61, 139, 253, 0.16),
     transparent 72%
   );
   filter: blur(20px);
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+  opacity: 0.75;
 }
 
 .frame {
@@ -33,11 +33,11 @@
   overflow: hidden;
   background:
     linear-gradient(165deg, #0c1a30 0%, #071222 48%, #050e1a 100%);
-  border: 1px solid color-mix(in srgb, #3d8bfd 26%, transparent);
+  border: 1px solid color-mix(in srgb, #3d8bfd 22%, transparent);
   box-shadow:
-    0 0 0 1px rgba(4, 14, 28, 0.55),
-    0 18px 42px rgba(0, 0, 0, 0.38),
-    inset 0 1px 0 rgba(125, 211, 252, 0.06);
+    0 0 0 1px rgba(4, 14, 28, 0.5),
+    0 18px 42px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(125, 211, 252, 0.05);
 }
 
 .slot {
@@ -45,19 +45,88 @@
   inset: 0;
   z-index: 1;
   display: grid;
-  place-items: stretch;
+  place-items: center;
+  background: #07111f;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: var(--ah-object-position, top center);
+}
+
+.slot[data-fit="cover"] .image {
+  object-fit: cover;
+}
+
+.slot[data-fit="contain"] .image {
+  object-fit: contain;
 }
 
 .slot :global(img),
 .slot :global(picture) {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
   display: block;
+  object-fit: inherit;
+  object-position: var(--ah-object-position, top center);
 }
 
-.tech {
+.slot[data-fit="cover"] :global(img),
+.slot[data-fit="cover"] :global(picture) {
+  object-fit: cover;
+}
+
+.slot[data-fit="contain"] :global(img),
+.slot[data-fit="contain"] :global(picture) {
+  object-fit: contain;
+}
+
+/* Per-shot object-position overrides */
+.createOrderShot {
+  --ah-object-position: top center;
+}
+
+.addServiceShot {
+  --ah-object-position: center 70%;
+}
+
+.addPhotosShot {
+  --ah-object-position: center center;
+}
+
+.historyShot {
+  --ah-object-position: top center;
+}
+
+.networkSearchShot {
+  --ah-object-position: top center;
+}
+
+.companyOrdersShot {
+  --ah-object-position: top center;
+}
+
+.orderDetailShot {
+  --ah-object-position: top center;
+}
+
+.companyPanelShot {
+  --ah-object-position: top center;
+}
+
+.dashboardShot {
+  --ah-object-position: top center;
+}
+
+.loginShot {
+  --ah-object-position: top center;
+}
+
+.tech,
+.readyChrome {
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -107,40 +176,44 @@
 
 .corner {
   position: absolute;
-  width: 12px;
-  height: 12px;
-  border-color: color-mix(in srgb, #7dd3fc 40%, transparent);
+  width: 11px;
+  height: 11px;
+  border-color: color-mix(in srgb, #7dd3fc 32%, transparent);
   border-style: solid;
-  opacity: 0.65;
+  opacity: 0.55;
+}
+
+.readyChrome .corner {
+  opacity: 0.35;
 }
 
 .tl {
-  top: 14px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   border-width: 1px 0 0 1px;
 }
 
 .tr {
-  top: 14px;
-  right: 14px;
+  top: 12px;
+  right: 12px;
   border-width: 1px 1px 0 0;
 }
 
 .bl {
-  bottom: 18px;
-  left: 14px;
+  bottom: 14px;
+  left: 12px;
   border-width: 0 0 1px 1px;
 }
 
 .br {
-  bottom: 18px;
-  right: 14px;
+  bottom: 14px;
+  right: 12px;
   border-width: 0 1px 1px 0;
 }
 
 .coord {
   position: absolute;
-  top: 16px;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.62rem;
@@ -157,23 +230,47 @@
   background: linear-gradient(
     180deg,
     transparent 0%,
-    transparent 78%,
-    rgba(6, 20, 40, 0.55) 100%
+    transparent 88%,
+    rgba(6, 20, 40, 0.28) 100%
   );
 }
 
-.caption {
+.figure[data-status="ready"] .mask {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 92%,
+    rgba(6, 20, 40, 0.18) 100%
+  );
+}
+
+.captionBlock {
   position: relative;
   z-index: 1;
-  margin: 0;
+  display: grid;
+  gap: 0.2rem;
   min-height: 2rem;
+}
+
+.caption {
+  margin: 0;
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   line-height: 1.35;
   color: color-mix(in srgb, #9eb6d4 70%, transparent);
 }
 
-/* Variants keep outer geometry; ratio comes from style prop */
+.captionTitle {
+  font-family: var(--font-instrument), var(--font-display), sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+
+.captionDesc {
+  font-size: 0.82rem;
+  color: color-mix(in srgb, #9eb6d4 72%, transparent);
+}
+
 .portrait .frame,
 .timeline .frame,
 .landscape .frame,
@@ -181,56 +278,68 @@
   width: 100%;
 }
 
+/* Mobile: natural image height — full capture visible */
 @media (max-width: 639px) {
   .figure {
-    max-width: min(100%, 22rem);
+    max-width: min(100%, 430px);
     margin-inline: auto;
+  }
+
+  .figure[data-status="ready"] .frame {
+    aspect-ratio: auto !important;
+    height: auto;
+  }
+
+  .figure[data-status="ready"] .slot {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .figure[data-status="ready"] .image,
+  .figure[data-status="ready"] .slot :global(img) {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    max-height: none;
+    object-fit: contain !important;
+  }
+
+  .figure[data-status="ready"] .mask {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 94%,
+      rgba(6, 20, 40, 0.2) 100%
+    );
   }
 }
 
-/* Subtle motion — desktop only, gated by parent .in / reduced-motion */
 @media (min-width: 960px) {
   :global(.in) .glow {
     animation: frameGlow 7.5s ease-in-out infinite;
-  }
-
-  :global(.in) .focusLine {
-    animation: lineDrift 11s ease-in-out infinite;
   }
 }
 
 @keyframes frameGlow {
   0%,
   100% {
-    opacity: 0.72;
-  }
-  50% {
-    opacity: 0.95;
-  }
-}
-
-@keyframes lineDrift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.45;
-  }
-  50% {
-    transform: translate3d(0, -2px, 0);
     opacity: 0.65;
+  }
+  50% {
+    opacity: 0.88;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :global(.in) .glow,
-  :global(.in) .focusLine {
+  :global(.in) .glow {
     animation: none;
   }
 }
 
 @media (max-width: 959px) {
-  :global(.in) .glow,
-  :global(.in) .focusLine {
+  :global(.in) .glow {
     animation: none;
   }
 }

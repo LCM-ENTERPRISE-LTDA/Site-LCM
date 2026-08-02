@@ -1,8 +1,9 @@
 /**
- * AutoHist media slots — catalog for future manual screenshot insertion.
- * V3.3: no assets are rendered. Keep public WebP files on disk but unlinked.
+ * AutoHist final media catalog (V3.4).
+ * Public files live in site/public/products/autohist/screens/final/
+ * Source originals remain in docs/sprints/08-autohist/Imagens Reais AutoHist/
  *
- * See docs/sprints/08-autohist/SCREEN-FRAMES.md
+ * See docs/sprints/08-autohist/FINAL-SCREEN-MAP.md
  */
 
 export type MediaSlotId =
@@ -13,24 +14,26 @@ export type MediaSlotId =
   | "search-plate"
   | "search-history"
   | "search-pdf"
-  | "timeline-review"
-  | "timeline-replacement"
-  | "timeline-inspection"
-  | "timeline-document"
-  | "timeline-continuity";
+  | "timeline-detail"
+  | "trust-company"
+  | "trust-dashboard"
+  | "closing-login";
+
+export type MediaObjectFit = "contain" | "cover";
 
 export type MediaSlot = {
   id: MediaSlotId;
-  chapter: "03" | "04" | "05";
+  chapter: "03" | "04" | "05" | "06" | "closing";
   label: string;
+  alt: string;
+  src: string;
+  width: number;
+  height: number;
   variant: "portrait" | "landscape" | "wide" | "timeline";
   aspectRatio: string;
-  /** Future public path — do not import until manually approved */
-  futureSrc: string;
-  recommendedWidth: number;
-  recommendedHeight: number;
+  objectFit: MediaObjectFit;
   objectPosition: string;
-  /** When true, Experience may render media; V3.3 keeps all false */
+  shotClass: string;
   enabled: boolean;
 };
 
@@ -39,148 +42,168 @@ export const autohistMediaSlots: Record<MediaSlotId, MediaSlot> = {
     id: "flow-create-vehicle",
     chapter: "03",
     label: "Cadastrar veículo",
+    alt: "Tela de criação de nova ordem de serviço no AutoHist",
+    src: "/products/autohist/screens/final/autohist-create-order.webp",
+    width: 720,
+    height: 1600,
     variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-create-order.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "cover",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "createOrderShot",
+    enabled: true,
   },
   "flow-add-service": {
     id: "flow-add-service",
     chapter: "03",
     label: "Adicionar serviço",
+    alt: "Tela de criação de nova ordem de serviço no AutoHist",
+    src: "/products/autohist/screens/final/autohist-create-order.webp",
+    width: 720,
+    height: 1600,
     variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-service-details.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
-    objectPosition: "top center",
-    enabled: false,
+    objectFit: "cover",
+    objectPosition: "center 70%",
+    shotClass: "addServiceShot",
+    enabled: true,
   },
   "flow-add-photos": {
     id: "flow-add-photos",
     chapter: "03",
     label: "Registrar fotos",
+    alt: "Área para registrar fotos em uma ordem de serviço",
+    src: "/products/autohist/screens/final/autohist-add-photos.webp",
+    width: 459,
+    height: 833,
     variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-add-photos.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
-    objectPosition: "top center",
-    enabled: false,
+    objectFit: "contain",
+    objectPosition: "center center",
+    shotClass: "addPhotosShot",
+    enabled: true,
   },
   "flow-history": {
     id: "flow-history",
     chapter: "03",
     label: "Histórico permanente",
+    alt: "Lista e filtros das ordens de serviço da empresa",
+    src: "/products/autohist/screens/final/autohist-company-orders.webp",
+    width: 720,
+    height: 1600,
     variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-order-history.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "cover",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "historyShot",
+    enabled: true,
   },
   "search-plate": {
     id: "search-plate",
     chapter: "04",
     label: "Placa",
+    alt: "Pesquisa do histórico de um veículo na rede AutoHist",
+    src: "/products/autohist/screens/final/autohist-network-search.webp",
+    width: 458,
+    height: 830,
     variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-network-search.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "contain",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "networkSearchShot",
+    enabled: true,
   },
   "search-history": {
     id: "search-history",
     chapter: "04",
     label: "Histórico",
+    alt: "Lista e filtros das ordens de serviço da empresa",
+    src: "/products/autohist/screens/final/autohist-company-orders.webp",
+    width: 720,
+    height: 1600,
     variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-order-history.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "cover",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "companyOrdersShot",
+    enabled: true,
   },
   "search-pdf": {
     id: "search-pdf",
     chapter: "04",
     label: "PDF",
+    alt: "Detalhes completos de uma ordem de serviço finalizada",
+    src: "/products/autohist/screens/final/autohist-order-detail.webp",
+    width: 900,
+    height: 1123,
     variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-export-pdf.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
-    objectPosition: "center",
-    enabled: false,
+    objectFit: "contain",
+    objectPosition: "top center",
+    shotClass: "orderDetailShot",
+    enabled: true,
   },
-  "timeline-review": {
-    id: "timeline-review",
+  "timeline-detail": {
+    id: "timeline-detail",
     chapter: "05",
-    label: "Revisão",
+    label: "Registro detalhado",
+    alt: "Detalhes completos de uma ordem de serviço finalizada",
+    src: "/products/autohist/screens/final/autohist-order-detail.webp",
+    width: 900,
+    height: 1123,
     variant: "timeline",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-order-value.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "contain",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "orderDetailShot",
+    enabled: true,
   },
-  "timeline-replacement": {
-    id: "timeline-replacement",
-    chapter: "05",
-    label: "Troca",
-    variant: "timeline",
+  "trust-company": {
+    id: "trust-company",
+    chapter: "06",
+    label: "Painel da empresa",
+    alt: "Painel de indicadores da empresa no AutoHist",
+    src: "/products/autohist/screens/final/autohist-company-panel.webp",
+    width: 900,
+    height: 1640,
+    variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-service-details.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "contain",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "companyPanelShot",
+    enabled: true,
   },
-  "timeline-inspection": {
-    id: "timeline-inspection",
-    chapter: "05",
-    label: "Inspeção",
-    variant: "timeline",
+  "trust-dashboard": {
+    id: "trust-dashboard",
+    chapter: "06",
+    label: "Painel inicial",
+    alt: "Tela inicial do painel AutoHist",
+    src: "/products/autohist/screens/final/autohist-dashboard.webp",
+    width: 720,
+    height: 1600,
+    variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-add-photos.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "cover",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "dashboardShot",
+    enabled: true,
   },
-  "timeline-document": {
-    id: "timeline-document",
-    chapter: "05",
-    label: "Documento",
-    variant: "wide",
-    aspectRatio: "16 / 10",
-    futureSrc: "/products/autohist/screens/autohist-screen-export-pdf.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 450,
-    objectPosition: "center",
-    enabled: false,
-  },
-  "timeline-continuity": {
-    id: "timeline-continuity",
-    chapter: "05",
-    label: "Continuidade",
-    variant: "timeline",
+  "closing-login": {
+    id: "closing-login",
+    chapter: "closing",
+    label: "Acesso",
+    alt: "Tela de login do AutoHist",
+    src: "/products/autohist/screens/final/autohist-login.webp",
+    width: 720,
+    height: 1600,
+    variant: "portrait",
     aspectRatio: "4 / 5",
-    futureSrc: "/products/autohist/screens/autohist-screen-network-search.webp",
-    recommendedWidth: 720,
-    recommendedHeight: 900,
+    objectFit: "contain",
     objectPosition: "top center",
-    enabled: false,
+    shotClass: "loginShot",
+    enabled: true,
   },
 };
 
-/** @deprecated Use autohistMediaSlots — kept empty so nothing renders by accident */
-export const autohistScreens = {} as const;
-export type ScreenKey = never;
+export const autohistScreens = autohistMediaSlots;
+export type ScreenKey = MediaSlotId;
