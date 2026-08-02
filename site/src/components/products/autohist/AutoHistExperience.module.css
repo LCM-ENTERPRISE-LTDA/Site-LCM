@@ -418,29 +418,55 @@
 /* ——— 04 Search ——— */
 .search {
   background: linear-gradient(180deg, var(--ah-deep) 0%, #071526 100%);
+  padding-block: clamp(6rem, 10vw, 9.375rem);
 }
 
 .searchCompose {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: clamp(1.75rem, 4vw, 3rem);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
   align-items: center;
+  gap: clamp(1.75rem, 2.4vw, 2.5rem);
   width: 100%;
-  max-width: 100%;
+  max-width: min(100%, 1120px);
+  margin-inline: auto;
   min-width: 0;
 }
 
 .searchCopy {
   display: grid;
-  gap: clamp(0.85rem, 2vh, 1.25rem);
+  gap: 0;
   justify-items: start;
   text-align: left;
+  flex: 0 1 28rem;
+  max-width: 28rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.searchCopy .eyebrow {
+  margin-bottom: 1.15rem;
+}
+
+.searchCopy .chapterTitle {
+  margin-bottom: 1.55rem;
+  max-width: 14ch;
+}
+
+.searchCopy .body {
+  margin-bottom: 1.55rem;
+  max-width: 42ch;
+}
+
+.searchCopy .aside {
+  margin-bottom: 1.55rem;
+  max-width: 18ch;
 }
 
 .searchPlate {
-  margin: 0.15rem 0 0;
+  margin: 0 0 1.35rem;
   font-family: var(--font-instrument), var(--font-display), sans-serif;
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   letter-spacing: 0.14em;
@@ -449,11 +475,12 @@
 
 .searchMarkers {
   list-style: none;
-  margin: 0.35rem 0 0;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem 1.1rem;
+  gap: 0.55rem 1rem;
+  max-width: 28rem;
 }
 
 .searchMarkers li {
@@ -463,11 +490,38 @@
   color: color-mix(in srgb, var(--ah-cyan) 55%, var(--ah-muted));
 }
 
+.searchBridge {
+  flex: 0 0 auto;
+  width: 3rem;
+  height: 1px;
+  margin-top: 4.5rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--ah-cyan) 38%, transparent) 45%,
+    color-mix(in srgb, var(--ah-accent) 42%, transparent) 55%,
+    transparent 100%
+  );
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.searchBridge::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: -2px auto 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ah-cyan) 55%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--ah-accent) 28%, transparent);
+}
+
 .searchShot {
+  flex: 0 1 440px;
   width: 100%;
-  max-width: min(100%, 420px);
+  max-width: min(100%, 440px);
   min-width: 0;
-  justify-self: end;
 }
 
 /* ——— 05 Timeline ——— */
@@ -730,19 +784,25 @@
   }
 
   .searchCompose {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    justify-items: center;
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+    max-width: min(100%, 960px);
+  }
+
+  .searchBridge {
+    width: 2.25rem;
+    margin-top: 3.5rem;
   }
 
   .searchCopy {
-    justify-items: center;
-    text-align: center;
+    flex: 0 1 24rem;
+    max-width: 24rem;
+    justify-items: start;
+    text-align: left;
   }
 
   .searchShot {
+    flex: 0 1 360px;
     max-width: min(100%, 360px);
-    justify-self: center;
   }
 
   .timelineCompose {
@@ -775,6 +835,43 @@
   .timelineStage :global(svg),
   .timelineStage svg {
     min-width: min(40rem, 100%);
+  }
+}
+
+/* Cap 04 stacks before general mobile to avoid compressed columns */
+@media (max-width: 860px) {
+  .searchCompose {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: min(100%, 480px);
+  }
+
+  .searchBridge {
+    display: none;
+  }
+
+  .searchCopy {
+    flex: 0 1 auto;
+    justify-items: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .searchCopy .chapterTitle,
+  .searchCopy .body,
+  .searchCopy .aside {
+    max-width: none;
+  }
+
+  .searchMarkers {
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  .searchShot {
+    flex: 0 1 auto;
+    max-width: min(100%, 390px);
   }
 }
 
@@ -832,12 +929,35 @@
   }
 
   .searchCompose {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 1.35rem;
+    max-width: min(100%, 430px);
+  }
+
+  .searchBridge {
+    display: none;
+  }
+
+  .searchCopy {
+    justify-items: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .searchCopy .chapterTitle,
+  .searchCopy .body,
+  .searchCopy .aside {
+    max-width: none;
+  }
+
+  .searchMarkers {
+    justify-content: center;
+    max-width: 100%;
   }
 
   .searchShot {
-    max-width: min(92vw, 360px);
-    justify-self: center;
+    max-width: min(calc(100% - 32px), 430px);
+    width: 100%;
   }
 
   .trustGrid {

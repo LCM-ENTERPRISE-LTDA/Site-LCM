@@ -247,25 +247,28 @@ export function AutoHistExperience() {
           <div className={pageStyles.hazeWide} />
           <div className={pageStyles.grain} />
         </div>
-        <Container className={pageStyles.searchCompose}>
-          <div className={pageStyles.searchCopy}>
-            <p className={pageStyles.eyebrow}>{copy.search.eyebrow}</p>
-            <h2 id="ah-search-title" className={pageStyles.chapterTitle}>
-              {copy.search.title}
-            </h2>
-            <p className={pageStyles.body}>{copy.search.body}</p>
-            <p className={pageStyles.aside}>{copy.search.aside}</p>
-            <p className={pageStyles.searchPlate} aria-label={`Placa de exemplo ${copy.search.plate}`}>
-              {copy.search.plate}
-            </p>
-            <ul className={pageStyles.searchMarkers} aria-label="O que a busca revela">
-              {copy.search.markers.map((m) => (
-                <li key={m}>{m}</li>
-              ))}
-            </ul>
-          </div>
-          <div className={pageStyles.searchShot}>
-            <Shot slotId={copy.search.slot} caption={copy.search.caption} />
+        <Container>
+          <div className={pageStyles.searchCompose}>
+            <div className={pageStyles.searchCopy}>
+              <p className={pageStyles.eyebrow}>{copy.search.eyebrow}</p>
+              <h2 id="ah-search-title" className={pageStyles.chapterTitle}>
+                {copy.search.title}
+              </h2>
+              <p className={pageStyles.body}>{copy.search.body}</p>
+              <p className={pageStyles.aside}>{copy.search.aside}</p>
+              <p className={pageStyles.searchPlate} aria-label={`Placa de exemplo ${copy.search.plate}`}>
+                {copy.search.plate}
+              </p>
+              <ul className={pageStyles.searchMarkers} aria-label="O que a busca revela">
+                {copy.search.markers.map((m) => (
+                  <li key={m}>{m}</li>
+                ))}
+              </ul>
+            </div>
+            <div className={pageStyles.searchBridge} aria-hidden="true" />
+            <div className={pageStyles.searchShot}>
+              <Shot slotId={copy.search.slot} caption={copy.search.caption} />
+            </div>
           </div>
         </Container>
       </section>
