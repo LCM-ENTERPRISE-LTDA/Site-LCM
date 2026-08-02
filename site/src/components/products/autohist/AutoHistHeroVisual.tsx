@@ -8,78 +8,86 @@ type Props = {
   reduced: boolean;
 };
 
-const KEY_VISUAL = "/products/autohist/hero/autohist-key-visual.webp";
+const KEY_VISUAL = "/products/autohist/hero/autohist-horizon.webp";
 
 /**
- * AutoHist Hero V1.1 — full-bleed key visual + living overlays.
- * Does not recreate or replace the official image.
+ * AutoHist Hero V2 — "Horizonte Técnico" as a full-bleed living scene.
+ * Desktop: absolute scene behind the copy column.
+ * Tablet: in-flow below the copy, motion preserved.
+ * Mobile: in-flow, static, tightly cropped.
+ *
+ * SVG viewBox matches the source art (1536x1024) with `slice`,
+ * mirroring the image's cover crop so pulses ride the painted light path.
  */
 export function AutoHistHeroVisual({ alive, reduced }: Props) {
   const motionOn = alive && !reduced;
 
   return (
     <div
-      className={`${styles.stage} ${alive ? styles.alive : ""} ${reduced ? styles.reduced : ""}`}
+      className={`${styles.scene} ${alive ? styles.alive : ""} ${reduced ? styles.reduced : ""}`}
       aria-hidden="true"
     >
-      <div className={styles.backHaze} />
-      <div className={styles.floorReflect} />
-
-      <div className={styles.bleed}>
-        <div className={styles.imageLayer}>
-          <Image
-            src={KEY_VISUAL}
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 639px) 100vw, (max-width: 959px) 92vw, 56vw"
-            className={styles.image}
-          />
-        </div>
-
-        <div className={styles.feather} />
-
-        {motionOn ? <div className={styles.scanner} /> : null}
-
-        {motionOn ? (
-          <svg className={styles.pulseSvg} viewBox="0 0 800 560" fill="none">
-            <path
-              id="ah-timeline-path"
-              d="M120 210 C240 120 360 100 480 150 C580 190 660 240 720 300"
-              fill="none"
-            />
-            <circle r="3.2" className={styles.pulseA} fill="#7dd3fc">
-              <animateMotion dur="11s" repeatCount="indefinite" begin="0s">
-                <mpath href="#ah-timeline-path" />
-              </animateMotion>
-            </circle>
-            <circle r="2.4" className={styles.pulseB} fill="#3d8bfd">
-              <animateMotion dur="14s" repeatCount="indefinite" begin="3.5s">
-                <mpath href="#ah-timeline-path" />
-              </animateMotion>
-            </circle>
-            <circle r="2" className={styles.pulseC} fill="#9ec9ff">
-              <animateMotion dur="16s" repeatCount="indefinite" begin="7s">
-                <mpath href="#ah-timeline-path" />
-              </animateMotion>
-            </circle>
-          </svg>
-        ) : null}
-
-        <div className={styles.foreGlow} />
+      <div className={styles.imageWrap}>
+        <Image
+          src={KEY_VISUAL}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={styles.image}
+        />
       </div>
 
-      {/* Particles + vignette live outside the image mask */}
+      {/* Volumetric depth — breathes, never covers the plate */}
+      <div className={styles.horizonHaze} />
+      <div className={styles.floorGlow} />
+
+      {/* Data line + pulses riding the painted timeline */}
+      {motionOn ? (
+        <svg
+          className={styles.dataline}
+          viewBox="0 0 1536 1024"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+        >
+          <path
+            id="ah-data-path"
+            d="M-40 585 C 320 566 680 558 950 590 C 1040 601 1110 618 1180 642"
+            stroke="rgba(90, 160, 255, 0.08)"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          <circle r="3.4" className={styles.pulseA} fill="#8fc3ff">
+            <animateMotion dur="13s" repeatCount="indefinite" begin="0s">
+              <mpath href="#ah-data-path" />
+            </animateMotion>
+          </circle>
+          <circle r="2.4" className={styles.pulseB} fill="#3d8bfd">
+            <animateMotion dur="19s" repeatCount="indefinite" begin="4.5s">
+              <mpath href="#ah-data-path" />
+            </animateMotion>
+          </circle>
+          <circle r="1.8" className={styles.pulseC} fill="#bcd9ff">
+            <animateMotion dur="23s" repeatCount="indefinite" begin="9s">
+              <mpath href="#ah-data-path" />
+            </animateMotion>
+          </circle>
+        </svg>
+      ) : null}
+
+      {motionOn ? <div className={styles.scanner} /> : null}
+
       {motionOn ? (
         <div className={styles.particles}>
           <span className={styles.p1} />
           <span className={styles.p2} />
           <span className={styles.p3} />
           <span className={styles.p4} />
-          <span className={styles.p5} />
         </div>
       ) : null}
-      <div className={styles.edgeVignette} />
+
+      {/* Edge fusion — seals the scene into the hero environment */}
+      <div className={styles.fuse} />
     </div>
   );
 }

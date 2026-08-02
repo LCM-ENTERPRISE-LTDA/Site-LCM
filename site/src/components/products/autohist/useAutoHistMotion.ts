@@ -7,13 +7,13 @@ export {
   usePresence as useChapterPresence,
 } from "@/motion/useMotion";
 
-/** Layered light pointer — inertia, max ~5px base. CSS multiplies per layer. */
+/** Layered light pointer — inertia, max 4px base. CSS multiplies per layer. */
 export function useAutoHistPointer(
   targetRef: React.RefObject<HTMLElement | null>,
   enabled: boolean,
 ) {
   usePointerField(targetRef, enabled, {
-    maxPx: 5,
+    maxPx: 4,
     lerp: 0.04,
     listen: "element",
     varX: "--ax",

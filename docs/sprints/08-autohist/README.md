@@ -1,8 +1,20 @@
 # Milestone 8 — AutoHist Experience
 
-## V1.1 — Hero living key visual
+## V2 — Hero "Horizonte Técnico" (arte oficial)
 
-Full-bleed integration do Key Visual oficial + overlays locais (scanner, pulsos, haze, partículas, reflexo, luz com inércia).
+Key Visual "Horizonte Técnico" como **cena full-bleed** do Hero inteiro: a arte cobre a seção, o texto ocupa o espaço negativo à esquerda (desenhado para isso). Nenhum retângulo — máscaras irregulares + fusão de bordas nas cores do ambiente.
+
+Camadas vivas: scanner atravessando a composição (14s), linha de dados SVG com 3 pulsos em velocidades primas (13/19/23s) alinhados ao caminho de luz pintado (viewBox 1536×1024 + `slice` espelhando o crop `cover`), glow de piso e haze de horizonte respirando, 4 partículas ocasionais, pointer 4px com inércia (rAF único da fundação), parallax leve (arte 0.5×, luz 0.75×, overlays 1×).
+
+- Desktop: cena absoluta atrás da copy · Tablet: em fluxo abaixo da copy com motion · Mobile: estática, recorte fechado na placa
+- Pausa fora da viewport (IO) e quando a aba perde foco (`usePageVisibility`)
+- Reduced motion: remove scanner/pulsos/partículas, mantém iluminação estática
+- Asset: `site/public/products/autohist/hero/autohist-horizon.webp` (1536×1024, ~67 KB)
+- Screenshots: `screenshots/autohist-hero-v2-*.png`
+
+## V1.1 — Hero living key visual (histórico)
+
+Full-bleed integration do Key Visual anterior + overlays locais (scanner, pulsos, haze, partículas, reflexo, luz com inércia).
 
 - Screenshots: `docs/sprints/08-autohist/screenshots/autohist-hero-v11-*.png`
 - Escopo: **somente Hero** (`AutoHistHeroVisual` + layout do hero)

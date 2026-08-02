@@ -17,6 +17,7 @@ import {
   useChapterPresence,
   usePrefersReducedMotion,
 } from "./useAutoHistMotion";
+import { usePageVisibility } from "@/motion/useMotion";
 import styles from "./AutoHistExperience.module.css";
 
 export function AutoHistExperience() {
@@ -35,9 +36,10 @@ export function AutoHistExperience() {
   const continuityAlive = useChapterPresence(continuityRef);
 
   const reduced = usePrefersReducedMotion();
+  const visible = usePageVisibility();
   const copy = autohistCopy;
 
-  useAutoHistPointer(heroRef, !reduced && heroAlive);
+  useAutoHistPointer(heroRef, !reduced && heroAlive && visible);
 
   return (
     <div className={styles.page}>
@@ -75,10 +77,8 @@ export function AutoHistExperience() {
               <LinkButton href={copy.hero.cta.href}>{copy.hero.cta.label}</LinkButton>
             </div>
           </div>
-          <div className={styles.heroArt}>
-            <AutoHistHeroVisual alive={heroAlive} reduced={reduced} />
-          </div>
         </Container>
+        <AutoHistHeroVisual alive={heroAlive && visible} reduced={reduced} />
       </section>
 
       {/* 2 — Problem: large phrase, small text, art ambient */}

@@ -125,17 +125,19 @@
   animation: hazeShift 18s ease-in-out infinite;
 }
 
-/* ——— 1 Hero ——— */
+/* ——— 1 Hero — full-bleed Horizonte Técnico scene ——— */
 .hero {
   position: relative;
   isolation: isolate;
-  overflow: visible;
-  min-height: 0;
-  padding: clamp(4.5rem, 8.5vh, 6rem) 0 clamp(0.75rem, 1.8vh, 1.5rem);
+  overflow: clip;
+  min-height: clamp(32rem, 82vh, 46rem);
+  padding: clamp(4.5rem, 8.5vh, 6rem) 0 clamp(1.5rem, 3.5vh, 2.5rem);
+  display: grid;
+  align-items: center;
   background:
     radial-gradient(
       ellipse 62% 55% at var(--alx, 58%) var(--aly, 48%),
-      rgba(61, 139, 253, 0.12),
+      rgba(61, 139, 253, 0.1),
       transparent 66%
     ),
     linear-gradient(180deg, #040e1c 0%, var(--ah-deep) 55%, #071526 100%);
@@ -194,15 +196,6 @@
 
 .heroCta {
   margin-top: 0.35rem;
-}
-
-.heroArt {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-  margin-left: clamp(-2.5rem, -5vw, -1rem);
-  margin-right: clamp(-2rem, -4vw, -1rem);
-  margin-bottom: clamp(-3rem, -6vh, -1.5rem);
 }
 
 /* ——— 2 Problem ——— */
@@ -540,18 +533,12 @@
 
   .hero {
     min-height: 0;
-    padding: clamp(4.25rem, 8vh, 5.5rem) 0 clamp(1.25rem, 2.5vh, 2rem);
+    display: block;
+    padding: clamp(4.25rem, 8vh, 5.5rem) 0 0;
   }
 
   .heroLayout {
     gap: clamp(0.5rem, 1.5vh, 0.95rem);
-  }
-
-  .heroArt {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: -1rem;
   }
 
   .problemArtBg {
@@ -579,7 +566,7 @@
 
 @media (max-width: 639px) {
   .hero {
-    padding: clamp(3.75rem, 7vh, 5rem) 0 clamp(0.85rem, 2vh, 1.5rem);
+    padding: clamp(3.75rem, 7vh, 5rem) 0 0;
   }
 
   .heroLayout {
@@ -593,10 +580,6 @@
   .heroCta {
     margin-top: 0.1rem;
     margin-bottom: 0;
-  }
-
-  .heroArt {
-    margin-bottom: -0.85rem;
   }
 
   .heroTitle {
