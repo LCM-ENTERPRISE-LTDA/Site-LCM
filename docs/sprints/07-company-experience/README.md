@@ -4,6 +4,8 @@
 
 Página cinematográfica e editorial em **6 capítulos**. Lida como documentário institucional — não como “Sobre Nós” genérico.
 
+**V2 — Editorial Composition:** cada capítulo possui layout, peso e objeto visual próprios. Sem repetição título→texto→arte. Notas editoriais, fatos discretos, grids técnicos e atmosfera viva.
+
 Não reutiliza seções da Home. Não usa Missão/Visão/Valores, timelines datadas nem cards de princípios.
 
 ## Capítulos
