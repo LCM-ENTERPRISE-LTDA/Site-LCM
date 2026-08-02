@@ -144,15 +144,17 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
+  gap: clamp(1.75rem, 4.5vw, 3.75rem);
   align-items: center;
 }
 
 .heroCopy {
   display: grid;
   gap: var(--space-3);
-  max-width: 32rem;
+  max-width: 30rem;
+  position: relative;
+  z-index: 2;
 }
 
 .heroTop {
@@ -194,7 +196,9 @@
 }
 
 .heroArt {
-  transform: translate3d(calc(var(--ax, 0) * 0.2px), calc(var(--ay, 0) * 0.2px), 0);
+  position: relative;
+  z-index: 1;
+  min-width: 0;
 }
 
 /* ——— 2 Problem ——— */
@@ -557,7 +561,7 @@
   }
 
   .heroArt {
-    transform: none;
+    width: 100%;
   }
 }
 
@@ -583,9 +587,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .in .haze,
-  .in .hazeSoft,
-  .heroArt {
+  .in .hazeSoft {
     animation: none !important;
-    transform: none !important;
   }
 }

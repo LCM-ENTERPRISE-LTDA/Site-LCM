@@ -6,12 +6,12 @@ import { Container } from "@/components/ui/Container";
 import { autohistCopy } from "@/content/autohist";
 import {
   ContinuityArt,
-  HeroScanArt,
   HistorySpineArt,
   ProblemScatterArt,
   SearchRevealArt,
   WorkshopFieldArt,
 } from "./AutoHistArts";
+import { AutoHistHeroVisual } from "./AutoHistHeroVisual";
 import {
   useAutoHistPointer,
   useChapterPresence,
@@ -76,7 +76,7 @@ export function AutoHistExperience() {
             </div>
           </div>
           <div className={styles.heroArt}>
-            <HeroScanArt alive={heroAlive && !reduced} />
+            <AutoHistHeroVisual alive={heroAlive} reduced={reduced} />
           </div>
         </Container>
       </section>

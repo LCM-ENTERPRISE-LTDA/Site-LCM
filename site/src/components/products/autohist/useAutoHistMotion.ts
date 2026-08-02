@@ -78,8 +78,8 @@ export function useAutoHistPointer(
       const nx = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       const ny = ((event.clientY - rect.top) / rect.height) * 2 - 1;
       target.current = {
-        x: Math.max(-1, Math.min(1, nx)) * 2.8,
-        y: Math.max(-1, Math.min(1, ny)) * 2.8,
+        x: Math.max(-1, Math.min(1, nx)) * 4,
+        y: Math.max(-1, Math.min(1, ny)) * 4,
       };
     };
     const onLeave = () => {

@@ -1,9 +1,9 @@
 export const autohistCopy = {
   hero: {
-    eyebrow: "AutoHist",
+    eyebrow: "AUTOHIST",
     title: "O histórico começa antes do problema.",
     subtitle:
-      "Toda manutenção conta uma história. Quando essa história se perde, o veículo também perde valor.",
+      "Cada manutenção deixa um registro. O AutoHist preserva a memória completa do veículo — com clareza e continuidade.",
     cta: { label: "Conhecer o AutoHist", href: "#historico" },
     status: "Em desenvolvimento",
     note: "Prontuário digital do veículo.",
