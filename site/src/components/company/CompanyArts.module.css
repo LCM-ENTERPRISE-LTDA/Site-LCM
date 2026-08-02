@@ -1,0 +1,249 @@
+.art {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+}
+
+.svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.glow,
+.glowWarm,
+.horizonGlow {
+  position: absolute;
+  inset: 10% 8%;
+  pointer-events: none;
+  filter: blur(40px);
+  opacity: 0.65;
+}
+
+.glow {
+  background: radial-gradient(
+    ellipse at var(--clx, 58%) var(--cly, 42%),
+    rgba(47, 107, 255, 0.2),
+    transparent 68%
+  );
+  transform: translate3d(calc(var(--cx, 0) * 0.35px), calc(var(--cy, 0) * 0.35px), 0);
+}
+
+.glowWarm {
+  background: radial-gradient(ellipse at 45% 50%, rgba(77, 155, 232, 0.14), transparent 70%);
+}
+
+.horizonGlow {
+  background: radial-gradient(ellipse at 50% 70%, rgba(47, 107, 255, 0.16), transparent 72%);
+}
+
+.hero .svg {
+  max-width: 34rem;
+}
+
+.problem .svg,
+.thinking .svg,
+.future .svg {
+  max-width: 32rem;
+}
+
+.craft .svg {
+  max-width: 40rem;
+}
+
+/* —— Hero motion: slow tectonic —— */
+.alive.hero .breathe {
+  animation: breathe 16s ease-in-out infinite;
+}
+
+.alive.hero .planes {
+  animation: planeShift 22s ease-in-out infinite;
+}
+
+.alive.hero .line {
+  stroke-dasharray: 6 14;
+  animation: dash 28s linear infinite;
+}
+
+.alive.hero .lineSlow {
+  stroke-dasharray: 4 18;
+  animation: dash 36s linear infinite reverse;
+}
+
+.alive.hero .core {
+  animation: corePulse 12s ease-in-out infinite;
+}
+
+/* —— Problem: tension —— */
+.alive.problem .frame {
+  animation: framePulse 14s ease-in-out infinite;
+}
+
+.alive.problem .faultA {
+  animation: fault 10s ease-in-out infinite;
+}
+
+.alive.problem .faultB {
+  animation: fault 12s ease-in-out infinite reverse;
+}
+
+.alive.problem .stress {
+  animation: stressBlink 8s ease-in-out infinite;
+}
+
+/* —— Thinking: pillars rise —— */
+.alive.thinking .pillar {
+  animation: pillarRise 14s ease-in-out infinite;
+}
+
+.alive.thinking .pillarMid {
+  animation: pillarRise 14s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+/* —— Craft: signal travels —— */
+.alive.craft .craftPath {
+  animation: dash 18s linear infinite;
+}
+
+.alive.craft .station {
+  animation: stationGlow 6s ease-in-out infinite;
+}
+
+/* —— Future: horizon calm —— */
+.alive.future .horizon {
+  animation: breathe 18s ease-in-out infinite;
+}
+
+.alive.future .horizonLine {
+  stroke-dasharray: 5 16;
+  animation: dash 24s linear infinite;
+}
+
+.alive.future .beacon {
+  animation: corePulse 11s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes planeShift {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+
+@keyframes corePulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes framePulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fault {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes stressBlink {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes pillarRise {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateY(4px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stationGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 639px) {
+  .glow {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive.hero .breathe,
+  .alive.hero .planes,
+  .alive.hero .line,
+  .alive.hero .lineSlow,
+  .alive.hero .core,
+  .alive.problem .frame,
+  .alive.problem .faultA,
+  .alive.problem .faultB,
+  .alive.problem .stress,
+  .alive.thinking .pillar,
+  .alive.thinking .pillarMid,
+  .alive.craft .craftPath,
+  .alive.craft .station,
+  .alive.future .horizon,
+  .alive.future .horizonLine,
+  .alive.future .beacon {
+    animation: none !important;
+  }
+
+  .glow {
+    transform: none;
+  }
+}
