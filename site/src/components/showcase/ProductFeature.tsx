@@ -27,6 +27,7 @@ export function ProductFeature({ entry, product }: Props) {
   const [inView, setInView] = useState(false);
   const [reduced, setReduced] = useState(false);
   const [finePointer, setFinePointer] = useState(false);
+  const isAvailable = entry.status === "available";
 
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -65,7 +66,7 @@ export function ProductFeature({ entry, product }: Props) {
   }, [reduced]);
 
   useFeaturePointer(rootRef, {
-    enabled: finePointer && !reduced && inView,
+    enabled: finePointer && !reduced && inView && isAvailable,
   });
 
   const Visual =
@@ -88,6 +89,7 @@ export function ProductFeature({ entry, product }: Props) {
         styles[entry.align],
         inView && styles.visible,
         reduced && styles.reduced,
+        !isAvailable && styles.upcoming,
       )}
       style={getProductCssVars(entry.colorKey)}
       aria-labelledby={`showcase-${entry.slug}-title`}
@@ -98,7 +100,11 @@ export function ProductFeature({ entry, product }: Props) {
           <div className={styles.meta}>
             <span className={styles.index}>{entry.index}</span>
             <span className={styles.eyebrow}>{entry.eyebrow}</span>
-            <ProductStatusBadge status={product.status} />
+            {isAvailable ? (
+              <ProductStatusBadge status="available" />
+            ) : (
+              <span className={styles.devBadge}>Em desenvolvimento</span>
+            )}
           </div>
 
           <h3 id={`showcase-${entry.slug}-title`} className={styles.headline}>
@@ -112,10 +118,16 @@ export function ProductFeature({ entry, product }: Props) {
           <p className={styles.support}>{entry.support}</p>
 
           <div className={styles.actions}>
-            <LinkButton href={product.href} className={styles.cta}>
-              {entry.cta}
-              <Icon name="arrow-right" size={16} />
-            </LinkButton>
+            {isAvailable ? (
+              <LinkButton href={product.href} className={styles.cta}>
+                {entry.cta}
+                <Icon name="arrow-right" size={16} />
+              </LinkButton>
+            ) : (
+              <span className={styles.ctaDisabled} aria-disabled="true">
+                {entry.cta}
+              </span>
+            )}
           </div>
         </div>
 

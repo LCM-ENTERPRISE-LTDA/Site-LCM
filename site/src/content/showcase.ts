@@ -1,4 +1,5 @@
 import type { ProductThemeKey } from "@/config/productThemes";
+import type { ProductStatus } from "@/types/product";
 
 export type ShowcaseMotion = "timeline" | "constellation" | "canvas" | "signal";
 
@@ -10,6 +11,7 @@ export type ShowcaseEntry = {
   headline: string;
   support: string;
   cta: string;
+  status: ProductStatus;
   motion: ShowcaseMotion;
   /** Optical layout: copy side on desktop */
   align: "start" | "end";
@@ -32,6 +34,7 @@ export const showcaseEntries: ShowcaseEntry[] = [
     support:
       "Ordens de serviço, registros e busca em um fluxo pensado para o ritmo da oficina — clareza operacional sem ruído.",
     cta: "Conhecer o AutoHist",
+    status: "available",
     motion: "timeline",
     align: "start",
   },
@@ -43,7 +46,8 @@ export const showcaseEntries: ShowcaseEntry[] = [
     headline: "Inteligência com autonomia.\nAinda em exploração.",
     support:
       "Uma iniciativa de IA que investiga eficiência de recursos e menor dependência de plataformas centralizadas — com transparência de estágio.",
-    cta: "Explorar a Dyson",
+    cta: "Em desenvolvimento",
+    status: "development",
     motion: "constellation",
     align: "end",
   },
@@ -55,7 +59,8 @@ export const showcaseEntries: ShowcaseEntry[] = [
     headline: "Editar o visual\nsem desmontar a estrutura.",
     support:
       "Um construtor para textos, imagens e componentes com autonomia controlada — criatividade com governança técnica.",
-    cta: "Ver o LCM Studio",
+    cta: "Em desenvolvimento",
+    status: "development",
     motion: "canvas",
     align: "start",
   },
@@ -67,7 +72,8 @@ export const showcaseEntries: ShowcaseEntry[] = [
     headline: "Comunicação empresarial\ncom responsabilidade.",
     support:
       "Contatos, conversas e campanhas em um fluxo organizado — orientação a consentimento e boas práticas, sem ruído comercial agressivo.",
-    cta: "Conhecer o BusinessZap",
+    cta: "Em desenvolvimento",
+    status: "development",
     motion: "signal",
     align: "end",
   },
