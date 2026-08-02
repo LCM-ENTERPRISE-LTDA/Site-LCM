@@ -5,11 +5,12 @@ import { LinkButton } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { autohistCopy } from "@/content/autohist";
 import {
-  ContinuityArt,
-  HistorySpineArt,
+  ConvergeArt,
+  FlowDeviceArt,
+  GrandTimelineArt,
   ProblemScatterArt,
   SearchRevealArt,
-  WorkshopFieldArt,
+  TrustMarksArt,
 } from "./AutoHistArts";
 import { AutoHistHeroVisual } from "./AutoHistHeroVisual";
 import {
@@ -23,27 +24,30 @@ import styles from "./AutoHistExperience.module.css";
 export function AutoHistExperience() {
   const heroRef = useRef<HTMLElement>(null);
   const problemRef = useRef<HTMLElement>(null);
-  const historyRef = useRef<HTMLElement>(null);
+  const convergeRef = useRef<HTMLElement>(null);
+  const flowRef = useRef<HTMLElement>(null);
   const searchRef = useRef<HTMLElement>(null);
-  const workshopRef = useRef<HTMLElement>(null);
-  const continuityRef = useRef<HTMLElement>(null);
+  const timelineRef = useRef<HTMLElement>(null);
+  const trustRef = useRef<HTMLElement>(null);
 
   const heroAlive = useChapterPresence(heroRef, 0.12);
   const problemAlive = useChapterPresence(problemRef);
-  const historyAlive = useChapterPresence(historyRef);
+  const convergeAlive = useChapterPresence(convergeRef);
+  const flowAlive = useChapterPresence(flowRef);
   const searchAlive = useChapterPresence(searchRef);
-  const workshopAlive = useChapterPresence(workshopRef);
-  const continuityAlive = useChapterPresence(continuityRef);
+  const timelineAlive = useChapterPresence(timelineRef);
+  const trustAlive = useChapterPresence(trustRef);
 
   const reduced = usePrefersReducedMotion();
   const visible = usePageVisibility();
   const copy = autohistCopy;
+  const motion = (alive: boolean) => alive && !reduced && visible;
 
   useAutoHistPointer(heroRef, !reduced && heroAlive && visible);
 
   return (
     <div className={styles.page}>
-      {/* 1 — Hero */}
+      {/* ——— Hero (aprovado — não alterar) ——— */}
       <section
         ref={heroRef}
         className={`${styles.hero} ${heroAlive ? styles.in : ""}`}
@@ -81,74 +85,107 @@ export function AutoHistExperience() {
         <AutoHistHeroVisual alive={heroAlive && visible} reduced={reduced} />
       </section>
 
-      {/* 2 — Problem: large phrase, small text, art ambient */}
+      {/* 01 — Problema */}
       <section
         ref={problemRef}
-        className={`${styles.problem} ${problemAlive ? styles.in : ""}`}
+        className={`${styles.chapter} ${styles.problem} ${problemAlive ? styles.in : ""}`}
         aria-labelledby="ah-problem-title"
       >
         <div className={styles.atm} aria-hidden="true">
           <div className={styles.hazeSoft} />
           <div className={styles.grain} />
         </div>
-        <div className={styles.problemArtBg} aria-hidden="true">
-          <ProblemScatterArt alive={problemAlive && !reduced} />
-        </div>
-        <Container className={styles.problemLayout}>
-          <p className={styles.eyebrow}>{copy.problem.eyebrow}</p>
-          <h2 id="ah-problem-title" className={styles.problemTitle}>
-            {copy.problem.title}
-          </h2>
-          <div className={styles.problemRow}>
-            <p className={styles.problemBody}>{copy.problem.body}</p>
+        <Container className={styles.problemGrid}>
+          <div className={styles.chapterCopy}>
+            <p className={styles.eyebrow}>{copy.problem.eyebrow}</p>
+            <h2 id="ah-problem-title" className={styles.chapterTitle}>
+              {copy.problem.title}
+            </h2>
+            <p className={styles.body}>{copy.problem.body}</p>
             <p className={styles.aside}>{copy.problem.aside}</p>
+            <ul className={styles.fragmentList} aria-label="Fontes desconectadas">
+              {copy.problem.fragments.map((f) => (
+                <li key={f.id}>{f.label}</li>
+              ))}
+            </ul>
           </div>
-          <ul className={styles.fragments} aria-label="Fragmentos de informação">
-            {copy.problem.fragments.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
+          <div className={styles.chapterArt}>
+            <ProblemScatterArt alive={motion(problemAlive)} />
+          </div>
         </Container>
       </section>
 
-      {/* 3 — History: art dominant + lateral text */}
+      {/* 02 — Centralização */}
       <section
-        ref={historyRef}
-        id="historico"
-        className={`${styles.history} ${historyAlive ? styles.in : ""}`}
-        aria-labelledby="ah-history-title"
+        ref={convergeRef}
+        id="centralizacao"
+        className={`${styles.chapter} ${styles.converge} ${convergeAlive ? styles.in : ""}`}
+        aria-labelledby="ah-converge-title"
       >
         <div className={styles.atm} aria-hidden="true">
           <div className={styles.haze} />
           <div className={styles.grain} />
         </div>
-        <Container className={styles.historyLayout}>
-          <div className={styles.historyArt}>
-            <HistorySpineArt alive={historyAlive && !reduced} />
+        <Container className={styles.convergeGrid}>
+          <div className={styles.chapterArtWide}>
+            <ConvergeArt alive={motion(convergeAlive)} />
           </div>
-          <div className={styles.historyCopy}>
-            <p className={styles.eyebrow}>{copy.history.eyebrow}</p>
-            <h2 id="ah-history-title" className={styles.historyTitle}>
-              {copy.history.title}
+          <div className={styles.chapterCopy}>
+            <p className={styles.eyebrow}>{copy.converge.eyebrow}</p>
+            <h2 id="ah-converge-title" className={styles.chapterTitle}>
+              {copy.converge.title}
             </h2>
-            <p className={styles.body}>{copy.history.body}</p>
-            <p className={styles.aside}>{copy.history.aside}</p>
-            <ol className={styles.events}>
-              {copy.history.events.map((e) => (
-                <li key={e.label}>
-                  <span className={styles.eventLabel}>{e.label}</span>
-                  <span className={styles.eventDetail}>{e.detail}</span>
-                </li>
+            <p className={styles.body}>{copy.converge.body}</p>
+            <p className={styles.aside}>{copy.converge.aside}</p>
+            <ul className={styles.nodeList}>
+              {copy.converge.nodes.map((n) => (
+                <li key={n.id}>{n.label}</li>
               ))}
-            </ol>
+            </ul>
           </div>
         </Container>
       </section>
 
-      {/* 4 — Search: centered composition */}
+      {/* 03 — Como funciona */}
+      <section
+        ref={flowRef}
+        className={`${styles.chapter} ${styles.flow} ${flowAlive ? styles.in : ""}`}
+        aria-labelledby="ah-flow-title"
+      >
+        <div className={styles.atm} aria-hidden="true">
+          <div className={styles.hazeWide} />
+          <div className={styles.grain} />
+        </div>
+        <Container>
+          <div className={styles.flowIntro}>
+            <p className={styles.eyebrow}>{copy.flow.eyebrow}</p>
+            <h2 id="ah-flow-title" className={styles.chapterTitle}>
+              {copy.flow.title}
+            </h2>
+            <p className={styles.bodyWide}>{copy.flow.body}</p>
+          </div>
+          <ol className={styles.flowSteps}>
+            {copy.flow.steps.map((step) => (
+              <li key={step.id} className={styles.flowStep}>
+                <FlowDeviceArt
+                  alive={motion(flowAlive)}
+                  step={step.id as "cadastro" | "servico" | "fotos" | "historico"}
+                />
+                <div className={styles.flowMeta}>
+                  <span className={styles.flowIndex}>{step.index}</span>
+                  <h3 className={styles.flowTitle}>{step.title}</h3>
+                  <p className={styles.flowDetail}>{step.detail}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      {/* 04 — Busca */}
       <section
         ref={searchRef}
-        className={`${styles.search} ${searchAlive ? styles.in : ""}`}
+        className={`${styles.chapter} ${styles.search} ${searchAlive ? styles.in : ""}`}
         aria-labelledby="ah-search-title"
       >
         <div className={styles.atm} aria-hidden="true">
@@ -157,82 +194,91 @@ export function AutoHistExperience() {
         </div>
         <Container className={styles.searchLayout}>
           <p className={styles.eyebrow}>{copy.search.eyebrow}</p>
-          <h2 id="ah-search-title" className={styles.searchTitle}>
+          <h2 id="ah-search-title" className={`${styles.chapterTitle} ${styles.center}`}>
             {copy.search.title}
           </h2>
           <div className={styles.searchArt}>
-            <SearchRevealArt alive={searchAlive && !reduced} plate={copy.search.plate} />
+            <SearchRevealArt alive={motion(searchAlive)} plate={copy.search.plate} />
           </div>
-          <p className={styles.searchBody}>{copy.search.body}</p>
+          <p className={styles.bodyCenter}>{copy.search.body}</p>
           <p className={styles.asideCenter}>{copy.search.aside}</p>
+          <ul className={styles.resultTags} aria-label="Resultados da busca">
+            {copy.search.results.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
         </Container>
       </section>
 
-      {/* 5 — Workshop: asymmetric */}
+      {/* 05 — Timeline */}
       <section
-        ref={workshopRef}
-        className={`${styles.workshop} ${workshopAlive ? styles.in : ""}`}
-        aria-labelledby="ah-workshop-title"
-      >
-        <div className={styles.atm} aria-hidden="true">
-          <div className={styles.hazeSoft} />
-          <div className={styles.grain} />
-        </div>
-        <Container className={styles.workshopLayout}>
-          <div className={styles.workshopCopy}>
-            <p className={styles.eyebrow}>{copy.workshop.eyebrow}</p>
-            <h2 id="ah-workshop-title" className={styles.workshopTitle}>
-              {copy.workshop.title}
-            </h2>
-            <p className={styles.body}>{copy.workshop.body}</p>
-            <ul className={styles.nodes}>
-              {copy.workshop.nodes.map((n) => (
-                <li key={n}>{n}</li>
-              ))}
-            </ul>
-          </div>
-          <div className={styles.workshopArt}>
-            <WorkshopFieldArt alive={workshopAlive && !reduced} />
-          </div>
-        </Container>
-      </section>
-
-      {/* 6 — Continuity: editorial */}
-      <section
-        ref={continuityRef}
-        className={`${styles.continuity} ${continuityAlive ? styles.in : ""}`}
-        aria-labelledby="ah-continuity-title"
+        ref={timelineRef}
+        className={`${styles.chapter} ${styles.timeline} ${timelineAlive ? styles.in : ""}`}
+        aria-labelledby="ah-timeline-title"
       >
         <div className={styles.atm} aria-hidden="true">
           <div className={styles.haze} />
           <div className={styles.grain} />
         </div>
-        <Container className={styles.continuityLayout}>
-          <p className={styles.eyebrow}>{copy.continuity.eyebrow}</p>
-          <h2 id="ah-continuity-title" className={styles.continuityTitle}>
-            {copy.continuity.title}
-          </h2>
-          <ContinuityArt alive={continuityAlive && !reduced} />
-          <p className={styles.continuityBody}>{copy.continuity.body}</p>
-          <dl className={styles.markers}>
-            {copy.continuity.markers.map((m) => (
-              <div key={m.label} className={styles.marker}>
-                <dt>{m.label}</dt>
-                <dd>{m.value}</dd>
-              </div>
+        <Container>
+          <div className={styles.timelineIntro}>
+            <p className={styles.eyebrow}>{copy.timeline.eyebrow}</p>
+            <h2 id="ah-timeline-title" className={styles.chapterTitle}>
+              {copy.timeline.title}
+            </h2>
+            <p className={styles.bodyWide}>{copy.timeline.body}</p>
+          </div>
+          <div className={styles.timelineStage}>
+            <GrandTimelineArt alive={motion(timelineAlive)} events={copy.timeline.events} />
+          </div>
+          <ol className={styles.timelineMobile} aria-label="Eventos do histórico">
+            {copy.timeline.events.map((e) => (
+              <li key={e.id}>
+                <span className={styles.tmLabel}>{e.label}</span>
+                <span className={styles.tmDetail}>{e.detail}</span>
+                <span className={styles.tmKm}>{e.km}</span>
+              </li>
             ))}
-          </dl>
+          </ol>
         </Container>
       </section>
 
-      {/* Closing */}
+      {/* 06 — Confiança */}
+      <section
+        ref={trustRef}
+        className={`${styles.chapter} ${styles.trust} ${trustAlive ? styles.in : ""}`}
+        aria-labelledby="ah-trust-title"
+      >
+        <div className={styles.atm} aria-hidden="true">
+          <div className={styles.hazeSoft} />
+          <div className={styles.grain} />
+        </div>
+        <Container>
+          <div className={styles.trustIntro}>
+            <p className={styles.eyebrow}>{copy.trust.eyebrow}</p>
+            <h2 id="ah-trust-title" className={styles.chapterTitle}>
+              {copy.trust.title}
+            </h2>
+          </div>
+          <ul className={styles.trustGrid}>
+            {copy.trust.items.map((item) => (
+              <li key={item.id} className={styles.trustItem}>
+                <TrustMarksArt alive={motion(trustAlive)} />
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* 07 — CTA */}
       <section className={styles.closing} aria-labelledby="ah-closing-line">
         <div className={styles.atm} aria-hidden="true">
           <div className={styles.closingGlow} />
           <div className={styles.grain} />
         </div>
         <Container className={styles.closingInner}>
-          <p className={styles.note}>{copy.closing.note}</p>
+          <p className={styles.eyebrow}>{copy.closing.eyebrow}</p>
           <p id="ah-closing-line" className={styles.closingLine}>
             {copy.closing.line.split("\n").map((line) => (
               <span key={line} className={styles.closingPart}>
@@ -240,6 +286,7 @@ export function AutoHistExperience() {
               </span>
             ))}
           </p>
+          <p className={styles.note}>{copy.closing.note}</p>
           <div className={styles.closingActions}>
             <LinkButton href={copy.closing.primaryCta.href}>
               {copy.closing.primaryCta.label}

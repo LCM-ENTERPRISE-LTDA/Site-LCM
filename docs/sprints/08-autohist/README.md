@@ -1,5 +1,15 @@
 # Milestone 8 — AutoHist Experience
 
+## V3 — Narrativa visual (abaixo do Hero)
+
+Experiência em 7 capítulos que responde: problema → centralização → como funciona → busca → timeline → confiança → CTA.
+
+- Hero V2 **congelado** (Horizonte Técnico)
+- Cap. 3: device frames premium (UI do sistema estilizada — sem screenshots reais no repositório)
+- Cap. 5: timeline horizontal grande (lista vertical no mobile)
+- Motion: CSS + SVG, IO + visibility, reduced motion completo
+- Screenshots: `screenshots/autohist-v3-*.png`
+
 ## V2 — Hero "Horizonte Técnico" (arte oficial)
 
 Key Visual "Horizonte Técnico" como **cena full-bleed** do Hero inteiro: a arte cobre a seção, o texto ocupa o espaço negativo à esquerda (desenhado para isso). Nenhum retângulo — máscaras irregulares + fusão de bordas nas cores do ambiente.
