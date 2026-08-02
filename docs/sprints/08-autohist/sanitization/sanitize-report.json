@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-08-02T08:32:50.535Z",
+  "demoFiction": {
+    "company": "Oficina Demonstração",
+    "cnpj": "00.000.000/0000-00",
+    "staffA": "Funcionário A",
+    "staffB": "Funcionário B",
+    "staffC": "Funcionário C",
+    "plate": "AUT0H25",
+    "plateAlt": "ABC1D23",
+    "plateFmt": "AUT - 0H25",
+    "plateEq": "AUT-0H25",
+    "service": "Manutenção preventiva e substituição de componentes",
+    "serviceShort": "Manutenção preventiva",
+    "value": "R$ 350,00",
+    "balance": "R$ 18.750,00",
+    "avg": "R$ 146,48",
+    "orders": "128",
+    "staffCount": "4",
+    "orderId": "#000101",
+    "orderId2": "#000102",
+    "orderId3": "#000103",
+    "model": "Veículo Demonstração",
+    "brand": "Marca Demo",
+    "km": "45.200 km",
+    "year": "2020/2020",
+    "pctA": "42 · 33%",
+    "pctB": "38 · 30%",
+    "pctC": "28 · 22%"
+  },
+  "inventory": [
+    {
+      "sourceKey": "create-order",
+      "output": "autohist-screen-create-order.webp",
+      "chapter": "03-01",
+      "categories": [
+        "plate-field"
+      ],
+      "method": "cover+replace+crop"
+    },
+    {
+      "sourceKey": "create-order",
+      "output": "autohist-screen-service-details.webp",
+      "chapter": "03-02",
+      "categories": [
+        "none-empty-form"
+      ],
+      "method": "crop"
+    },
+    {
+      "sourceKey": "add-photos",
+      "output": "autohist-screen-add-photos.webp",
+      "chapter": "03-03",
+      "categories": [
+        "none"
+      ],
+      "method": "crop"
+    },
+    {
+      "sourceKey": "export-orders",
+      "output": "autohist-screen-order-history.webp",
+      "chapter": "03-04/04",
+      "categories": [
+        "plate",
+        "staff-name",
+        "money",
+        "order-id"
+      ],
+      "method": "cover+replace+crop"
+    },
+    {
+      "sourceKey": "network-search",
+      "output": "autohist-screen-network-search.webp",
+      "chapter": "04",
+      "categories": [
+        "plate"
+      ],
+      "method": "cover+replace+crop"
+    },
+    {
+      "sourceKey": "export-orders",
+      "output": "autohist-screen-export-pdf.webp",
+      "chapter": "04/05",
+      "categories": [
+        "money",
+        "order-count"
+      ],
+      "method": "cover+replace+crop"
+    },
+    {
+      "sourceKey": "order-card",
+      "output": "autohist-screen-order-value.webp",
+      "chapter": "05",
+      "categories": [
+        "plate",
+        "staff-name",
+        "free-text",
+        "money",
+        "vehicle"
+      ],
+      "method": "cover+replace"
+    },
+    {
+      "sourceKey": "company-values",
+      "output": "autohist-screen-company-dashboard.webp",
+      "chapter": "06",
+      "categories": [
+        "company",
+        "cnpj",
+        "staff-name",
+        "money",
+        "order-count"
+      ],
+      "method": "cover+replace+crop"
+    }
+  ],
+  "outputs": [
+    {
+      "file": "autohist-screen-create-order.webp",
+      "bytes": 12256,
+      "kb": 12
+    },
+    {
+      "file": "autohist-screen-service-details.webp",
+      "bytes": 18162,
+      "kb": 17.7
+    },
+    {
+      "file": "autohist-screen-add-photos.webp",
+      "bytes": 9388,
+      "kb": 9.2
+    },
+    {
+      "file": "autohist-screen-order-history.webp",
+      "bytes": 21132,
+      "kb": 20.6
+    },
+    {
+      "file": "autohist-screen-network-search.webp",
+      "bytes": 22666,
+      "kb": 22.1
+    },
+    {
+      "file": "autohist-screen-export-pdf.webp",
+      "bytes": 6528,
+      "kb": 6.4
+    },
+    {
+      "file": "autohist-screen-order-value.webp",
+      "bytes": 27828,
+      "kb": 27.2
+    },
+    {
+      "file": "autohist-screen-company-dashboard.webp",
+      "bytes": 20768,
+      "kb": 20.3
+    }
+  ],
+  "totalKb": 135.5,
+  "note": "Categories listed without reproducing source PII. Calibration coords on 720-wide normalized frames."
+}

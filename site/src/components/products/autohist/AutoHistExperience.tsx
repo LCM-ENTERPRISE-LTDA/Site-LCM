@@ -6,7 +6,6 @@ import { Container } from "@/components/ui/Container";
 import { autohistCopy } from "@/content/autohist";
 import {
   ConvergeArt,
-  FlowDeviceArt,
   GrandTimelineArt,
   ProblemScatterArt,
   TrustMarksArt,
@@ -168,21 +167,11 @@ export function AutoHistExperience() {
           <ol className={styles.flowSteps}>
             {copy.flow.steps.map((step) => (
               <li key={step.id} className={styles.flowStep}>
-                {step.screen ? (
-                  <AutoHistProductShot
-                    screen={step.screen as ScreenKey}
-                    caption={step.caption}
-                    frame="tall"
-                  />
-                ) : (
-                  <div className={styles.flowFallback}>
-                    <FlowDeviceArt
-                      alive={motion(flowAlive)}
-                      step={step.id as "cadastro" | "servico" | "fotos" | "historico"}
-                    />
-                    <p className={styles.missingNote}>{step.caption}</p>
-                  </div>
-                )}
+                <AutoHistProductShot
+                  screen={step.screen as ScreenKey}
+                  caption={step.caption}
+                  frame="flow"
+                />
                 <div className={styles.flowMeta}>
                   <span className={styles.flowIndex}>{step.index}</span>
                   <h3 className={styles.flowTitle}>{step.title}</h3>
@@ -225,7 +214,7 @@ export function AutoHistExperience() {
                 <AutoHistProductShot
                   screen={stage.screen as ScreenKey}
                   caption={stage.caption}
-                  frame={stage.id === "pdf" ? "wide" : "tall"}
+                  frame={stage.id === "pdf" ? "wide" : "search"}
                 />
               </div>
             ))}
@@ -235,9 +224,6 @@ export function AutoHistExperience() {
               <li key={r}>{r}</li>
             ))}
           </ul>
-          <p className={styles.missingNoteInline}>
-            Evidências fotográficas na busca: captura ainda não disponível no repositório.
-          </p>
         </Container>
       </section>
 
@@ -275,7 +261,7 @@ export function AutoHistExperience() {
                   <AutoHistProductShot
                     screen={e.proof as ScreenKey}
                     caption={`Prova — ${e.label}`}
-                    frame={e.proof === "cropPdf" ? "wide" : "tall"}
+                    frame={e.proof === "exportPdf" ? "wide" : "proof"}
                   />
                 </li>
               ))}
@@ -290,7 +276,7 @@ export function AutoHistExperience() {
                   <div className={styles.timelineMobileShot}>
                     <AutoHistProductShot
                       screen={e.proof as ScreenKey}
-                      frame={e.proof === "cropPdf" ? "wide" : "tall"}
+                      frame={e.proof === "exportPdf" ? "wide" : "proof"}
                     />
                   </div>
                 ) : null}

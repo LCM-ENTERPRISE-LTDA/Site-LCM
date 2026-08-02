@@ -1,0 +1,4 @@
+# Source captures may contain real operational data.
+# Keep local only — never publish to public/ or remote without sanitization.
+Imagens Reais AutoHist/
+screenshots/_v32-audit/
