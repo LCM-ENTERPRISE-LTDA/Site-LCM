@@ -230,6 +230,7 @@
 
 .chapterTitle {
   margin: 0;
+  scroll-margin-top: 5.5rem;
   font-family: var(--font-instrument), var(--font-display), sans-serif;
   font-size: clamp(1.75rem, 3.4vw, 2.65rem);
   font-weight: 560;
@@ -347,25 +348,31 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1rem, 2.5vw, 1.75rem);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .flowStep {
   display: grid;
   grid-template-rows: auto auto;
-  gap: 1rem;
+  gap: 0.85rem;
   justify-items: stretch;
   align-content: start;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .flowStep :global(figure) {
   width: 100%;
-  max-width: none;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .flowMeta {
   display: grid;
   gap: 0.35rem;
-  min-height: 5.5rem;
+  min-height: 5.25rem;
 }
 
 .flowIndex {
@@ -419,6 +426,8 @@
 
 .searchDemo {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(1rem, 2.5vw, 1.75rem);
@@ -431,12 +440,15 @@
   gap: 0.55rem;
   justify-items: stretch;
   width: 100%;
-  opacity: 0.88;
+  max-width: 100%;
+  min-width: 0;
+  opacity: 0.92;
 }
 
 .searchStage :global(figure) {
   width: 100%;
-  max-width: none;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .searchAlive .searchStage {
@@ -495,35 +507,13 @@
 .timelineStage {
   position: relative;
   z-index: 1;
-  margin: 0 -0.5rem;
+  margin: 0;
   padding: 1rem 0 0.5rem;
-}
-
-.timelineProofs {
-  position: relative;
-  z-index: 1;
-  list-style: none;
-  margin: clamp(1.5rem, 4vh, 2.5rem) 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.25rem, 3vw, 2rem);
-}
-
-.timelineProof {
-  display: grid;
-  gap: 0.85rem;
-  align-content: start;
-}
-
-.timelineProof :global(figure) {
   width: 100%;
-  max-width: none;
-}
-
-.timelineProofMeta {
-  display: grid;
-  gap: 0.15rem;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .timelineMobile {
@@ -540,11 +530,6 @@
   gap: 0.15rem 1rem;
   padding: 0.75rem 0;
   border-top: 1px solid color-mix(in srgb, var(--ah-mid) 55%, transparent);
-}
-
-.timelineMobileShot {
-  grid-column: 1 / -1;
-  margin-top: 0.65rem;
 }
 
 .tmLabel {
@@ -680,28 +665,24 @@
   }
 
   .searchDemo {
-    grid-template-columns: 1fr;
-    max-width: 22rem;
+    grid-template-columns: 1fr 1fr;
+    max-width: 34rem;
     margin-inline: auto;
   }
 
-  .timelineProofs {
-    grid-template-columns: 1fr;
-    max-width: 22rem;
+  .searchStage:last-child {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 0.4rem);
+    justify-self: center;
   }
 
   .trustGrid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .timelineStage {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
   .timelineStage :global(svg),
   .timelineStage svg {
-    min-width: 40rem;
+    min-width: min(40rem, 100%);
   }
 }
 
@@ -743,15 +724,18 @@
   .flowStep {
     grid-template-columns: 1fr;
     align-items: start;
-    gap: 0.85rem;
+    gap: 0.75rem;
   }
 
   .searchDemo {
     grid-template-columns: 1fr;
+    max-width: min(100%, 22rem);
   }
 
-  .timelineProofs {
-    display: none;
+  .searchStage:last-child {
+    grid-column: auto;
+    max-width: none;
+    justify-self: stretch;
   }
 
   .trustGrid {

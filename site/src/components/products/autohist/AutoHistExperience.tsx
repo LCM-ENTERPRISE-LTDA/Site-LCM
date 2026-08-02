@@ -4,6 +4,7 @@ import { useRef, type CSSProperties } from "react";
 import { LinkButton } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { autohistCopy } from "@/content/autohist";
+import { autohistMediaSlots } from "@/content/autohistScreens";
 import {
   ConvergeArt,
   GrandTimelineArt,
@@ -11,14 +12,13 @@ import {
   TrustMarksArt,
 } from "./AutoHistArts";
 import { AutoHistHeroVisual } from "./AutoHistHeroVisual";
-import { AutoHistProductShot } from "./AutoHistProductShot";
+import { AutoHistMediaFrame } from "./AutoHistMediaFrame";
 import {
   useAutoHistPointer,
   useChapterPresence,
   usePrefersReducedMotion,
 } from "./useAutoHistMotion";
 import { usePageVisibility } from "@/motion/useMotion";
-import type { ScreenKey } from "@/content/autohistScreens";
 import styles from "./AutoHistExperience.module.css";
 
 export function AutoHistExperience() {
@@ -165,20 +165,26 @@ export function AutoHistExperience() {
             <p className={styles.bodyWide}>{copy.flow.body}</p>
           </div>
           <ol className={styles.flowSteps}>
-            {copy.flow.steps.map((step) => (
-              <li key={step.id} className={styles.flowStep}>
-                <AutoHistProductShot
-                  screen={step.screen as ScreenKey}
-                  caption={step.caption}
-                  frame="flow"
-                />
-                <div className={styles.flowMeta}>
-                  <span className={styles.flowIndex}>{step.index}</span>
-                  <h3 className={styles.flowTitle}>{step.title}</h3>
-                  <p className={styles.flowDetail}>{step.detail}</p>
-                </div>
-              </li>
-            ))}
+            {copy.flow.steps.map((step) => {
+              const slot = autohistMediaSlots[step.slot];
+              return (
+                <li key={step.id} className={styles.flowStep}>
+                  <AutoHistMediaFrame
+                    variant={slot.variant}
+                    aspectRatio={slot.aspectRatio}
+                    index={step.index}
+                    label={step.title}
+                    caption={step.caption}
+                    status="empty"
+                  />
+                  <div className={styles.flowMeta}>
+                    <span className={styles.flowIndex}>{step.index}</span>
+                    <h3 className={styles.flowTitle}>{step.title}</h3>
+                    <p className={styles.flowDetail}>{step.detail}</p>
+                  </div>
+                </li>
+              );
+            })}
           </ol>
         </Container>
       </section>
@@ -211,10 +217,13 @@ export function AutoHistExperience() {
                 style={{ animationDelay: `${index * 0.35}s` }}
               >
                 <span className={styles.searchStageLabel}>{stage.label}</span>
-                <AutoHistProductShot
-                  screen={stage.screen as ScreenKey}
+                <AutoHistMediaFrame
+                  variant="portrait"
+                  aspectRatio="4 / 5"
+                  index={`0${index + 1}`}
+                  label={stage.label}
                   caption={stage.caption}
-                  frame={stage.id === "pdf" ? "wide" : "search"}
+                  status="empty"
                 />
               </div>
             ))}
@@ -248,38 +257,12 @@ export function AutoHistExperience() {
           <div className={styles.timelineStage}>
             <GrandTimelineArt alive={motion(timelineAlive)} events={copy.timeline.events} />
           </div>
-          <ul className={styles.timelineProofs} aria-label="Evidências reais do histórico">
-            {copy.timeline.events
-              .filter((e) => e.proof)
-              .map((e) => (
-                <li key={e.id} className={styles.timelineProof}>
-                  <div className={styles.timelineProofMeta}>
-                    <span className={styles.tmLabel}>{e.label}</span>
-                    <span className={styles.tmDetail}>{e.detail}</span>
-                    <span className={styles.tmKm}>{e.km}</span>
-                  </div>
-                  <AutoHistProductShot
-                    screen={e.proof as ScreenKey}
-                    caption={`Prova — ${e.label}`}
-                    frame={e.proof === "exportPdf" ? "wide" : "proof"}
-                  />
-                </li>
-              ))}
-          </ul>
           <ol className={styles.timelineMobile} aria-label="Eventos do histórico">
             {copy.timeline.events.map((e) => (
               <li key={e.id}>
                 <span className={styles.tmLabel}>{e.label}</span>
                 <span className={styles.tmDetail}>{e.detail}</span>
                 <span className={styles.tmKm}>{e.km}</span>
-                {e.proof ? (
-                  <div className={styles.timelineMobileShot}>
-                    <AutoHistProductShot
-                      screen={e.proof as ScreenKey}
-                      frame={e.proof === "exportPdf" ? "wide" : "proof"}
-                    />
-                  </div>
-                ) : null}
               </li>
             ))}
           </ol>
