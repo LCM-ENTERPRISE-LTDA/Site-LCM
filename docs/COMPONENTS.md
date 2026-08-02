@@ -80,6 +80,17 @@ Detalhes: `docs/sprints/06-ecosystem/README.md`
 Conteúdo: `site/src/content/originVision.ts`  
 Detalhes: `docs/sprints/07-origin-vision/README.md`
 
+## Company Experience
+
+| Componente | Papel |
+|------------|-------|
+| `CompanyExperience` | Página `/empresa` — jornada em 6 capítulos |
+| `CompanyArts` | Composições SVG por capítulo |
+| `useCompanyMotion` | Presence + pointer do Hero (≤2.8px) |
+
+Conteúdo: `site/src/content/company.ts`  
+Detalhes: `docs/sprints/07-company-experience/README.md`
+
 ## Navigation / UI / Product / Motion
 
 `DesktopNavigation`, `MobileNavigation`, `ProductMenu` · `Button`, `Badge`, `Section`, `Tabs`… · `ProductCard`, `ProductHero` · `Reveal`
