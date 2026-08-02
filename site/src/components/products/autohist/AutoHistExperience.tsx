@@ -24,13 +24,11 @@ import pageStyles from "./AutoHistExperience.module.css";
 
 function Shot({
   slotId,
-  index,
   caption,
   priority = false,
   className = "",
 }: {
   slotId: MediaSlotId;
-  index?: string;
   caption?: string;
   priority?: boolean;
   className?: string;
@@ -42,7 +40,6 @@ function Shot({
       className={className}
       variant={slot.variant}
       aspectRatio={slot.aspectRatio}
-      index={index}
       label={slot.label}
       caption={caption}
       status="ready"
@@ -81,6 +78,9 @@ export function AutoHistExperience() {
   const motion = (alive: boolean) => alive && !reduced && visible;
 
   useAutoHistPointer(heroRef, !reduced && heroAlive && visible);
+
+  const earlySteps = copy.flow.steps.slice(0, 2);
+  const lateSteps = copy.flow.steps.slice(2);
 
   return (
     <div className={pageStyles.page}>
@@ -201,18 +201,39 @@ export function AutoHistExperience() {
             </h2>
             <p className={pageStyles.bodyWide}>{copy.flow.body}</p>
           </div>
-          <ol className={pageStyles.flowSteps}>
-            {copy.flow.steps.map((step) => (
-              <li key={step.id} className={pageStyles.flowStep}>
-                <Shot slotId={step.slot} index={step.index} caption={step.caption} />
-                <div className={pageStyles.flowMeta}>
+
+          <div className={pageStyles.flowCompose}>
+            <div className={pageStyles.flowShotPrimary}>
+              <Shot
+                slotId={copy.flow.createSlot}
+                caption={copy.flow.createCaption}
+              />
+            </div>
+            <ol className={`${pageStyles.flowStepGroup} ${pageStyles.flowStepGroupEarly}`}>
+              {earlySteps.map((step) => (
+                <li key={step.id} className={pageStyles.flowMeta}>
                   <span className={pageStyles.flowIndex}>{step.index}</span>
                   <h3 className={pageStyles.flowTitle}>{step.title}</h3>
                   <p className={pageStyles.flowDetail}>{step.detail}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+                </li>
+              ))}
+            </ol>
+            <ol className={`${pageStyles.flowStepGroup} ${pageStyles.flowStepGroupLate}`}>
+              {lateSteps.map((step) => (
+                <li key={step.id} className={pageStyles.flowMeta}>
+                  <span className={pageStyles.flowIndex}>{step.index}</span>
+                  <h3 className={pageStyles.flowTitle}>{step.title}</h3>
+                  <p className={pageStyles.flowDetail}>{step.detail}</p>
+                </li>
+              ))}
+            </ol>
+            <div className={pageStyles.flowShotSecondary}>
+              <Shot
+                slotId={copy.flow.photosSlot}
+                caption={copy.flow.photosCaption}
+              />
+            </div>
+          </div>
         </Container>
       </section>
 
@@ -226,37 +247,26 @@ export function AutoHistExperience() {
           <div className={pageStyles.hazeWide} />
           <div className={pageStyles.grain} />
         </div>
-        <Container className={pageStyles.searchLayout}>
-          <p className={pageStyles.eyebrow}>{copy.search.eyebrow}</p>
-          <h2 id="ah-search-title" className={`${pageStyles.chapterTitle} ${pageStyles.center}`}>
-            {copy.search.title}
-          </h2>
-          <p className={pageStyles.bodyCenter}>{copy.search.body}</p>
-          <p className={pageStyles.asideCenter}>{copy.search.aside}</p>
-          <p className={pageStyles.searchPlate} aria-label={`Placa de exemplo ${copy.search.plate}`}>
-            {copy.search.plate}
-          </p>
-          <div className={`${pageStyles.searchDemo} ${searchAlive ? pageStyles.searchAlive : ""}`}>
-            {copy.search.stages.map((stage, index) => (
-              <div
-                key={stage.id}
-                className={pageStyles.searchStage}
-                style={{ animationDelay: `${index * 0.35}s` }}
-              >
-                <span className={pageStyles.searchStageLabel}>{stage.label}</span>
-                <Shot
-                  slotId={stage.slot}
-                  index={`0${index + 1}`}
-                  caption={stage.caption}
-                />
-              </div>
-            ))}
+        <Container className={pageStyles.searchCompose}>
+          <div className={pageStyles.searchCopy}>
+            <p className={pageStyles.eyebrow}>{copy.search.eyebrow}</p>
+            <h2 id="ah-search-title" className={pageStyles.chapterTitle}>
+              {copy.search.title}
+            </h2>
+            <p className={pageStyles.body}>{copy.search.body}</p>
+            <p className={pageStyles.aside}>{copy.search.aside}</p>
+            <p className={pageStyles.searchPlate} aria-label={`Placa de exemplo ${copy.search.plate}`}>
+              {copy.search.plate}
+            </p>
+            <ul className={pageStyles.searchMarkers} aria-label="O que a busca revela">
+              {copy.search.markers.map((m) => (
+                <li key={m}>{m}</li>
+              ))}
+            </ul>
           </div>
-          <ul className={pageStyles.resultTags} aria-label="Resultados da busca">
-            {copy.search.results.map((r) => (
-              <li key={r}>{r}</li>
-            ))}
-          </ul>
+          <div className={pageStyles.searchShot}>
+            <Shot slotId={copy.search.slot} caption={copy.search.caption} />
+          </div>
         </Container>
       </section>
 
@@ -278,34 +288,38 @@ export function AutoHistExperience() {
             </h2>
             <p className={pageStyles.bodyWide}>{copy.timeline.body}</p>
           </div>
-          <div className={pageStyles.timelineLayout}>
+          <div className={pageStyles.timelineCompose}>
             <div className={pageStyles.timelineStage}>
               <GrandTimelineArt alive={motion(timelineAlive)} events={copy.timeline.events} />
+              <p className={pageStyles.timelineLinkNote} aria-hidden="true">
+                Revisão → registro detalhado
+              </p>
             </div>
+            <ol className={pageStyles.timelineEarlyMobile} aria-label="Eventos iniciais">
+              {copy.timeline.events.slice(0, 2).map((e) => (
+                <li key={e.id}>
+                  <span className={pageStyles.tmLabel}>{e.label}</span>
+                  <span className={pageStyles.tmDetail}>{e.detail}</span>
+                  <span className={pageStyles.tmKm}>{e.km}</span>
+                </li>
+              ))}
+            </ol>
             <div className={pageStyles.timelineProofPanel}>
               <Shot
                 slotId={copy.timeline.proofSlot}
                 caption={copy.timeline.proofCaption}
               />
             </div>
+            <ol className={pageStyles.timelineLateMobile} aria-label="Eventos seguintes">
+              {copy.timeline.events.slice(2).map((e) => (
+                <li key={e.id}>
+                  <span className={pageStyles.tmLabel}>{e.label}</span>
+                  <span className={pageStyles.tmDetail}>{e.detail}</span>
+                  <span className={pageStyles.tmKm}>{e.km}</span>
+                </li>
+              ))}
+            </ol>
           </div>
-          <ol className={pageStyles.timelineMobile} aria-label="Eventos do histórico">
-            {copy.timeline.events.map((e) => (
-              <li key={e.id}>
-                <span className={pageStyles.tmLabel}>{e.label}</span>
-                <span className={pageStyles.tmDetail}>{e.detail}</span>
-                <span className={pageStyles.tmKm}>{e.km}</span>
-                {e.id === "e2" ? (
-                  <div className={pageStyles.timelineMobileShot}>
-                    <Shot
-                      slotId={copy.timeline.proofSlot}
-                      caption={copy.timeline.proofCaption}
-                    />
-                  </div>
-                ) : null}
-              </li>
-            ))}
-          </ol>
         </Container>
       </section>
 
@@ -340,12 +354,6 @@ export function AutoHistExperience() {
                 slotId={copy.trust.panelSlot}
                 caption={copy.trust.panelCaption}
               />
-              <div className={pageStyles.trustMediaSecondary}>
-                <Shot
-                  slotId={copy.trust.dashboardSlot}
-                  caption={copy.trust.dashboardCaption}
-                />
-              </div>
             </div>
           </div>
         </Container>
@@ -357,7 +365,7 @@ export function AutoHistExperience() {
           <div className={pageStyles.closingGlow} />
           <div className={pageStyles.grain} />
         </div>
-        <Container className={pageStyles.closingGrid}>
+        <Container>
           <div className={pageStyles.closingInner}>
             <p className={pageStyles.eyebrow}>{copy.closing.eyebrow}</p>
             <p id="ah-closing-line" className={pageStyles.closingLine}>
@@ -376,12 +384,6 @@ export function AutoHistExperience() {
                 {copy.closing.secondaryCta.label}
               </LinkButton>
             </div>
-          </div>
-          <div className={pageStyles.closingMedia}>
-            <Shot
-              slotId={copy.closing.loginSlot}
-              caption={copy.closing.loginCaption}
-            />
           </div>
         </Container>
       </section>

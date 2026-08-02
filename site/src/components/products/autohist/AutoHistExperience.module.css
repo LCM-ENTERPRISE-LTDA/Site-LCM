@@ -216,9 +216,11 @@
 /* ——— Shared chapter ——— */
 .chapter {
   position: relative;
-  padding: clamp(4.5rem, 11vh, 7.5rem) 0;
+  z-index: 1;
+  padding: clamp(3.75rem, 9vh, 6.25rem) 0;
   overflow: clip;
   border-top: 1px solid color-mix(in srgb, var(--ah-mid) 45%, transparent);
+  scroll-margin-top: calc(var(--header-height) + 0.75rem);
 }
 
 .chapterCopy {
@@ -335,44 +337,60 @@
   z-index: 1;
   display: grid;
   gap: var(--space-3);
-  margin-bottom: clamp(2rem, 5vh, 3.25rem);
+  margin-bottom: clamp(1.5rem, 4vh, 2.5rem);
   max-width: 40rem;
 }
 
-.flowSteps {
+.flowCompose {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-areas:
+    "shotA stepsA"
+    "stepsB shotB";
+  gap: clamp(1.25rem, 3vw, 2.25rem) clamp(1.5rem, 3.5vw, 2.75rem);
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.flowShotPrimary {
+  grid-area: shotA;
+  width: 100%;
+  max-width: min(100%, 420px);
+  min-width: 0;
+}
+
+.flowShotSecondary {
+  grid-area: shotB;
+  width: 100%;
+  max-width: min(100%, 340px);
+  min-width: 0;
+  justify-self: end;
+}
+
+.flowStepGroup {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 1.75rem);
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
+  gap: 1.15rem;
+  align-content: center;
 }
 
-.flowStep {
-  display: grid;
-  grid-template-rows: auto auto;
-  gap: 0.85rem;
-  justify-items: stretch;
-  align-content: start;
-  min-width: 0;
-  max-width: 100%;
+.flowStepGroupEarly {
+  grid-area: stepsA;
 }
 
-.flowStep :global(figure) {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
+.flowStepGroupLate {
+  grid-area: stepsB;
 }
 
 .flowMeta {
   display: grid;
-  gap: 0.35rem;
-  min-height: 5.25rem;
+  gap: 0.3rem;
 }
 
 .flowIndex {
@@ -394,7 +412,7 @@
   font-size: 0.88rem;
   line-height: 1.55;
   color: var(--ah-muted);
-  max-width: 22ch;
+  max-width: 28ch;
 }
 
 /* ——— 04 Search ——— */
@@ -402,92 +420,54 @@
   background: linear-gradient(180deg, var(--ah-deep) 0%, #071526 100%);
 }
 
-.searchLayout {
+.searchCompose {
   position: relative;
   z-index: 1;
   display: grid;
-  gap: clamp(1rem, 2.5vh, 1.75rem);
-  justify-items: center;
-  text-align: center;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.75rem, 4vw, 3rem);
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
-.searchArt {
-  width: min(100%, 42rem);
-  margin: 0.5rem 0;
+.searchCopy {
+  display: grid;
+  gap: clamp(0.85rem, 2vh, 1.25rem);
+  justify-items: start;
+  text-align: left;
 }
 
 .searchPlate {
-  margin: 0.25rem 0 0;
+  margin: 0.15rem 0 0;
   font-family: var(--font-instrument), var(--font-display), sans-serif;
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   letter-spacing: 0.14em;
   color: color-mix(in srgb, #e8f0fa 88%, var(--ah-cyan));
 }
 
-.searchDemo {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 1.75rem);
-  align-items: start;
-  margin: 0.75rem 0 0.25rem;
-}
-
-.searchStage {
-  display: grid;
-  gap: 0.55rem;
-  justify-items: stretch;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  opacity: 0.92;
-}
-
-.searchStage :global(figure) {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-
-.searchAlive .searchStage {
-  animation: searchReveal 1.6s cubic-bezier(0.37, 0, 0.21, 1) both;
-}
-
-.searchStageLabel {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--ah-cyan) 50%, var(--ah-muted));
-}
-
-@keyframes searchReveal {
-  from {
-    opacity: 0.35;
-    transform: translate3d(0, 8px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.resultTags {
+.searchMarkers {
   list-style: none;
   margin: 0.35rem 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem 1.25rem;
-  justify-content: center;
+  gap: 0.55rem 1.1rem;
 }
 
-.resultTags li {
-  font-size: 0.78rem;
-  letter-spacing: 0.1em;
+.searchMarkers li {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--ah-cyan) 50%, var(--ah-muted));
+  color: color-mix(in srgb, var(--ah-cyan) 55%, var(--ah-muted));
+}
+
+.searchShot {
+  width: 100%;
+  max-width: min(100%, 420px);
+  min-width: 0;
+  justify-self: end;
 }
 
 /* ——— 05 Timeline ——— */
@@ -516,7 +496,21 @@
   min-width: 0;
 }
 
+.timelineCompose {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  grid-template-areas: "stage proof";
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 .timelineStage {
+  grid-area: stage;
   position: relative;
   margin: 0;
   padding: 1rem 0 0.5rem;
@@ -528,21 +522,33 @@
 }
 
 .timelineProofPanel {
+  grid-area: proof;
   width: 100%;
-  max-width: min(100%, 22rem);
+  max-width: min(100%, 400px);
   min-width: 0;
   justify-self: end;
+  align-self: center;
 }
 
-.timelineMobile {
+.timelineLinkNote {
+  margin: 0.65rem 0 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ah-cyan) 40%, transparent);
+}
+
+.timelineEarlyMobile,
+.timelineLateMobile {
   display: none;
   list-style: none;
-  margin: 1.5rem 0 0;
+  margin: 0;
   padding: 0;
   gap: 0.85rem;
 }
 
-.timelineMobile li {
+.timelineEarlyMobile li,
+.timelineLateMobile li {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 0.15rem 1rem;
@@ -622,54 +628,31 @@
 
 .trustMedia {
   display: grid;
-  gap: 1rem;
   width: 100%;
-  max-width: min(100%, 24rem);
+  max-width: min(100%, 420px);
   min-width: 0;
   justify-self: end;
-}
-
-.trustMediaSecondary {
-  width: min(72%, 14rem);
-  justify-self: end;
-  opacity: 0.96;
 }
 
 /* ——— 07 Closing ——— */
 .closing {
   position: relative;
-  padding: clamp(5rem, 14vh, 9rem) 0;
+  padding: clamp(4.5rem, 12vh, 7.5rem) 0;
   overflow: clip;
   border-top: 1px solid color-mix(in srgb, var(--ah-mid) 45%, transparent);
   background: linear-gradient(180deg, #081a30 0%, #040e1c 100%);
   text-align: center;
 }
 
-.closingGrid {
+.closingInner {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.55fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-
-.closingInner {
   display: grid;
   gap: clamp(1rem, 2.5vh, 1.5rem);
   justify-items: center;
   text-align: center;
-}
-
-.closingMedia {
-  width: 100%;
-  max-width: min(100%, 16rem);
-  min-width: 0;
-  justify-self: end;
-  opacity: 0.94;
+  max-width: 40rem;
+  margin-inline: auto;
 }
 
 .closingLine {
@@ -726,30 +709,52 @@
     order: -1;
   }
 
-  .flowSteps {
+  .flowCompose {
     grid-template-columns: 1fr 1fr;
-    gap: 1.75rem 1.25rem;
+    grid-template-areas:
+      "shotA shotB"
+      "stepsA stepsB";
+    gap: 1.5rem 1.25rem;
   }
 
-  .searchDemo {
-    grid-template-columns: 1fr 1fr;
-    max-width: 34rem;
-    margin-inline: auto;
-  }
-
-  .searchStage:last-child {
-    grid-column: 1 / -1;
-    max-width: calc(50% - 0.4rem);
+  .flowShotPrimary,
+  .flowShotSecondary {
+    max-width: min(100%, 280px);
     justify-self: center;
   }
 
-  .timelineLayout {
+  .flowStepGroupEarly,
+  .flowStepGroupLate {
+    display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .searchCompose {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: center;
+  }
+
+  .searchCopy {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .searchShot {
+    max-width: min(100%, 360px);
+    justify-self: center;
+  }
+
+  .timelineCompose {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "stage"
+      "proof";
     gap: 1.5rem;
   }
 
   .timelineProofPanel {
-    max-width: min(100%, 20rem);
+    max-width: min(100%, 360px);
     justify-self: center;
   }
 
@@ -759,23 +764,12 @@
   }
 
   .trustMedia {
-    max-width: min(100%, 22rem);
+    max-width: min(100%, 380px);
     justify-self: center;
   }
 
   .trustGrid {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .closingGrid {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-    justify-items: center;
-  }
-
-  .closingMedia {
-    max-width: min(100%, 14rem);
-    justify-self: center;
   }
 
   .timelineStage :global(svg),
@@ -815,28 +809,35 @@
     max-width: none;
   }
 
-  .flowSteps {
+  .flowCompose {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "shotA"
+      "stepsA"
+      "shotB"
+      "stepsB";
+    gap: 1.25rem;
   }
 
-  .flowStep {
-    grid-template-columns: 1fr;
-    align-items: start;
-    gap: 0.75rem;
-    max-width: min(100%, 430px);
-    margin-inline: auto;
+  .flowShotPrimary,
+  .flowShotSecondary {
+    max-width: min(100%, 360px);
+    justify-self: center;
+  }
+
+  .flowStepGroup {
     width: 100%;
+    max-width: min(100%, 360px);
+    margin-inline: auto;
   }
 
-  .searchDemo {
+  .searchCompose {
     grid-template-columns: 1fr;
-    max-width: min(92vw, 22rem);
   }
 
-  .searchStage:last-child {
-    grid-column: auto;
-    max-width: none;
-    justify-self: stretch;
+  .searchShot {
+    max-width: min(92vw, 360px);
+    justify-self: center;
   }
 
   .trustGrid {
@@ -844,33 +845,36 @@
   }
 
   .trustMedia {
-    max-width: min(92vw, 22rem);
+    max-width: min(92vw, 360px);
   }
 
-  .trustMediaSecondary {
-    width: min(78%, 12.5rem);
+  .timelineCompose {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "early"
+      "proof"
+      "late";
+    gap: 0.85rem;
   }
 
-  .timelineLayout .timelineStage,
-  .timelineProofPanel {
+  .timelineStage {
     display: none;
   }
 
-  .timelineMobile {
+  .timelineEarlyMobile {
     display: grid;
+    grid-area: early;
   }
 
-  .closingGrid {
-    grid-template-columns: 1fr;
+  .timelineLateMobile {
+    display: grid;
+    grid-area: late;
   }
 
-  .closingMedia {
-    max-width: min(72vw, 13rem);
-    order: 2;
-  }
-
-  .closingInner {
-    order: 1;
+  .timelineProofPanel {
+    display: block;
+    max-width: min(92vw, 360px);
+    justify-self: center;
   }
 
   .closingLine {
@@ -882,11 +886,5 @@
   .in .haze,
   .in .hazeSoft {
     animation: none;
-  }
-
-  .searchAlive .searchStage {
-    animation: none;
-    opacity: 1;
-    transform: none;
   }
 }

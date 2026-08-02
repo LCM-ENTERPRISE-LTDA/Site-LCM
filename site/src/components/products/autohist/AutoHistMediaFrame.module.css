@@ -55,6 +55,9 @@
   display: block;
   object-fit: contain;
   object-position: var(--ah-object-position, top center);
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
 }
 
 .slot[data-fit="cover"] .image {
@@ -224,23 +227,23 @@
 
 .mask {
   position: absolute;
-  inset: 0;
+  inset: auto 0 0 0;
+  height: 12%;
   z-index: 3;
   pointer-events: none;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    transparent 88%,
-    rgba(6, 20, 40, 0.28) 100%
+    rgba(6, 20, 40, 0.12) 100%
   );
 }
 
 .figure[data-status="ready"] .mask {
+  height: 10%;
   background: linear-gradient(
     180deg,
     transparent 0%,
-    transparent 92%,
-    rgba(6, 20, 40, 0.18) 100%
+    rgba(6, 20, 40, 0.1) 100%
   );
 }
 
@@ -249,7 +252,7 @@
   z-index: 1;
   display: grid;
   gap: 0.2rem;
-  min-height: 2rem;
+  min-height: 0;
 }
 
 .caption {
@@ -276,6 +279,7 @@
 .landscape .frame,
 .wide .frame {
   width: 100%;
+  max-height: min(72vh, 560px);
 }
 
 /* Mobile: natural image height — full capture visible */
@@ -288,6 +292,7 @@
   .figure[data-status="ready"] .frame {
     aspect-ratio: auto !important;
     height: auto;
+    max-height: none;
   }
 
   .figure[data-status="ready"] .slot {
@@ -307,11 +312,11 @@
   }
 
   .figure[data-status="ready"] .mask {
+    height: 8%;
     background: linear-gradient(
       180deg,
       transparent 0%,
-      transparent 94%,
-      rgba(6, 20, 40, 0.2) 100%
+      rgba(6, 20, 40, 0.08) 100%
     );
   }
 }

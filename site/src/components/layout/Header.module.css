@@ -1,8 +1,10 @@
+/* Ensure sticky header paints above chapter atmospheres without redesign */
 .header {
   position: sticky;
   top: 0;
   z-index: var(--z-header);
   background: transparent;
+  isolation: isolate;
   border-bottom: var(--border-width) solid transparent;
   transition:
     background-color 420ms var(--ease-soft),
