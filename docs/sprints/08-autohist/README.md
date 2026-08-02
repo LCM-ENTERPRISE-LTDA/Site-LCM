@@ -1,4 +1,11 @@
-# Milestone 8 — AutoHist Experience V1
+# Milestone 8 — AutoHist Experience
+
+## V1.1 — Hero living key visual
+
+Full-bleed integration do Key Visual oficial + overlays locais (scanner, pulsos, haze, partículas, reflexo, luz com inércia).
+
+- Screenshots: `docs/sprints/08-autohist/screenshots/autohist-hero-v11-*.png`
+- Escopo: **somente Hero** (`AutoHistHeroVisual` + layout do hero)
 
 ## Conceito
 
@@ -10,7 +17,7 @@ Sensação: confiança → organização → clareza → continuidade.
 
 ## Capítulos
 
-1. Hero — scanner / placa / registros  
+1. Hero — key visual / placa / registros  
 2. Problema — fragmentos dispersos  
 3. Histórico — espinha viva (não tabela)  
 4. Busca — placa ilumina a história  

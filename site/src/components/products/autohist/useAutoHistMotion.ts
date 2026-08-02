@@ -34,7 +34,7 @@ export function useChapterPresence(
   return alive;
 }
 
-/** Soft technical light — ≤3px. One rAF. Hero only. */
+/** Layered light pointer — inertia, max ~5px base. CSS multiplies per layer. */
 export function useAutoHistPointer(
   targetRef: React.RefObject<HTMLElement | null>,
   enabled: boolean,
@@ -53,8 +53,8 @@ export function useAutoHistPointer(
       if (node) {
         node.style.setProperty("--ax", "0");
         node.style.setProperty("--ay", "0");
-        node.style.setProperty("--alx", "55%");
-        node.style.setProperty("--aly", "45%");
+        node.style.setProperty("--alx", "52%");
+        node.style.setProperty("--aly", "48%");
       }
       return;
     }
@@ -64,12 +64,12 @@ export function useAutoHistPointer(
       if (!active) return;
       const c = current.current;
       const t = target.current;
-      c.x += (t.x - c.x) * 0.05;
-      c.y += (t.y - c.y) * 0.05;
+      c.x += (t.x - c.x) * 0.04;
+      c.y += (t.y - c.y) * 0.04;
       node.style.setProperty("--ax", c.x.toFixed(3));
       node.style.setProperty("--ay", c.y.toFixed(3));
-      node.style.setProperty("--alx", `${(55 + c.x * 0.7).toFixed(2)}%`);
-      node.style.setProperty("--aly", `${(45 + c.y * 0.55).toFixed(2)}%`);
+      node.style.setProperty("--alx", `${(52 + c.x * 0.55).toFixed(2)}%`);
+      node.style.setProperty("--aly", `${(48 + c.y * 0.45).toFixed(2)}%`);
       frameRef.current = requestAnimationFrame(tick);
     };
 
@@ -78,8 +78,8 @@ export function useAutoHistPointer(
       const nx = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       const ny = ((event.clientY - rect.top) / rect.height) * 2 - 1;
       target.current = {
-        x: Math.max(-1, Math.min(1, nx)) * 4,
-        y: Math.max(-1, Math.min(1, ny)) * 4,
+        x: Math.max(-1, Math.min(1, nx)) * 5,
+        y: Math.max(-1, Math.min(1, ny)) * 5,
       };
     };
     const onLeave = () => {

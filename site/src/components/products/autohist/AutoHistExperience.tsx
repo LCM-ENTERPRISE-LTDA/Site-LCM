@@ -50,8 +50,8 @@ export function AutoHistExperience() {
           {
             ["--ax"]: "0",
             ["--ay"]: "0",
-            ["--alx"]: "55%",
-            ["--aly"]: "45%",
+            ["--alx"]: "58%",
+            ["--aly"]: "48%",
           } as CSSProperties
         }
       >
