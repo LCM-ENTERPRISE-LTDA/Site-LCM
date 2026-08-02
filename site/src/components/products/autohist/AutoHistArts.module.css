@@ -1,0 +1,227 @@
+.art {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+}
+
+.svg {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.glow,
+.spineGlow,
+.searchGlow {
+  position: absolute;
+  inset: 8% 10%;
+  pointer-events: none;
+  filter: blur(42px);
+  opacity: 0.7;
+}
+
+.glow {
+  background: radial-gradient(
+    ellipse at var(--alx, 55%) var(--aly, 45%),
+    rgba(61, 139, 253, 0.22),
+    transparent 68%
+  );
+  transform: translate3d(calc(var(--ax, 0) * 0.35px), calc(var(--ay, 0) * 0.35px), 0);
+}
+
+.spineGlow {
+  background: radial-gradient(ellipse at 50% 50%, rgba(61, 139, 253, 0.16), transparent 70%);
+}
+
+.searchGlow {
+  background: radial-gradient(ellipse at 50% 45%, rgba(125, 211, 252, 0.14), transparent 68%);
+}
+
+.hero .svg {
+  max-width: 34rem;
+}
+
+.scatter .svg,
+.search .svg,
+.workshop .svg,
+.continuity .svg {
+  max-width: 36rem;
+}
+
+.spine .svg {
+  max-width: 18rem;
+}
+
+/* Hero */
+.alive.hero .breathe {
+  animation: breathe 16s ease-in-out infinite;
+}
+
+.alive.hero .scan {
+  animation: scanSweep 10s ease-in-out infinite;
+}
+
+.alive.hero .trail {
+  stroke-dasharray: 6 14;
+  animation: dash 22s linear infinite;
+}
+
+.alive.hero .plate {
+  animation: plateGlow 12s ease-in-out infinite;
+}
+
+.alive.hero .node {
+  animation: nodePulse 7s ease-in-out infinite;
+}
+
+/* Scatter */
+.alive.scatter .frag {
+  animation: scatterBreath 14s ease-in-out infinite;
+}
+
+.alive.scatter .pulse {
+  animation: nodePulse 8s ease-in-out infinite;
+}
+
+/* Spine */
+.alive.spine .spineLine {
+  stroke-dasharray: 4 12;
+  animation: dash 26s linear infinite;
+}
+
+.alive.spine .spineNode {
+  animation: nodePulse 8s ease-in-out infinite;
+}
+
+/* Search */
+.alive.search .searchPlate {
+  animation: plateGlow 11s ease-in-out infinite;
+}
+
+.alive.search .revealLine {
+  stroke-dasharray: 5 10;
+  animation: dash 18s linear infinite;
+}
+
+.alive.search .revealNode {
+  animation: nodePulse 6s ease-in-out infinite;
+}
+
+/* Workshop */
+.alive.workshop .breathe {
+  animation: breathe 15s ease-in-out infinite;
+}
+
+.alive.workshop .pulse {
+  animation: nodePulse 7s ease-in-out infinite;
+}
+
+.alive.workshop .link {
+  stroke-dasharray: 4 10;
+  animation: dash 20s linear infinite;
+}
+
+/* Continuity */
+.alive.continuity .contPath {
+  stroke-dasharray: 6 14;
+  animation: dash 24s linear infinite;
+}
+
+.alive.continuity .contNode {
+  animation: nodePulse 7s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes scanSweep {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(-8px);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateY(28px);
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -140;
+  }
+}
+
+@keyframes plateGlow {
+  0%,
+  100% {
+    stroke-opacity: 0.35;
+  }
+  50% {
+    stroke-opacity: 0.7;
+  }
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scatterBreath {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@media (max-width: 639px) {
+  .glow {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alive.hero .breathe,
+  .alive.hero .scan,
+  .alive.hero .trail,
+  .alive.hero .plate,
+  .alive.hero .node,
+  .alive.scatter .frag,
+  .alive.scatter .pulse,
+  .alive.spine .spineLine,
+  .alive.spine .spineNode,
+  .alive.search .searchPlate,
+  .alive.search .revealLine,
+  .alive.search .revealNode,
+  .alive.workshop .breathe,
+  .alive.workshop .pulse,
+  .alive.workshop .link,
+  .alive.continuity .contPath,
+  .alive.continuity .contNode {
+    animation: none !important;
+  }
+
+  .glow {
+    transform: none;
+  }
+}

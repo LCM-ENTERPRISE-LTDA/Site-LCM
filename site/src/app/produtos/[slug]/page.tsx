@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { Reveal } from "@/components/motion/Reveal";
+import { AutoHistExperience } from "@/components/products/autohist/AutoHistExperience";
 import { ProductHero } from "@/components/product/ProductHero";
 import { CTASection } from "@/components/sections/CTASection";
 import { FeatureCard } from "@/components/ui/FeatureCard";
@@ -23,6 +24,15 @@ export async function generateMetadata({ params }: PageProps) {
   const product = getProductBySlug(slug);
   if (!product) return {};
 
+  if (slug === "autohist") {
+    return buildMetadata({
+      title: "AutoHist",
+      description:
+        "O histórico começa antes do problema. AutoHist preserva a memória completa de cada veículo — prontuário digital para oficinas.",
+      path: "/produtos/autohist",
+    });
+  }
+
   return buildMetadata({
     title: product.name,
     description: product.description,
@@ -34,6 +44,10 @@ export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) notFound();
+
+  if (slug === "autohist") {
+    return <AutoHistExperience />;
+  }
 
   return (
     <>

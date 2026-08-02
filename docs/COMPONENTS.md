@@ -91,6 +91,17 @@ Detalhes: `docs/sprints/07-origin-vision/README.md`
 Conteúdo: `site/src/content/company.ts`  
 Detalhes: `docs/sprints/07-company-experience/README.md`
 
+## AutoHist Experience
+
+| Componente | Papel |
+|------------|-------|
+| `AutoHistExperience` | Página `/produtos/autohist` — jornada prontuário |
+| `AutoHistArts` | Scanner, scatter, spine, search, workshop, continuity |
+| `useAutoHistMotion` | Presence + pointer técnico ≤2.8px |
+
+Conteúdo: `site/src/content/autohist.ts`  
+Detalhes: `docs/sprints/08-autohist/README.md`
+
 ## Navigation / UI / Product / Motion
 
 `DesktopNavigation`, `MobileNavigation`, `ProductMenu` · `Button`, `Badge`, `Section`, `Tabs`… · `ProductCard`, `ProductHero` · `Reveal`

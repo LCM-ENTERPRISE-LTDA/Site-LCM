@@ -10,6 +10,7 @@
 | `sprints/06-ecosystem/` | Ecosystem Experience |
 | `sprints/07-origin-vision/` | Origin & Vision Experience (Home) |
 | `sprints/07-company-experience/` | Company Experience (página Empresa) |
+| `sprints/08-autohist/` | AutoHist Experience V1 |
 | `screenshots/hero/` | Capturas do Hero |
 | `screenshots/showcase/` | Capturas do Showcase |
 | `screenshots/philosophy/` | Capturas do Manifesto |
@@ -17,4 +18,5 @@
 | `screenshots/ecosystem/` | Capturas Ecossistema (M6) |
 | `screenshots/origin/` | Capturas Origem & Visão (Home) |
 | `screenshots/company/` | Capturas página Empresa |
+| `screenshots/autohist/` | Capturas AutoHist |
 | `COMPONENTS.md` | Mapa de componentes (índice) |
