@@ -1,5 +1,16 @@
 # Milestone 8 — AutoHist Experience
 
+## V3.1 — Telas reais do produto (Caps 03–05)
+
+Substituição de wireframes abstratos por capturas reais do app AutoHist (mobile).
+
+- Cap 03: placa + OS + histórico reais; evidências/fotos **ainda wireframe** (captura ausente)
+- Cap 04: busca por placa + histórico + PDF reais
+- Cap 05: timeline editorial + provas reais nos nós Revisão / Troca / Documento
+- Assets: `site/public/products/autohist/screens/*.webp` (~214 KB total)
+- Originais: `docs/sprints/08-autohist/Imagens Reais AutoHist/`
+- Screenshots: `screenshots/autohist-v31-*.png`
+
 ## V3 — Narrativa visual (abaixo do Hero)
 
 Experiência em 7 capítulos que responde: problema → centralização → como funciona → busca → timeline → confiança → CTA.

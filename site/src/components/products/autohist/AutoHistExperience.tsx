@@ -9,16 +9,17 @@ import {
   FlowDeviceArt,
   GrandTimelineArt,
   ProblemScatterArt,
-  SearchRevealArt,
   TrustMarksArt,
 } from "./AutoHistArts";
 import { AutoHistHeroVisual } from "./AutoHistHeroVisual";
+import { AutoHistProductShot } from "./AutoHistProductShot";
 import {
   useAutoHistPointer,
   useChapterPresence,
   usePrefersReducedMotion,
 } from "./useAutoHistMotion";
 import { usePageVisibility } from "@/motion/useMotion";
+import type { ScreenKey } from "@/content/autohistScreens";
 import styles from "./AutoHistExperience.module.css";
 
 export function AutoHistExperience() {
@@ -167,10 +168,21 @@ export function AutoHistExperience() {
           <ol className={styles.flowSteps}>
             {copy.flow.steps.map((step) => (
               <li key={step.id} className={styles.flowStep}>
-                <FlowDeviceArt
-                  alive={motion(flowAlive)}
-                  step={step.id as "cadastro" | "servico" | "fotos" | "historico"}
-                />
+                {step.screen ? (
+                  <AutoHistProductShot
+                    screen={step.screen as ScreenKey}
+                    caption={step.caption}
+                    frame="tall"
+                  />
+                ) : (
+                  <div className={styles.flowFallback}>
+                    <FlowDeviceArt
+                      alive={motion(flowAlive)}
+                      step={step.id as "cadastro" | "servico" | "fotos" | "historico"}
+                    />
+                    <p className={styles.missingNote}>{step.caption}</p>
+                  </div>
+                )}
                 <div className={styles.flowMeta}>
                   <span className={styles.flowIndex}>{step.index}</span>
                   <h3 className={styles.flowTitle}>{step.title}</h3>
@@ -197,16 +209,35 @@ export function AutoHistExperience() {
           <h2 id="ah-search-title" className={`${styles.chapterTitle} ${styles.center}`}>
             {copy.search.title}
           </h2>
-          <div className={styles.searchArt}>
-            <SearchRevealArt alive={motion(searchAlive)} plate={copy.search.plate} />
-          </div>
           <p className={styles.bodyCenter}>{copy.search.body}</p>
           <p className={styles.asideCenter}>{copy.search.aside}</p>
+          <p className={styles.searchPlate} aria-label={`Placa de exemplo ${copy.search.plate}`}>
+            {copy.search.plate}
+          </p>
+          <div className={`${styles.searchDemo} ${searchAlive ? styles.searchAlive : ""}`}>
+            {copy.search.stages.map((stage, index) => (
+              <div
+                key={stage.id}
+                className={styles.searchStage}
+                style={{ animationDelay: `${index * 0.35}s` }}
+              >
+                <span className={styles.searchStageLabel}>{stage.label}</span>
+                <AutoHistProductShot
+                  screen={stage.screen as ScreenKey}
+                  caption={stage.caption}
+                  frame={stage.id === "pdf" ? "wide" : "tall"}
+                />
+              </div>
+            ))}
+          </div>
           <ul className={styles.resultTags} aria-label="Resultados da busca">
             {copy.search.results.map((r) => (
               <li key={r}>{r}</li>
             ))}
           </ul>
+          <p className={styles.missingNoteInline}>
+            Evidências fotográficas na busca: captura ainda não disponível no repositório.
+          </p>
         </Container>
       </section>
 
@@ -231,12 +262,38 @@ export function AutoHistExperience() {
           <div className={styles.timelineStage}>
             <GrandTimelineArt alive={motion(timelineAlive)} events={copy.timeline.events} />
           </div>
+          <ul className={styles.timelineProofs} aria-label="Evidências reais do histórico">
+            {copy.timeline.events
+              .filter((e) => e.proof)
+              .map((e) => (
+                <li key={e.id} className={styles.timelineProof}>
+                  <div className={styles.timelineProofMeta}>
+                    <span className={styles.tmLabel}>{e.label}</span>
+                    <span className={styles.tmDetail}>{e.detail}</span>
+                    <span className={styles.tmKm}>{e.km}</span>
+                  </div>
+                  <AutoHistProductShot
+                    screen={e.proof as ScreenKey}
+                    caption={`Prova — ${e.label}`}
+                    frame={e.proof === "cropPdf" ? "wide" : "tall"}
+                  />
+                </li>
+              ))}
+          </ul>
           <ol className={styles.timelineMobile} aria-label="Eventos do histórico">
             {copy.timeline.events.map((e) => (
               <li key={e.id}>
                 <span className={styles.tmLabel}>{e.label}</span>
                 <span className={styles.tmDetail}>{e.detail}</span>
                 <span className={styles.tmKm}>{e.km}</span>
+                {e.proof ? (
+                  <div className={styles.timelineMobileShot}>
+                    <AutoHistProductShot
+                      screen={e.proof as ScreenKey}
+                      frame={e.proof === "cropPdf" ? "wide" : "tall"}
+                    />
+                  </div>
+                ) : null}
               </li>
             ))}
           </ol>
