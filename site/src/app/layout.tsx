@@ -3,6 +3,7 @@ import { Instrument_Sans, Inter } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { Atmosphere } from "@/motion/Atmosphere/Atmosphere";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt-BR">
       <body className={`${instrumentSans.variable} ${inter.variable}`}>
+        <Atmosphere />
         <a className="skip-link" href="#conteudo">
           Ir para o conteúdo
         </a>
